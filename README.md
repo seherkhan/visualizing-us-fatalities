@@ -1,4 +1,11 @@
-# INF 554 Assignment for 5: Project Proposal     
+# INF 554 Assignment for 5: 
+
+# Final Project
+
+Project Paper: https://www.overleaf.com/read/qdrprfctmrhc
+The project paper is a work in progress.
+
+# Project Proposal     
    
 ## Slide 0: Cover Slide    
 ![Slide0](slides_imgs/cover.png)       
