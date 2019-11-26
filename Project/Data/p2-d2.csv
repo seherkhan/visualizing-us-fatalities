@@ -1,0 +1,71 @@
+﻿Category,Rank,Cause_1980,Deaths_1980,Cause_2016,Deaths_2016
+Under 1 year,1,Congenital anomalies,"9,220","Congenital malformations, deformations and chromosomal abnormalities","4,816"
+Under 1 year,2,Sudden infant death syndrome,"5,510",Disorders related to short gestation and low birthweight,"3,927"
+Under 1 year,3,Respiratory distress syndrome,"4,989",Sudden infant death syndrome,"1,500"
+Under 1 year,4,Disorders relating to short gestation and unspecified low birthweight,"3,648",Newborn affected by maternal complications of pregnancy,"1,402"
+Under 1 year,5,Newborn affected by maternal complications of pregnancy,"1,572",Unintentional injuries,"1,219"
+Under 1 year,6,Intrauterine hypoxia and birth asphyxia,"1,497","Newborn affected by complications of placenta, cord, and membranes",841
+Under 1 year,7,Unintentional injuries,"1,166",Bacterial sepsis of newborn,583
+Under 1 year,8,Birth trauma,"1,058",Respiratory distress of newborn,488
+Under 1 year,9,Pneumonia and influenza1/,"1,012",Diseases of circulatory system ,460
+Under 1 year,10,"Newborn affected by complications of placenta, cord, and membranes",985,Neonatal hemorrhage,398
+1–4 years,1,Unintentional injuries,"3,313",Unintentional injuries,"1,261"
+1–4 years,2,Congenital anomalies,"1,026","Congenital malformations, deformations and chromosomal abnormalities",433
+1–4 years,3,Malignant neoplasms,573,Malignant neoplasms,377
+1–4 years,4,Diseases of heart,338,Homicide,339
+1–4 years,5,Homicide,319,Diseases of heart,118
+1–4 years,6,Pneumonia and influenza1/,267,Influenza and pneumonia1/,103
+1–4 years,7,Meningitis,223,Septicemia,70
+1–4 years,8,Meningococcal infection,110,Conditions originating in perinatal period,60
+1–4 years,9,Certain conditions originating in the perinatal period,84,Cerebrovascular diseases,55
+1–4 years,10,Septicemia,71,"Chronic lower respiratory diseases1/,2/",51
+5–14 years,1,Unintentional injuries,"5,224",Unintentional injuries,"1,634"
+5–14 years,2,Malignant neoplasms,"1,497",Malignant neoplasms,880
+5–14 years,3,Congenital anomalies,561,Suicide,443
+5–14 years,4,Homicide,415,"Congenital malformations, deformations and chromosomal abnormalities",349
+5–14 years,5,Diseases of heart,330,Homicide,286
+5–14 years,6,Pneumonia and influenza1/,194,Diseases of heart,188
+5–14 years,7,Suicide,142,"Chronic lower respiratory diseases1/,2/",143
+5–14 years,8,Benign neoplasms,104,Cerebrovascular diseases,88
+5–14 years,9,Cerebrovascular diseases,95,Influenza and pneumonia1/,87
+5–14 years,10,Chronic obstructive pulmonary diseases2/,85,Septicemia,71
+15–24 years,1,Unintentional injuries,"26,206",Unintentional injuries,"13,895"
+15–24 years,2,Homicide,"6,537",Suicide,"5,723"
+15–24 years,3,Suicide,"5,239",Homicide,"5,172"
+15–24 years,4,Malignant neoplasms,"2,683",Malignant neoplasms,"1,431"
+15–24 years,5,Diseases of heart,"1,223",Diseases of heart,949
+15–24 years,6,Congenital anomalies,600,"Congenital malformations, deformations and chromosomal abnormalities",388
+15–24 years,7,Cerebrovascular diseases,418,Diabetes mellitus3/,211
+15–24 years,8,Pneumonia and influenza1/,348,"Chronic lower respiratory diseases1/,2/",206
+15–24 years,9,Chronic obstructive pulmonary diseases2/,141,Influenza and pneumonia1/,189
+15–24 years,10,Anemias,133,"Pregnancy, childbirth and puerperium",184
+25–44 years,1,Unintentional injuries,"26,722",Unintentional injuries,"44,959"
+25–44 years,2,Malignant neoplasms,"17,551",Malignant neoplasms,"14,694"
+25–44 years,3,Diseases of heart,"14,513",Suicide,"14,396"
+25–44 years,4,Homicide,"10,983",Diseases of heart,"13,922"
+25–44 years,5,Suicide,"9,855",Homicide,"8,745"
+25–44 years,6,Chronic liver disease and cirrhosis,"4,782",Chronic liver disease and cirrhosis,"3,776"
+25–44 years,7,Cerebrovascular diseases,"3,154",Diabetes mellitus3/,"2,841"
+25–44 years,8,Diabetes mellitus,"1,472",Cerebrovascular diseases,"2,426"
+25–44 years,9,Pneumonia and influenza1/,"1,467",Human immunodeficiency virus (HIV) disease,"1,517"
+25–44 years,10,Congenital anomalies,817,Influenza and pneumonia1/,"1,346"
+45–64 years,1,Diseases of heart,"148,322",Malignant neoplasms,"157,655"
+45–64 years,2,Malignant neoplasms,"135,675",Diseases of heart,"112,637"
+45–64 years,3,Cerebrovascular diseases,"19,909",Unintentional injuries,"45,237"
+45–64 years,4,Unintentional injuries,"18,140","Chronic lower respiratory diseases1/,2/","22,117"
+45–64 years,5,Chronic liver disease and cirrhosis,"16,089",Chronic liver disease and cirrhosis,"21,812"
+45–64 years,6,Chronic obstructive pulmonary diseases2/,"11,514",Diabetes mellitus3/,"20,518"
+45–64 years,7,Diabetes mellitus,"7,977",Cerebrovascular diseases,"17,663"
+45–64 years,8,Suicide,"7,079",Suicide,"16,196"
+45–64 years,9,Pneumonia and influenza1/,"5,804",Septicemia,"8,413"
+45–64 years,10,Homicide,"4,019","Nephritis, nephrotic syndrome and nephrosis3/","7,790"
+65 years and over,1,Diseases of heart,"595,406",Diseases of heart,"507,118"
+66 years and over,2,Malignant neoplasms,"258,389",Malignant neoplasms,"422,927"
+67 years and over,3,Cerebrovascular diseases,"146,417","Chronic lower respiratory diseases1/,2/","131,002"
+68 years and over,4,Pneumonia and influenza1/,"45,512",Cerebrovascular diseases,"121,630"
+69 years and over,5,Chronic obstructive pulmonary diseases2/,"43,587",Alzheimer's disease,"114,883"
+70 years and over,6,Atherosclerosis,"28,081",Diabetes mellitus3/,"56,452"
+71 years and over,7,Diabetes mellitus,"25,216",Unintentional injuries,"53,141"
+72 years and over,8,Unintentional injuries,"24,844",Influenza and pneumonia1/,"42,479"
+73 years and over,9,"Nephritis, nephrotic syndrome and nephrosis","12,968","Nephritis, nephrotic syndrome and nephrosis3/","41,095"
+74 years and over,10,Chronic liver disease and cirrhosis,"9,519",Septicemia,"30,405"
