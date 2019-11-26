@@ -1,4 +1,23 @@
-# INF 554 Assignment for 5: Project Proposal     
+## PROJECT SUMMARY
+
+### PROJECT INFORMATION
+
+- Project title: 
+- Group name: GroupOne
+- Team names: [Shraddha Kulkarni (shraddhk), Seher Khan (seherkha)]
+
+### PROJECT ARTIFACTS
+
+- [Demonstration URL](<demo-url>)
+- [Presentation PDF](<presentation-pdf-url>) and [transcript](<presentation-transcript-md-url>)
+- [Article](<article-pdf-url>) and [Overleaf URL](https://www.overleaf.com/read/qdrprfctmrhc)
+- [YouTube video](<youtube-video-url>)
+
+
+
+# INF 554 Assignment for 5: 
+
+# Project Proposal     
    
 ## Slide 0: Cover Slide    
 ![Slide0](slides_imgs/cover.png)       
