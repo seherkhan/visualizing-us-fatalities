@@ -1,4 +1,4 @@
-filesrc = "heatmap.json";
+filesrc = "Data/heatmap.json";
 
 // Transition for intervals - dekha jayega
 // maybe set color scheme instead of opacity on mouse over
@@ -9,12 +9,12 @@ filesrc = "heatmap.json";
 // BUTTONS
 options = d3.select('body')
   .append('aside')
-  .append('p').text('Set chart type to: ')
+  .append('p').text('Set colors according to: ')
   .append('select')
-  .attr('id','clrrng');
-options.append('option').attr('value','percent').text('Percent');
-options.append('option').attr('value','grouped').text('Grouped');
-options.append('option').attr('value','stacked').text('Stacked');
+  .attr('id','dropdown');
+options.append('option').attr('value','overall').text('Overall');
+options.append('option').attr('value','yr').text('Year');
+options.append('option').attr('value','age').text('Age');
 
 ///////////////////////////
 // CONSTRUCT SVG
@@ -298,7 +298,7 @@ d3.json(filesrc).then(function(data) {
   enable_mouseover_xaxis();
   enable_mouseover_yaxis();
 
-  d3.select("#clrrng")
+  d3.select("#dropdown")
     .on("change", function () {
       if(this.value=="overall"){
         console.log('overall!');
