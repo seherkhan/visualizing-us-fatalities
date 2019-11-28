@@ -2,7 +2,7 @@
 
 
 //filesrc = "stacked_dummydata.json";
-filesrc = "stacked.json";
+filesrc = "Data/stacked.json";
 /** 
  * Data format: e.g. 2 series (different age groups) for 4 yrs each
  *  [[x,x,x,x][x,x,x,x]]
@@ -21,6 +21,7 @@ var years = [2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
 
 ///////////////////////////
 // BUTTONS
+
 options = d3.select('body')
   .append('aside')
   .append('p').text('Select barchart type: ')
@@ -28,6 +29,7 @@ options = d3.select('body')
 options.append('option').attr('value','stacked').text('Stacked');
 options.append('option').attr('value','grouped').text('Grouped');
 
+/*
 checkboxes = d3.select('body')
   .append('aside');
 checkboxes.append('p').text('Groups visible: ')
@@ -42,7 +44,7 @@ seriesNames.forEach(function(series, i){
         .style('padding-right','10px')
 });
 
-
+*/
 
 
 d3.json(filesrc).then(function(data){
