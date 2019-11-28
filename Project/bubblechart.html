@@ -1,0 +1,32 @@
+<html>
+    <head> 
+        <script src="node_modules/d3/dist/d3.min.js"></script>
+    </head>
+    <style>
+        * {
+			box-sizing: border-box;
+		}
+		.column#div1 {
+			float: left;
+			width: 70%;
+			padding: 10px;
+		}
+        .column#div2 {
+			float: right;
+			width: 30%;
+			padding: 10px;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+        
+    </style>
+    <body>        
+        <script src="bubblechart.js"></script>
+    </body>
+
+</html>     
