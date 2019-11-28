@@ -160,7 +160,7 @@ d3.select('body').append('div').attr('id','div2').attr('class','column').append(
 
 
 
-createChart("bubblechart.json");
+createChart("Data/bubblechart.json");
 
 ///////////////////////////
 // BUTTONS
