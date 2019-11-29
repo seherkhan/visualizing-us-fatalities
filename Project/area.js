@@ -89,6 +89,7 @@ d3.csv("Data/area.csv").then(function(data)
         .attr("font-weight", "bold")
         .text('Expenditure ($ bn)')
     
+    
     const svg = d3.select('body')
         .append('div')
         .attr('id','primary')
@@ -106,7 +107,9 @@ d3.csv("Data/area.csv").then(function(data)
         .on("click",function(){
             updateSecondaryChart("All");
             })
-        
+    svg.append("g").call(xAxis);
+
+    svg.append("g").call(yAxis);
 
     var tmp_fill='white';
     const path = svg
@@ -140,12 +143,68 @@ d3.csv("Data/area.csv").then(function(data)
             updateSecondaryChart(key2filename(d.key));
             }
         )
-        .append("title")
-        .text(({ key }) => key);
-    
-    svg.append("g").call(xAxis);
-    
-    svg.append("g").call(yAxis);
+        //.append("title")
+        //.text(({ key }) => key);
+
+    marker_selection = svg.append("g")
+        .selectAll("g")
+        .data(series)
+        .enter()
+
+    for(i=0;i<years.length;i++){
+        marker_selection.append('circle')
+            .attr('id',function(d){return d[i].data.year+'__'+key2filename(d.key);})
+            .attr('cx',d=>x(d[i].data.year))
+            .attr('cy',d=>y(d[i][1]))
+            .attr('r','5')
+            .attr('fill',({ key }) => color(key))
+            .attr('stroke','white')
+            .attr('stroke-width',1)
+            .on("mouseenter",function(d){
+                id_ = this.getAttribute('id')
+                x_ = 10+parseFloat(this.getAttribute('cx'));
+                y_ = 10+parseFloat(this.getAttribute('cy'));
+                yr = id_.split('__')[0]
+                type = filename2key(id_.split('__')[1])
+                val = data.filter(d=>d.year==yr)[0][type]
+                width = 180
+                height = 40
+                d3.select(this.parentElement)
+                    .append('rect')
+                    .attr('id','tooltip_r')
+                    .attr('x',x_)
+                    .attr('y',y_)
+                    .attr('width',width)
+                    .attr('height',height)
+                    .attr('fill','black')
+                    .attr('stroke','white');
+                d3.select(this.parentElement)
+                    .append('text')
+                    .attr('id','tooltip_t1')
+                    .attr('x',x_+width/2)
+                    .attr('y',y_)
+                    .attr('dy','+1em')
+                    .attr('fill','white')
+                    .attr('text-anchor','middle')
+                    .attr('alignment-baseline','center')
+                    .text(type+",")
+                d3.select(this.parentElement)
+                    .append('text')
+                    .attr('id','tooltip_t2')
+                    .attr('x',x_+width/2)
+                    .attr('y',y_)
+                    .attr('dy','+2.25em')
+                    .attr('fill','white')
+                    .attr('text-anchor','middle')
+                    .attr('alignment-baseline','center')
+                    .text(yr+": $"+val+" bn")
+            })
+            .on("mouseout",function(){
+                d3.select("#tooltip_r").remove()
+                d3.select("#tooltip_t1").remove()
+                d3.select("#tooltip_t2").remove()
+            })
+    }
 
     // TITLE
     svg.append('text')
@@ -202,7 +261,6 @@ var makeSecondaryChart = function(keyfilename){
         })
         .then(function(data){
             data.map(rec => rec['total']=rec["Out-of-pocket payments"]+rec["Private health insurance"]+rec["Public health insurance"]+rec["Other"])
-            console.log(data);
         
         keys = data.columns.slice(1);
 
@@ -253,7 +311,9 @@ var makeSecondaryChart = function(keyfilename){
             .attr("x", d => x(d[0]))
             .attr("y", (d, i) => y(d.data.year))
             .attr("width", d => x(d[1]) - x(d[0]))
-            .attr("height", y.bandwidth());
+            .attr("height", y.bandwidth())
+            .append("title")
+            .text(d=>d3.format(",.1%")(d[1]-d[0]));
 
         svg.append("g")
             .call(xAxis);
@@ -295,7 +355,6 @@ var updateSecondaryChart = function(keyfilename){
         })
         .then(function(data){
             data.map(rec => rec['total']=rec["Out-of-pocket payments"]+rec["Private health insurance"]+rec["Public health insurance"]+rec["Other"])
-            console.log(data);
         
         keys = data.columns.slice(1);
 
@@ -316,7 +375,9 @@ var updateSecondaryChart = function(keyfilename){
             .attr("x", d => x(d[0]))
             .attr("y", (d, i) => y(d.data.year))
             .attr("width", d => x(d[1]) - x(d[0]))
-            .attr("height", y.bandwidth());
+            .attr("height", y.bandwidth())
+            .append("title")
+            .text(d=>d3.format(",.1%")(d[1]-d[0]));
 
 });
 }
