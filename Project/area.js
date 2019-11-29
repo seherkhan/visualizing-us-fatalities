@@ -1,3 +1,5 @@
+// TODO, clicking on chart shows chart beneath for sources
+// TODO, add markers
 d3.csv("Data/area.csv").then(function(data)
 {
     data = Object.assign(data, { y: "expend", x: "year" });
@@ -13,11 +15,9 @@ d3.csv("Data/area.csv").then(function(data)
         .y0(d => y(d[0]))
         .y1(d => y(d[1]));
 
-    width = 1000;
-    height = 700;
-    margin = { top: 20, right: 30, bottom: 60, left: 150 }
-
-    
+    width = 1100;
+    height = 600;
+    margin = { top: 20, right: 200, bottom: 60, left: 150 }
     
     x = d3.scaleLinear()
         .domain(d3.extent(data, d => d.year))
@@ -29,7 +29,7 @@ d3.csv("Data/area.csv").then(function(data)
     
     color = d3.scaleOrdinal()
         .domain(data.columns.slice(1))
-        .range(d3.schemeCategory10)
+        .range(d3.schemeYlOrRd[9].reverse()) 
         
     xAxis = g =>
         g.attr("transform", `translate(0,${height - margin.bottom})`)
@@ -62,6 +62,7 @@ d3.csv("Data/area.csv").then(function(data)
         .attr('height',height)
         //.attr("viewBox", [0, 0, width, height]);
 
+
     const path = svg
         .append("g")
         .selectAll("path")
@@ -76,6 +77,39 @@ d3.csv("Data/area.csv").then(function(data)
     
     svg.append("g").call(yAxis);
 
+    svg.append('text')
+        .attr('x',width/2)
+        .attr('y',margin.top)
+        .attr('fill','black')
+        .attr("font-weight", "bold")
+        .attr("text-anchor","middle")
+        .text('Personal Health Care Expenditures, 1960–2016')
+    
+    function create_legend(){
+        var size = 20;
+        var gap = 10+size;
+        var font_size = 12
+        var enter_select = svg.append("g")
+            .attr("class","legend")
+            .attr("transform", "translate(" + (width-margin.right) + "," + 0+ ")")
+            .selectAll('rect')
+            .data(keys)
+            .enter();
+        enter_select.append('rect')
+            .attr('x',gap)
+            .attr('y',function(d,i){return gap*i;})
+            .attr('width',size)
+            .attr('height',size)
+            .attr('fill',function(d,i){return color(d);});
+        enter_select.append('text')
+            .attr('x',2*gap)
+            .attr('y',function(d,i){return gap*i+size/2;})
+            .attr('text-anchor','start')
+            .attr('alignment-baseline','center')
+            .text(function(d){return d})
+            .style('font-size',font_size);
+    }
+    create_legend();
 
       
 });
