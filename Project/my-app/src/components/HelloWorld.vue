@@ -21,11 +21,14 @@ export default {
 .hello {
   position: relative;
   text-align: center;
+  overflow: hidden;
+  width: 100%;
   /*color: white;*/
 }
 
 .coverimg {
   width: 100%;
+  transform: translate(0%, -10%);
 }
 
 .overlay {
