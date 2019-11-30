@@ -3,9 +3,45 @@
         <title>Stacked Bar Chart</title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+
+        <style>
+            #tooltip {   
+		position: absolute;           
+		text-align: center;
+		padding: 20px;             
+		margin: 10px;
+		font: 12px sans-serif;        
+		background: lightsteelblue;   
+		border: 1px;      
+		border-radius: 2px;           
+		pointer-events: none;         
+	}
+	#tooltip h4{
+		margin:0;
+		font-size:14px;
+	}
+	#tooltip{
+		background:rgba(0,0,0,0.9);
+		border:2px solid grey;
+		border-radius:5px;
+		font-size:12px;
+		width:auto;
+		padding:4px;
+        padding-top: 5px;
+		color:white;
+		opacity:0;
+	}
+
+.bar {
+    fill: #cce6ff; 
+    shape-rendering: crispEdges;}
+
+        
+        </style>
     </head>
 
-    <body>  
+    <body>
+        <button type="button" id="AP">All Persons</button>  
         <button type="button" id="M">Male</button>
         <button type="button" id="F">Female</button>
         <button type="button" id="W">White</button>
@@ -17,17 +53,12 @@
         <button type="button" id="BHL">Black, not Hispanic or Latino</button>
         <br/><br/>
 
+        <div id="tooltip"></div><!-- div to hold tooltip. -->
         <div id='barchart'></div>
         <script>
-            var width = 1650;
+            var width = 1400;
             var height = 400;
             var margin = {top: 20, right: 20, bottom: 25, left: 40};
-
-            var dict_label = {"D1": "Diseases of heart", "D2" : "Cerebrovascular diseases", "D3" : "Malignant neoplasms", 
-            "D4" : "Trachea, bronchus, and lung", "D5" : "Chronic lower respiratory diseases", "D6" : "Influenza and pneumonia", 
-            "D7" : "Chronic liver disease and cirrhosis", "D8" : "Diabetes mellitus", "D9" : "Alzheimer's disease", 
-            "D10" : "Human immunodeficiency virus (HIV) disease", "D11" : "Motor vehicle-related injuries", 
-            "D12": "Drug overdose", "D13": "Suicide", "D14": "Homicide"};
 
             var svg = d3.select('#barchart')
                 .append('svg')
@@ -44,7 +75,7 @@
                 "2016"];
 
             color = d3.scaleOrdinal()
-                .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"])
+                .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#61311b", "#d49b81", "#e66022"])
 
             var groupKey = "disease_id";
             var x0 = d3.scaleBand();
@@ -53,80 +84,88 @@
 
 
             d3.json('Data/stacked-bar-chart.json', function(d) {
-                mode = 'M';
-                data = d.slice(0, 14);
+                mode = 'AP';
+                data = d.slice(0, 7);
                 all = d;
                 drawBarChart();
             });
 
+            d3.select('#AP').on('click', function() {
+                if(mode != 'AP'){
+                    data = all.slice(0, 7);
+                    mode = 'AP';
+                    drawBarChart();
+                }
+            });
+
             d3.select('#M').on('click', function() {
                 if(mode != 'M'){
-                    data = all.slice(0, 14);
+                    data = all.slice(7, 14);
                     mode = 'M';
                     drawBarChart();
                 }
             });
 
             d3.select('#F').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'F'){
+                    data = all.slice(14, 21);
+                    mode = 'F';
                     drawBarChart();
                 }
             });
 
             d3.select('#W').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'W'){
+                    data = all.slice(21, 28);
+                    mode = 'W';
                     drawBarChart();
                 }
             });
 
             d3.select('#BAA').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'BAA'){
+                    data = all.slice(28, 35);
+                    mode = 'BAA';
                     drawBarChart();
                 }
             });
 
             d3.select('#AIA').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'AIA'){
+                    data = all.slice(35, 42);
+                    mode = 'AIA';
                     drawBarChart();
                 }
             });
 
             d3.select('#API').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'API'){
+                    data = all.slice(42, 49);
+                    mode = 'API';
                     drawBarChart();
                 }
             });
 
             d3.select('#HL').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'HL'){
+                    data = all.slice(49, 56);
+                    mode = 'HL';
                     drawBarChart();
                 }
             });
 
             d3.select('#WHL').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'WHL'){
+                    data = all.slice(56, 63);
+                    mode = 'WHL';
                     drawBarChart();
                 }
             });
 
             d3.select('#BHL').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(0, 14);
-                    mode = 'M';
+                if(mode != 'BHL'){
+                    data = all.slice(63, 70);
+                    mode = 'BHL';
                     drawBarChart();
                 }
             });
@@ -162,8 +201,26 @@
 
             
 
+        function tooltipHtml(k, v){	/* function to create html content string in tooltip div. */
+		return "<h3>Year: "+k+"</h3><h3>Spread: "+v+"</h3>";
+	    };
+
 
         function drawBarChart() {
+        d3.selectAll("rect").remove();
+        d3.selectAll("g").remove();
+
+        function mouseOver(d){
+			d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
+			
+			d3.select("#tooltip").html(tooltipHtml(d.key, d.value))  
+				.style("left", (d3.event.pageX) + "px")     
+				.style("top", (d3.event.pageY - 28) + "px");
+		}
+		
+		function mouseOut(){
+			d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+		}
 
         x0.domain(data.map(function(d) { return d['disease_id']; }))
             .rangeRound([margin.left, width - margin.right])
@@ -191,34 +248,43 @@
                 .attr("font-weight", "bold")
                 .text(data.y)); 
 
-            
-        var svgx = d3.select('#svg-bar').selectAll(".inside")
-                .data(data)
-                .enter()
-                .append("g")
-                .attr('class', '.inside')
-                .attr("transform", function(d) {
-                    return `translate(${x0(d['disease_id'])},0)`});
+        var svgroot =  d3.select('#svg-bar').selectAll(".inside")
+                .data(data);
+
+        var svgx = svgroot
+            .enter()
+            .append("g")
+            .attr('class', '.inside')
+            .attr("transform", function(d) {
+                return `translate(${x0(d['disease_id'])},0)`});
+
+        var root = svgx.selectAll("rect")
+            .data(d => keys.map(key => ({key, value: d[key]})))
+
+        root
+            .enter()
+            .append("rect")
+            .transition().duration(800)
+            .attr("x", function(d) {return x1(d.key) })
+            .attr("y", d => y(d.value))
+            .attr("width", x1.bandwidth())
+            .attr("height", d => y(0) - y(d.value))
+            .attr("fill", d => color(d.key));
+
+        svgx.selectAll('rect').on("mouseover", mouseOver).on("mouseout", mouseOut) 
+
+        root.exit().style('opacity', 0).remove();
+        svgroot.exit().style('opacity', 0).remove();
                 
-            svgx.selectAll("rect")
-                .data(d => keys.map(key => ({key, value: d[key]})))
-                .enter()
-                .append("rect")
-                .attr("x", function(d) {return x1(d.key) })
-                .attr("y", d => y(d.value))
-                .attr("width", x1.bandwidth())
-                .attr("height", d => y(0) - y(d.value))
-                .attr("fill", d => color(d.key));
-                
 
-                d3.select('#svg-bar').append("g")
-                    .call(xAxis);
+        d3.select('#svg-bar').append("g")
+            .call(xAxis);
 
-                d3.select('#svg-bar').append("g")
-                    .call(yAxis);
+        d3.select('#svg-bar').append("g")
+            .call(yAxis);
 
-                d3.select('#svg-bar').append("g")
-                    .call(legend);
+        d3.select('#svg-bar').append("g")
+            .call(legend);
             }
         </script>
     </body>
