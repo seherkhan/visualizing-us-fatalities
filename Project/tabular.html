@@ -18,6 +18,32 @@
             margin-left:auto; 
             margin-right:auto;
         }
+        #tooltip {   
+            position: absolute;           
+            text-align: center;
+            padding: 20px;             
+            margin: 10px;
+            font: 12px sans-serif;        
+            background: lightsteelblue;   
+            border: 1px;      
+            border-radius: 2px;           
+            pointer-events: none;         
+        }
+        #tooltip h4{
+            margin:0;
+            font-size:14px;
+        }
+        #tooltip{
+            background:rgba(0,0,0,0.9);
+            border:2px solid grey;
+            border-radius:5px;
+            font-size:12px;
+            width:auto;
+            padding:4px;
+            padding-top: 5px;
+            color:white;
+            opacity:0;
+        }
     </style>
   </head>
   
@@ -73,6 +99,9 @@
 
       d3.json('Data/tabledata.json', function(data) {
         dataset = data.slice(0, 10);
+        //.attr('fill', function(d){ return(color(d.data['Rank'])) })
+
+        console.log(dataset);
         all = data;
         mode = 'under1';
         drawTable();
@@ -90,6 +119,7 @@
             var u = svg1980.selectAll('path')
                 .data(data_ready);
 
+
             u.enter()
             .append('path')
             .merge(u)
@@ -102,8 +132,6 @@
             .attr("stroke", "white")
             .style("stroke-width", "1px")
             .style("opacity", 1);
-
-            u.exit().remove();
 
 
             //For 2016
@@ -145,6 +173,7 @@
 
         headers.append('th').text('Category');
         headers.append('th').text('Rank');
+        headers.append('th').text('Color');
         headers.append('th').text('Causes of Death in 1980');
         headers.append('th').text('No. of Deaths in 1980');
         headers.append('th').text('Causes of Deaths in 2016');
@@ -155,7 +184,12 @@
             .attr("rowspan", function(d) {if(d['index']%10 == 1) return 10});
         
         tr.append('td').attr('class', 'rank')
-            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return d['Cause_1980']}});
+            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return ''}})
+            .style('background-color', function(d) {if(d['index']%10 == 1) {return 'white'} else {return d['Color']}});
+
+        tr.append('td').attr('class', 'color')
+            .text(function(d) {if(d['index']%10 == 1) {return ''} else {return d['Cause_1980']}})
+            .style('background-color', function(d) {if(d['index']%10 == 1) {return d['Color']} else {return 'white'}})
 
         tr.append('td').attr('class', 'cause1980')
             .text(function(d) {if(d['index']%10 == 1) {return d['Cause_1980']} else {return d['Deaths_1980']}});
@@ -245,7 +279,11 @@
 
         d3.selectAll('.rank')
             .data(dataset).transition().duration(1000)
-            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return d['Cause_1980']}});
+            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return d['Color']}});
+
+        d3.selectAll('.color')
+            .data(dataset).transition().duration(1000)
+            .text(function(d) {if(d['index']%10 == 1) {return d['Color']} else {return d['Cause_1980']}});
 
         d3.selectAll('.cause1980')
             .data(dataset).transition().duration(1000)

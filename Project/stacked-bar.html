@@ -202,7 +202,7 @@
             
 
         function tooltipHtml(k, v){	/* function to create html content string in tooltip div. */
-		return "<h3>Year: "+k+"</h3><h3>Spread: "+v+"</h3>";
+		    return "<h3>Year: "+k+"</h3><h3>Spread: "+v+"</h3>";
 	    };
 
 
@@ -271,7 +271,7 @@
             .attr("height", d => y(0) - y(d.value))
             .attr("fill", d => color(d.key));
 
-        svgx.selectAll('rect').on("mouseover", mouseOver).on("mouseout", mouseOut) 
+        svgx.selectAll('rect').on("mouseover", mouseOver).on("mouseout", mouseOut); 
 
         root.exit().style('opacity', 0).remove();
         svgroot.exit().style('opacity', 0).remove();
