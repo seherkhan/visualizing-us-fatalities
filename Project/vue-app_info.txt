@@ -1,0 +1,12 @@
+In project fldr:
+$ sudo npm install -g @vue/cli
+$ vue create my-app
+feature selected: babel, router and lint/formater
+use history mode for router? yes
+all other selections were standard
+
+$ cd my-app
+$ npm run serve
+ctrl+click on link to run
+
+These instructions can be found on slide 20 of labX
