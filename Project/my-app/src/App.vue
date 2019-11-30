@@ -2,7 +2,9 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/cost">Cost</router-link>
+      <span id="groupname">GroupOne</span>
     </div>
     <router-view/>
   </div>
@@ -30,5 +32,11 @@
 
 #nav a.router-link-exact-active {
   color: #CC6366;
+}
+#nav span#groupname{
+  float:right;
+  color:#65788a;
+  font-size:20px;
+  font-style:italic;
 }
 </style>
