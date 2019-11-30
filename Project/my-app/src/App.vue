@@ -1,10 +1,16 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/cost">Cost</router-link>
-      <span id="groupname">GroupOne</span>
+      <div style="padding: 5px;">
+        <span id="websitename">Diease Control and<br>
+        Prevention Analysis</span>
+      </div>
+      <div class=text>
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link> |
+        <router-link to="/cost">Cost</router-link>
+        <span id="groupname">GroupOne</span>
+      </div>
     </div>
     <router-view/>
   </div>
@@ -20,9 +26,13 @@
 }
 
 #nav {
-  padding: 30px;
+  padding: 10px;
+  height: 50px;
   color: white;
   background-color: #2c3e50
+}
+.text {
+  padding-top: 5px
 }
 
 #nav a {
@@ -31,7 +41,13 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #CC6366;
+  color: #e0797c;
+}
+#nav span#websitename{
+  float:left;
+  color:white;
+  font-size:20px;
+  font-style:bold;
 }
 #nav span#groupname{
   float:right;
