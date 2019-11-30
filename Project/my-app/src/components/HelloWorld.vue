@@ -2,7 +2,7 @@
   <div class="hello">
     <img alt="Cover image" src="../assets/cover.jpg" class="coverimg"/>
     <div class="overlay">
-        <h1>Your one and only source of US medical data</h1>
+        <p>Your one and only source of US medical data</p>
     </div>
   </div>
 </template>
@@ -21,11 +21,14 @@ export default {
 .hello {
   position: relative;
   text-align: center;
+  overflow: hidden;
+  width: 100%;
   /*color: white;*/
 }
 
 .coverimg {
   width: 100%;
+  transform: translate(0%, -10%);
 }
 
 .overlay {
@@ -36,19 +39,9 @@ export default {
   transform: translate(0%, 0%);
   text-align: right
 }
-h1 {
+p {
   color: #ad2a1d;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+  font-size:30px;
 }
 a {
   color: #8D7721;
