@@ -253,9 +253,10 @@ d3.json(filesrc).then(function(data) {
 
   // BUTTONS FUNCTIONALITY
   d3.select("button[id=overall]").on('click', function(){
-    d3.select('button[id=yr]').classed('unselected',true)
-    d3.select('button[id=grp]').classed('unselected',true)
-    d3.select('button[id=overall]').classed('unselected',false)
+    d3.select('button[id=yr]').classed('active',false)
+    d3.select('button[id=grp]').classed('active',false)
+    d3.select('button[id=overall]').classed('active',true)
+    d3.select('button[id=overall]').attr('aria-pressed',"true")
     svg.selectAll("g[id^=col_]")
     .selectAll('rect')
     .attr('fill',function(){
@@ -268,9 +269,10 @@ d3.json(filesrc).then(function(data) {
     enable_mouseover_yaxis();
   })
   d3.select("button[id=yr]").on('click', function(){
-    d3.select('button[id=overall]').classed('unselected',true)
-    d3.select('button[id=grp]').classed('unselected',true)
-    d3.select('button[id=yr]').classed('unselected',false)
+    d3.select('button[id=overall]').classed('active',false)
+    d3.select('button[id=grp]').classed('active',false)
+    d3.select('button[id=yr]').classed('active',true)
+    d3.select('button[id=yr]').attr('aria-pressed',"true")
     yrs.forEach(yr => {
       svg.select("#col_"+yr)
         .selectAll('rect')
@@ -284,9 +286,10 @@ d3.json(filesrc).then(function(data) {
     disable_mouseover_yaxis();
   })
   d3.select("button[id=grp").on('click', function(){
-    d3.select('button[id=overall]').classed('unselected',true)
-    d3.select('button[id=yr]').classed('unselected',true)
-    d3.select('button[id=grp]').classed('unselected',false)
+    d3.select('button[id=yr]').classed('active',false)
+    d3.select('button[id=overall]').classed('active',false)
+    d3.select('button[id=grp]').classed('active',true)
+    d3.select('button[id=grp]').attr('aria-pressed',"true")
     grps.forEach(grp => {
       grp_ind = grp2ind(grp);
       svg.selectAll('rect[id$=_'+grp_ind+']')
@@ -300,8 +303,10 @@ d3.json(filesrc).then(function(data) {
     enable_mouseover_yaxis();
   })
   
-  d3.select('button[id=yr]').classed('unselected',true)
-  d3.select('button[id=grp]').classed('unselected',true)
+  d3.select('button[id=yr]').classed('active',false)
+  d3.select('button[id=grp]').classed('active',false)
+  d3.select('button[id=overall]').classed('active',true)
+  d3.select('button[id=overall]').attr('aria-pressed',"true")
 
 });
 
