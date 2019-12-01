@@ -1,6 +1,5 @@
 // TODO MAKE CHECKBOXES HIDE UNHIDE SERIES
 
-
 //filesrc = "stacked_dummydata.json";
 filesrc = "Data/stacked.json";
 /** 
@@ -22,12 +21,12 @@ var years = [2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
 ///////////////////////////
 // BUTTONS
 
-options = d3.select('body')
+/*options = d3.select('body')
   .append('aside')
   .append('p').text('Select barchart type: ')
   .append('select');
 options.append('option').attr('value','stacked').text('Stacked');
-options.append('option').attr('value','grouped').text('Grouped');
+options.append('option').attr('value','grouped').text('Grouped');*/
 
 /*
 checkboxes = d3.select('body')
@@ -77,10 +76,9 @@ d3.json(filesrc).then(function(data){
     /*var color = d3.scaleLinear()
         .domain([0, n - 1])
         .range(["#aad", "#556"]);*/
-    var color = 
-    //d3.scaleOrdinal(d3.schemeCategory10);
-        d3.scaleOrdinal().domain(seriesNames.map(function(i){return seriesNames.indexOf(i);}))
-        .range(["#1B234A","#3e4b87","#2263B8","#82B6D5","#cfcbbc"]);
+    var color = d3.scaleOrdinal().domain(seriesNames.map(function(i){return seriesNames.indexOf(i);}))
+    //    .range(["#1B234A","#3e4b87","#2263B8","#82B6D5","#cfcbbc"]);
+        .range(d3.schemeYlOrRd[9].reverse());
 
     var xAxis = d3.axisBottom()
         .scale(x)
@@ -149,24 +147,9 @@ d3.json(filesrc).then(function(data){
         .style("font-size", "10px")
         .call(yAxis);
 
-    d3.selectAll("select").on("change", change);
-
-    var timeout = setTimeout(function() {
-        d3.select("select[value=\"grouped\"]").property("checked", true).each(change);
-        /*setTimeout(function() {
-            d3.select("select[value=\"percent\"]").property("checked", true).each(change);
-        }, 2000);*/
-    }, 2000);
-
-    function change() {
-        clearTimeout(timeout);
-        if (this.value === "grouped") transitionGrouped();
-        else if (this.value === "stacked") transitionStacked();
-        //else if (this.value === "percent") transitionPercent();
-
-    }
-
     function transitionGrouped() {
+        d3.select('button[id=stacked]').classed('unselected',true)
+        d3.select('button[id=grouped]').classed('unselected',false)
         y.domain([0, yGroupMax]);
 
         rect.transition()
@@ -186,6 +169,8 @@ d3.json(filesrc).then(function(data){
     }
 
     function transitionStacked() {
+        d3.select('button[id=grouped]').classed('unselected',true)
+        d3.select('button[id=stacked]').classed('unselected',false)
         y.domain([0, yStackMax]);
 
         rect.transition()
@@ -227,7 +212,10 @@ d3.json(filesrc).then(function(data){
             .attr('alignment-baseline','center')
             .text(function(d){return d})
             .style('font-size',font_size);
-            //.attr('fill',function(d,i){return color(i);})
     }
+    d3.select('button[id=grouped]').classed('unselected',true)
+
+    d3.select('button[id=stacked]').on('click',transitionStacked)
+    d3.select('button[id=grouped]').on('click',transitionGrouped)
     create_legend();
 });

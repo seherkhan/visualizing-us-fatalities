@@ -3,13 +3,38 @@
 <meta charset="utf-8">
 <head>
   <script src="node_modules/d3/dist/d3.min.js"></script>
-  
-  <!--link rel="stylesheet" type="text/css" href="heatmap.css"-->
   <title>Deaths breakdown by age and years</title>
 </head>
 <body>
-    <script src="heatmap.js"></script>
+  <div style="width:100%;text-align:center;">
+    <tspan>Set colors according to:</tspan>&ensp;&ensp;
+    <button class="button" id="overall">Overall</button>&ensp;&ensp;
+    <button class="button" id="yr">Year</button>&ensp;&ensp;
+    <button class="button" id="grp">Age Group</button>
+  </div>
+  <svg id="heatmap_age"></svg>
+
+  <script src="heatmap.js"></script>
 </body>
+<style>
+  button {
+    font-size:12px;
+    background-color: white;
+    border:2px solid #2C3E4F;
+    text-align:center;
+    padding: 5px 5px;
+    display: inline-block;
+    width: 200px;
+  }
+  button.unselected {
+    background-color: #2C3E4F;
+    color: white;
+  }
+  button.unselected:hover {
+    filter: brightness(130%);
+    
+  }
+</style>
 </html> 
 
 
