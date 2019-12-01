@@ -3,6 +3,13 @@
         <title>Stacked Bar Chart</title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 
         <style>
             #tooltip {   
@@ -36,29 +43,62 @@
     fill: #cce6ff; 
     shape-rendering: crispEdges;}
 
+body {
+    margin: 20px;
+}
         
         </style>
     </head>
 
-    <body>
-        <button type="button" id="AP">All Persons</button>  
-        <button type="button" id="M">Male</button>
-        <button type="button" id="F">Female</button>
-        <button type="button" id="W">White</button>
-        <button type="button" id="BAA">Black or African American</button>
-        <button type="button" id="AIA">American Indian or Alaska Native</button>
-        <button type="button" id="API">Asian or Pacific Islander</button>   
-        <button type="button" id="HL">Hispanic or Latino</button>
-        <button type="button" id="WHL">White, not Hispanic or Latino</button>
-        <button type="button" id="BHL">Black, not Hispanic or Latino</button>
-        <br/><br/>
+    <body>                    
+        <div class="container">
+                <h1 class="display-4">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>
+                
+                    <p class="lead">Click on the button to see Trends over the Years - United States, selected years 1950–2016.</p>
+                
+                <hr class="my-5">
+                    <button type="button" class="btn btn-outline-dark" id="AP">All Persons</button>  
+                    <button type="button" class="btn btn-outline-dark" id="M">Male</button>
+                    <button type="button" class="btn btn-outline-dark" id="F">Female</button>
+                    <button type="button" class="btn btn-outline-dark" id="W">White</button>
+                    <button type="button" class="btn btn-outline-dark" id="BAA">Black or African American</button>        
+                    <button type="button" class="btn btn-outline-dark" id="AIA">American Indian or Alaska Native</button><br/>
+                    <button type="button" class="btn btn-outline-dark" id="API">Asian or Pacific Islander</button>   
+                    <button type="button" class="btn btn-outline-dark" id="HL">Hispanic or Latino</button>
+                    <button type="button" class="btn btn-outline-dark" id="WHL">White, not Hispanic or Latino</button>
+                    <button type="button" class="btn btn-outline-dark" id="BHL">Black, not Hispanic or Latino</button>              
+                </div>
+                <br/><br/>
+    
+            <div id="tooltip"></div><!-- div to hold tooltip. -->
+            <div id='barchart'></div><br/><br/><br/>
 
-        <div id="tooltip"></div><!-- div to hold tooltip. -->
-        <div id='barchart'></div>
+            <div class="container">
+                    <p><u>Important Information:</u></p>
+                    <ul>
+                        <li>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
+                                based on rounded population numbers. Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
+                        <li>Starting with 1999 data, the rules for selecting CLRD and Pneumonia as the underlying cause of death changed, resulting in an increase in the number of deaths
+                                for CLRD and a decrease in the number of deaths for Pneumonia. Therefore, trend data for these two causes of death should be interpreted with caution.</li>
+                        <li>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed, affecting the number of deaths in the Nephritis,
+                                nephrotic syndrome and nephrosis and Diabetes categories. The result is a decrease in the number of deaths for Nephritis, nephrotic syndrome and nephrosis and an increase in the number of deaths for Diabetes mellitus. Therefore,
+                                trend data for these two causes of death should be interpreted with caution.</li>
+                        <li>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution because of inconsistencies in reporting Hispanic origin
+                                or race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
+                                rates for races other than white and black. </li>
+                    </ul>
+        
+                    <p><u>References:</u></p>
+                    <ul>
+                        <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/017.pdf'>https://www.cdc.gov/nchs/data/hus/2017/017.pdf</a></li>
+                        <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+                    </ul>
+                </div>
+
         <script>
-            var width = 1400;
+            var width = 1800;
             var height = 400;
-            var margin = {top: 20, right: 20, bottom: 25, left: 40};
+            var margin = {top: 20, right: 50, bottom: 25, left: 50};
 
             var svg = d3.select('#barchart')
                 .append('svg')
@@ -75,7 +115,7 @@
                 "2016"];
 
             color = d3.scaleOrdinal()
-                .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#61311b", "#d49b81", "#e66022"])
+                .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a8a29e", "#a05d56", "#d0743c", "#ff8c00", "#ebaf8a", "#d4bfb2", "#807c7a", "#bababa"])
 
             var groupKey = "disease_id";
             var x0 = d3.scaleBand();
