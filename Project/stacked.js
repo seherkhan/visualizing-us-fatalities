@@ -20,6 +20,25 @@ var years = [2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
 
 ///////////////////////////
 // BUTTONS
+div = d3.select('body').select('#series')
+seriesNames.forEach((el,i) => {
+    div.append('button')
+        .attr('id','btn'+i)
+        .style('width','120px')
+        .style('margin-left','10px')
+        .text(el)
+});
+
+d3.select('#series').selectAll('button').on('click',function(){clickbtn(this)})
+
+function clickbtn(el){
+    if(el.getAttribute('class')==null||el.getAttribute('class')==""){ // currently selected (and so class is null), now unselect
+        d3.select(el).classed('unselected',true)
+    }
+    else{ // currently unselected, now select
+        d3.select(el).classed('unselected',false)
+    }
+}
 
 /*options = d3.select('body')
   .append('aside')
