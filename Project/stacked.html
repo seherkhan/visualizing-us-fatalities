@@ -3,7 +3,31 @@
         <script src="node_modules/d3/dist/d3.min.js"></script>
     </head>
     <body>
+        <div style="width:100%;text-align:left;margin-left:150px;">
+            <tspan>Set chart type:</tspan>&ensp;&ensp;
+            <button id="stacked">Stacked</button>&ensp;&ensp;
+            <button id="grouped">Grouped</button>
+        </div>
         <script src="stacked.js"></script>
     </body>
+    <style>
+            button {
+              font-size:12px;
+              background-color: white;
+              border:2px solid #2C3E4F;
+              text-align:center;
+              padding: 5px 5px;
+              display: inline-block;
+              width: 200px;
+            }
+            button.unselected {
+              background-color: #2C3E4F;
+              color: white;
+            }
+            button.unselected:hover {
+              filter: brightness(130%);
+              
+            }
+            </style>
 </html>
 
