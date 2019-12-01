@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Piechart</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <script src="https://d3js.org/d3.v4.js"></script>
@@ -32,10 +33,9 @@
       <div class="container">	
 
             <h1 class="display-4">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
-            
             <br/>
             <div class="alert alert-info" role="alert">
-                Click on the Buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
+                Click on the buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
             </div>
 
             <hr class="my-3">
@@ -115,7 +115,7 @@
         dataset = data.slice(0, 10);
         //.attr('fill', function(d){ return(color(d.data['Rank'])) })
 
-        console.log(dataset);
+        //console.log(dataset);
         all = data;
         mode = 'under1';
         drawTable();
