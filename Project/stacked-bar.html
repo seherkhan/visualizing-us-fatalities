@@ -13,39 +13,39 @@
 
         <style>
             #tooltip {   
-		position: absolute;           
-		text-align: center;
-		padding: 20px;             
-		margin: 10px;
-		font: 12px sans-serif;        
-		background: lightsteelblue;   
-		border: 1px;      
-		border-radius: 2px;           
-		pointer-events: none;         
-	}
-	#tooltip h4{
-		margin:0;
-		font-size:14px;
-	}
-	#tooltip{
-		background:rgba(0,0,0,0.9);
-		border:2px solid grey;
-		border-radius:5px;
-		font-size:12px;
-		width:auto;
-		padding:4px;
-        padding-top: 5px;
-		color:white;
-		opacity:0;
-	}
+            position: absolute;           
+            text-align: center;
+            padding: 20px;             
+            margin: 10px;
+            font: 12px sans-serif;        
+            background: lightsteelblue;   
+            border: 1px;      
+            border-radius: 2px;           
+            pointer-events: none;         
+        }
+        #tooltip h4{
+            margin:0;
+            font-size:14px;
+        }
+        #tooltip{
+            background:rgba(0,0,0,0.9);
+            border:2px solid grey;
+            border-radius:5px;
+            font-size:12px;
+            width:auto;
+            padding:4px;
+            padding-top: 5px;
+            color:white;
+            opacity:0;
+        }
 
-.bar {
-    fill: #cce6ff; 
-    shape-rendering: crispEdges;}
+    .bar {
+        fill: #cce6ff; 
+        shape-rendering: crispEdges;}
 
-body {
-    margin: 20px;
-}
+    body {
+        margin: 20px;
+    }
         
         </style>
     </head>
@@ -55,8 +55,12 @@ body {
                 <h1 class="display-4">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>
                 
                     <p class="lead">Click on the button to see Trends over the Years - United States, selected years 1950–2016.</p>
+                    
+                    <div class="alert alert-info" role="alert">
+                            Click on the button to see individual trends for Diseases over the past decade
+                    </div>
                 
-                <hr class="my-5">
+                    <hr class="my-5">
                     <button type="button" class="btn btn-outline-danger" id="AP">All Persons</button>  
                     <button type="button" class="btn btn-outline-dark" id="M">Male</button>
                     <button type="button" class="btn btn-outline-dark" id="F">Female</button>
@@ -76,14 +80,14 @@ body {
             <div class="container">
                     <p><u>Important Information:</u></p>
                     <ul>
-                        <li>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
-                                based on rounded population numbers. Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
-                        <li>Starting with 1999 data, the rules for selecting CLRD and Pneumonia as the underlying cause of death changed, resulting in an increase in the number of deaths
+                        <li><b>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
+                                based on rounded population numbers.</b> Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
+                        <li><b>Starting with 1999 data, the rules for selecting CLRD and Pneumonia as the underlying cause of death changed</b>, resulting in an increase in the number of deaths
                                 for CLRD and a decrease in the number of deaths for Pneumonia. Therefore, trend data for these two causes of death should be interpreted with caution.</li>
-                        <li>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed, affecting the number of deaths in the Nephritis,
+                        <li><b>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed</b>, affecting the number of deaths in the Nephritis,
                                 nephrotic syndrome and nephrosis and Diabetes categories. The result is a decrease in the number of deaths for Nephritis, nephrotic syndrome and nephrosis and an increase in the number of deaths for Diabetes mellitus. Therefore,
                                 trend data for these two causes of death should be interpreted with caution.</li>
-                        <li>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution because of inconsistencies in reporting Hispanic origin
+                        <li><b>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution</b> because of inconsistencies in reporting Hispanic origin
                                 or race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
                                 rates for races other than white and black. </li>
                     </ul>
@@ -242,7 +246,7 @@ body {
             
 
         function tooltipHtml(k, v){	/* function to create html content string in tooltip div. */
-		    return "<h3>Year: "+k+"</h3><h3>Spread: "+v+"</h3>";
+		    return "<h4>Year: "+k+"</h4><h4>Spread: "+v+"</h4>";
 	    };
 
 
