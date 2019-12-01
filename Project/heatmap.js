@@ -46,8 +46,8 @@ d3.json(filesrc).then(function(data) {
     color = new Map()
 
     d3.range(min_ceil,min_ceil+max_ceil,max_ceil/9).map(function(n){
-      //color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemeBlues[9])(n));
-      color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemeYlOrRd[9].reverse())(n));
+      color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemeBlues[9])(n));
+      //color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemePurples[9])(n));
       
     });
     return color;
