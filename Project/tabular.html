@@ -6,10 +6,13 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica; font-weight: 300; padding: 20px;
-        text-align: center;}
-        th { text-align: left; }
+        /*th { text-align: left; }
         th, td { padding: 0 1em 0.5ex 0;}
         th, td { text-align: center; }
         table {border-collapse: collapse;}
@@ -17,62 +20,73 @@
         table {
             margin-left:auto; 
             margin-right:auto;
+        }*/
+        body {
+            margin: 20px;
         }
-        #tooltip {   
-            position: absolute;           
-            text-align: center;
-            padding: 20px;             
-            margin: 10px;
-            font: 12px sans-serif;        
-            background: lightsteelblue;   
-            border: 1px;      
-            border-radius: 2px;           
-            pointer-events: none;         
-        }
-        #tooltip h4{
-            margin:0;
-            font-size:14px;
-        }
-        #tooltip{
-            background:rgba(0,0,0,0.9);
-            border:2px solid grey;
-            border-radius:5px;
-            font-size:12px;
-            width:auto;
-            padding:4px;
-            padding-top: 5px;
-            color:white;
-            opacity:0;
-        }
+        #piee th { text-align: center; }
     </style>
   </head>
   
   <body>
-    <h1>Try Tables</h1>
-    <button type="button" id="under1">Under 1 year</button>
-    <button type="button" id="b1to4">1 - 4 years</button>
-    <button type="button" id="b5to14">5 - 14 years</button>
-    <button type="button" id="b15to24">15 - 24 years</button>
-    <button type="button" id="b25to44">25 - 44 years</button>
-    <button type="button" id="b45to64">45 - 64 years</button>   
-    <button type="button" id="b64over">65 years and over</button>
-    <br/><br/>
+      <div class="container">	
 
-    <table>
-        <tr>
-            <th>Pie Chart for Year 1980</th>
-            <th>Pie Chart for Year 2016</th>
-        </tr>
-        <tr>
-            <td><div id='pie1980'></div></td>
-            <td><div id='pie2016'></div></td>
-        </tr>
-    </table><br/><br/>
+            <h1 class="display-4">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
+            
+            <br/>
+            <div class="alert alert-info" role="alert">
+                Click on the Buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
+            </div>
+
+            <hr class="my-3">
+
+                <button type="button" class="btn btn-outline-dark" id="under1">Under 1 year</button>
+                <button type="button" class="btn btn-outline-dark" id="b1to4">1 - 4 years</button>
+                <button type="button" class="btn btn-outline-dark" id="b5to14">5 - 14 years</button>
+                <button type="button" class="btn btn-outline-dark" id="b15to24">15 - 24 years</button>
+                <button type="button" class="btn btn-outline-dark" id="b25to44">25 - 44 years</button>
+                <button type="button" class="btn btn-outline-dark" id="b45to64">45 - 64 years</button>   
+                <button type="button" class="btn btn-outline-dark" id="b64over">65 years and over</button>
+            
+            <br/><br/>
+        
+            <table class="table" id="piee">
+                <tr>
+                    <th>Pie Chart for Year 1980</th>
+                    <th>Pie Chart for Year 2016</th>
+                </tr>
+                <tr>
+                    <td><div id='pie1980'></div></td>
+                    <td><div id='pie2016'></div></td>
+                </tr>
+            </table><br/><br/>
+
+        </div>
+        <table class="table" id="infotab"></table><br/><br/><br/><br/>
+        <div class="container">
+                <p><u>Important Information:</u></p>
+                <li>Starting with 1999 data, the rules for selecting <b>Chronic lower respiratory diseases (CLRD) and Pneumonia</b> as the underlying cause of death changed, 
+                    resulting in an increase in the number of deaths for CLRD and a decrease in the number of deaths for Pneumonia. 
+                    <b>Therefore, trend data for these two causes of death should be interpreted with caution.</b></li>
+            
+                <li>Between 1998 and 1999, the cause of death title for <b>Chronic obstructive pulmonary diseases (COPD) was renamed to Chronic lower respiratory diseases (CLRD).</b></li>
+            
+                <li><b>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed</b>, affecting the number of deaths in the Nephritis, nephrotic syndrome and nephrosis
+                    and Diabetes categories. Therefore, trend data for these two causes of death should be interpreted with caution.<br/>
+                
+                <br/>
+                <p><u>References:</u></p>
+                <ul>
+                    <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/020.pdf'>https://www.cdc.gov/nchs/data/hus/2017/020.pdf</a></li>
+                    <li>Technical Notes in "Deaths: Final Data for 2011," available from: <a href='https://www.cdc.gov/nchs/data/nvsr/nvsr63/nvsr63_03.pdf'>https://www.cdc.gov/nchs/data/nvsr/nvsr63/nvsr63_03.pdf</a></li>
+                    <li>National Center for Health Statistics; vol 67. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+                </ul>
+        </div>
     
     <script>
-    var width = 450
-    height = 450
-    margin = 10
+    var width = 650
+    height = 500
+    margin = 0
 
     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
     var radius = Math.min(width, height) / 2 - margin;
@@ -163,7 +177,7 @@
 
 
       function drawTable() {
-        var table = d3.select('body').append('table');
+        var table = d3.select('body').select('#infotab');
         var headers = table.append('tr');
 
         var tr = table.selectAll('tr.data')
@@ -276,14 +290,17 @@
             .data(dataset).transition().duration(1000)
             .text(function(d) {if(d['index']%10 == 1) {return d['Category']} else {return d['Rank']}})
             .attr("rowspan", function(d) {if(d['index']%10 == 1) return 10});
+        
 
         d3.selectAll('.rank')
             .data(dataset).transition().duration(1000)
-            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return d['Color']}});
+            .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return ''}})
+            .style('background-color', function(d) {if(d['index']%10 == 1) {return 'white'} else {return d['Color']}});
 
         d3.selectAll('.color')
             .data(dataset).transition().duration(1000)
-            .text(function(d) {if(d['index']%10 == 1) {return d['Color']} else {return d['Cause_1980']}});
+            .text(function(d) {if(d['index']%10 == 1) {return ''} else {return d['Cause_1980']}})
+            .style('background-color', function(d) {if(d['index']%10 == 1) {return d['Color']} else {return 'white'}});
 
         d3.selectAll('.cause1980')
             .data(dataset).transition().duration(1000)
@@ -303,5 +320,9 @@
             .style('padding', function(d) {if(d['index']%10 != 1) {return 0}});
       }
     </script>
+
+
+
+</div>
   </body>
 </html>
