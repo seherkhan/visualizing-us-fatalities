@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 <style>
 	.state{
 		fill: none;
-		stroke: #a9a9a9;
+		stroke: #0f0f0f;
 		stroke-width: 1;
 	}
 	.state:hover{
@@ -54,7 +61,7 @@
 }
 
 .bar {
-    fill: #cce6ff; 
+	stroke: #0f0f0f;
     shape-rendering: crispEdges;}
 
 text.xlabel, text.ylabel {
@@ -74,40 +81,72 @@ text.label {
 
 .container {
     margin-bottom: 20px;
+	margin-top: 20px;
 }
 
-button {
-    padding: 10px 24px;
-    border-radius: 3px;
-    color: black;
-    border: 0.5px solid black;
-}
 </style>
 <body>
+<div class="container">
+
+	<!-- Explain the Page Content -->
+	<!-- Ask them to Click on the Buttons to view different population and click on States -->
+	<h1 class="display-4"> Age-adjusted death rates, by race, Hispanic origin, state, and territory</h1>
+	<p class="lead">Geochart and Barchart are used to display the death rates in United States and U.S. Dependent Areas. 
+		The charts represent data from year 1970 to 2016.</p>
+	<div class="alert alert-info" role="alert">
+			Click below Buttons to know the rates for specific Races. 
+				Click on the particular State to see Trend over the years.
+			</div>
+	
+	<hr class="my-5">
+
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-outline-danger" id="ap">All Persons</button>
+			<button type="button" class="btn btn-outline-primary" id="wh">White</button>
+			<button type="button" class="btn btn-outline-primary" id="baa">Black or African American</button>
+			<button type="button" class="btn btn-outline-primary" id="api">Asian or Pacific Islander</button>
+			<button type="button" class="btn btn-outline-primary" id="hl">Hispanic or Latino</button>
+			<button type="button" class="btn btn-outline-primary" id="whl">White, not Hispanic or Latino</button>
+			<button type="button" class="btn btn-outline-primary" id="bhl">Black, not Hispanic or Latino</button>
+		</div>  
+	
+	<br/><br/><br/><br/>
+	<div id="tooltip"></div><!-- div to hold tooltip. -->
+	<div width="960" height="600" id="statesvg" ></div> <!-- svg to hold the map. -->
+
+				
+	<br/><br/><br/>
+	<svg id="chart"></svg>
+
+	<!-- Add Data References -->
+	<br/><br/><br/>
+	<div class="container">
+			<p><u>Important Information:</u></p>
+			<li><b>Prior to 2009–2011,</b> data for states with populations under 10,000 in the middle year of a 3-year period, or fewer than 50 deaths for the 3-year period, <b>are
+					considered unreliable and are not shown.</b></li>
 		
-<button type="button" style="background-color: #e7e7e7;" id="ap">All Persons</button>
-<button type="button" style="background-color: #e7e7e7;" id="wh">White</button>
-<button type="button" style="background-color: #e7e7e7;" id="baa">Black or African American</button>
-<button type="button" style="background-color: #e7e7e7;" id="aia">American Indian or Alaska Native</button>
-<button type="button" style="background-color: #e7e7e7;" id="api">Asian or Pacific Islander</button>
-<button type="button" style="background-color: #e7e7e7;" id="hl">Hispanic or Latino</button>
-<button type="button" style="background-color: #e7e7e7;" id="whl">White, not Hispanic or Latino</button>
-<button type="button" style="background-color: #e7e7e7;" id="bhl">Black, not Hispanic or Latino</button>
-
-<br/><br/><br/><br/>
-<div id="tooltip"></div><!-- div to hold tooltip. -->
-<div width="960" height="600" id="statesvg"></div> <!-- svg to hold the map. -->
-
+			<li><b>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution because of inconsistencies in reporting</b> Hispanic origin or
+			race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
+			rates for races other than white and black. </li>
+		
+			<li><b>Age-adjusted average annual death rates are calculated using the year 2000 standard population.</b> Prior to 2001, age-adjusted rates were calculated using standard million proportions based on
+			rounded population numbers. Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates. </li><br/>
 			
-<br/><br/><br/>
-<svg id="chart"></svg>
+			<p><u>References:</u></p>
+			<ul>
+				<li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/016.pdf'>https://www.cdc.gov/nchs/data/hus/2017/016.pdf</a></li>
+				<li>2011 and beyond from 2010-based postcensal bridged-race files. Available from: 
+					<a href='https://www.cdc.gov/nchs/nvss/bridged_race.htm'>https://www.cdc.gov/nchs/nvss/bridged_race.htm</a></li>
+			</ul>
+		</div>
+</div>	
 
 <script src="node_modules/d3/dist/d3.min.js"></script>
 <script>
 	//---------------------- VARIABLE DECLARATION -------------------------------------
 	
-	var margin = { top: 100, left: 80, bottom: 80, right: 80 };
-	var width = 700 - margin.left - margin.right;
+	var margin = { top: 50, left: 20, bottom: 80, right: 15 };
+	var width = 900 - margin.left - margin.right;
 	var height = 500 - margin.top - margin.bottom;
 
 	var stdwid = 1500;
@@ -213,6 +252,9 @@ button {
 		'hl': [hl,gyear, 'Hispanic or Latino '],
 		'whl': [whl,gyear, 'White, not Hispanic or Latino'],
 		'bhl': [bhl, gyear,'Black, not Hispanic or Latino']};
+
+
+	var colorsbar = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#d49b81"];
 
 
 	//---------------------- MAP FUNCTIONS -------------------------------------
@@ -388,7 +430,8 @@ button {
 			.attr("x", function (d) { return x(d.year); })
 			.attr("y", function (d) { return y(d.death); })
 			.attr("width", x.bandwidth())
-			.attr("height", function (d) { return height - y(d.death); });
+			.attr("height", function (d) { return height - y(d.death); })
+			.attr("fill", function(d, i) {return colorsbar[i]});;
 
 
 		u1.exit().remove();
@@ -423,15 +466,15 @@ button {
 			.attr('class', 'ylabel')
 			.text("No. of Deaths")
 			.attr("x", - height / 2)
-			.attr("y", - margin.left * 0.5)
+			.attr("y", - (margin.left + 20))
 			.attr("transform", "rotate(-90)")
 			.style("baseline-shift", "nomal")
 		
-		//title
+		//title class="alert alert-info" role="alert"
 		svg.append("text")
-			.attr("class", "title")
+			.attr("class", "lead")
 			.text("Displaying No. of Deaths vs Year Trends of All Persons for the State of California")
-			.attr("x", width/2 + 40)
+			.attr("x", width/2 - 350)
 			.attr("y", -20)
 			.style("baseline-shift", "normal");
 		};
@@ -474,7 +517,8 @@ button {
 			.attr("x", function (d) { return x(d.year); })
 			.attr("y", function (d) { return y(d.death); })
 			.attr("width", x.bandwidth())
-			.attr("height", function (d) { return height - y(d.death); });
+			.attr("height", function (d) { return height - y(d.death); })
+			.attr("fill", function(d, i) {return colorsbar[i]});
 
 		// EXIT.
 		bars.exit()
@@ -499,8 +543,8 @@ button {
 
 		////////////////////////////////
 		// title.   
-		var titles = svg.select(".title")  
-			.attr("x", width/2 + 40)
+		var titles = svg.select(".lead")  
+			.attr("x", width/2 - 350)
 			.attr("y", -20)            
 			.transition()
 			.duration(750)
@@ -551,7 +595,7 @@ button {
 			.attr('width', width + margin.left + margin.right + 100)
 			.attr('height', height + margin.top + margin.bottom)
 			.append('g')
-			.attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+			.attr('transform', 'translate(' + (50 + margin.left) + ', ' + margin.top + ')');
 			
 		
 		people = 'ap';
