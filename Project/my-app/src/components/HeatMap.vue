@@ -246,7 +246,6 @@ import * as d3 from 'd3'
             if(yaxis_event){return;}
             svg.selectAll('g.y').selectAll('text')  
             .on("mouseover", function() {
-                //console.log(this.id);
                 d3.select(this).attr('font-weight','bold');
                 grp = this.id.split('_')[1];
                 d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {

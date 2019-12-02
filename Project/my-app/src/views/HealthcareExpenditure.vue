@@ -49,7 +49,6 @@ export default {
     d3.csv("area.csv").then(function(data)
     {
         data = Object.assign(data, { y: "expend", x: "year" });
-        console.log(data);
 
         var keys = data.columns.slice(1);
         var series = d3.stack().keys(data.columns.slice(1))(data)

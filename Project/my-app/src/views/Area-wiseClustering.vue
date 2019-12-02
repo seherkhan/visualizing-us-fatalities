@@ -175,7 +175,6 @@ export default {
     var colors1 = Object.entries(colors)
     colors1.slice(0,7).forEach(function(el){
         key=el[0]
-        console.log(key)
         buttons.append('button')
         .attr('id',key.replace(/ /g,"_"))
         .text(key)

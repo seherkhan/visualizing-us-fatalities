@@ -87,9 +87,6 @@ export default {
   d3.json('tabledata.json').then(function(data) { // CHANGED: added then
     dataset = data.slice(0, 10);
     //.attr('fill', function(d){ return(color(d.data['Rank'])) })
-    console.log(data);
-    console.log(dataset);
-    console.log("hey")
     all = data;
     mode = 'under1';
     drawTable();
