@@ -198,7 +198,6 @@ export default {
     buttons = d3.select("#btngroup2")
     colors1.slice(7,13).forEach(function(el){
         key=el[0]
-        console.log(key)
         buttons.append('button')
         .attr('id',key.replace(/ /g,"_"))
         .text(key)
@@ -222,7 +221,6 @@ export default {
     buttons = d3.select("#btngroup3")
     colors1.slice(13,18).forEach(function(el){
         key=el[0]
-        console.log(key)
         buttons.append('button')
         .attr('id',key.replace(/ /g,"_"))
         .text(key)

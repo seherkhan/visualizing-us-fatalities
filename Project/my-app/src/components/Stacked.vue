@@ -241,26 +241,20 @@ import * as d3 from 'd3'
                 return row[i] 
             })
         });
-        console.log(data)
-
         clickbtn = function(){
             var el = this
             var ids
             if(el.classList.contains("active")){ // currently selected, now unselect
-                console.log(el)
                 d3.select(el).classed('active',false).attr("aria-pressed","false");
                 ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=false]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
                 ids = seriesNames_org.map((d,i)=>i).filter(d=>!ids.includes(d)); 
-                console.log(ids)
                 
                 seriesNames = ids.map(id=>seriesNames_org[id])
         
                 data = data_org.filter(function(d){
                     return seriesNames.includes(Object.keys(d)[0]);
                 })
-                console.log(seriesNames);
-                console.log(data);
             }
             else{ // currently unselected, now select
                 d3.select(el).classed('active',true)
@@ -269,22 +263,17 @@ import * as d3 from 'd3'
                 ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=true]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
                 ids = seriesNames_org.map((d,i)=>i).filter(d=>ids.includes(d)); 
-                console.log(ids)
                 
                 seriesNames = ids.map(id=>seriesNames_org[id])
         
                 data = data_org.filter(function(d){
                     return seriesNames.includes(Object.keys(d)[0]);
                 })
-                console.log(seriesNames);
-                console.log(data);
             }
             var data1 = []
             seriesNames.forEach(function(el,i){
-                console.log(el);
-                console.log(data[i])
                 data1.push( data[i][el] )});
-            console.log(data1)
+
             if(data1.length==0){
                 updateChart([],[])
                 return;
