@@ -1,0 +1,418 @@
+<template>
+    <div class="sankey" style="margin-right:15px;margin-left:15px">             
+        <div class="alert alert-info" role="alert">
+            Click on the buttons to see one-to-one relationship between Diseases and Category in particular year
+        </div>
+            <hr class="my-5">
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1950"> 1950</button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1960"> 1960 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1970"> 1970 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1980"> 1980 </button>        
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1990"> 1990 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2000"> 2000 </button>   
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2005"> 2005 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2010"> 2010 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2014"> 2014 </button>
+            <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2015"> 2015 </button>
+            <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="yr2016"> 2016 </button>
+
+    <div><svg ref="svg-im"></svg></div>
+    
+      
+    <br/><br/><br/>
+    <div class="container">
+        <p><u>Important Information:</u></p>
+        <ul>
+            <li><b>Age-adjusted rates are calculated using the year 2000 standard population.</b> Prior to 2001, age-adjusted rates were calculated using standard million proportions
+                    based on rounded population numbers.</li>
+            <li><b>Starting with 1999 data, the rules for selecting CLRD and Pneumonia as the underlying cause of death changed</b>, resulting in an increase in the number of deaths
+                    for CLRD and a decrease in the number of deaths for Pneumonia. Therefore, trend data for these two causes of death should be interpreted with caution.</li>
+            <li><b>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed.</b> The result is a decrease in the number of deaths for Nephritis, nephrotic syndrome and nephrosis and an increase in the number of deaths for Diabetes mellitus. Therefore,
+                    trend data for these two causes of death should be interpreted with caution.</li>
+            <li><b>Rates for 2001 include September 11-related deaths for which death certificates were filed as of October 24, 2002.</b></li>
+            <li><b>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution</b> because of inconsistencies in reporting Hispanic origin
+                    or race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
+                    rates for races other than white and black. </li>
+        </ul>
+
+        <p><u>References:</u></p>
+        <ul>
+            <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/017.pdf'>https://www.cdc.gov/nchs/data/hus/2017/017.pdf</a></li>
+            <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+        </ul>
+    </div>
+
+    </div>
+</template>
+
+<!--script>
+import * as d3 from 'd3'
+import * as viz from 'viz'
+  export default {
+    name: 'Sankey',
+    props: {
+    dataset: {
+      type: Array,
+      }
+    }, 
+    mounted() {
+        
+var posmodes = [1950, 1960, 1970, 1980, 1990,
+                2000, 2005, 2010, 2014, 2015, 2016];
+var data, all, mode;
+
+var color = {
+  "Diseases of heart": "#98abc5",
+  "Ischemic heart disease": "#98abc5",
+  "Cerebrovascular diseases": "#98abc5",
+  "Malignant neoplasms": "#8a89a6",
+  "Trachea, bronchus, and lung": "#8a89a6",
+  "Colon, rectum, and anus": "#8a89a6",
+  "Prostate": "#8a89a6",
+  "Chronic lower respiratory diseases": "#7b6888",
+  "Influenza and pneumonia": "#7b6888",
+  "Chronic liver disease and cirrhosis": "#7b6888",
+  "Diabetes mellitus": "#6b486b",
+  "Alzheimer's disease": "#6b486b",
+  "Human immunodeficiency virus (HIV) disease": "#6b486b",
+  "Unintentional injuries": "#a8a29e",
+  "Motor vehicle-related injuries": "#a8a29e",
+  "Drug overdose": "#a8a29e",
+  "Nephritis, nephrotic syndrome and nephrosis": "#a05d56",
+  "Suicide": "#a05d56",
+  "Homicide": "#a05d56",
+  "Breast": "#3366CC",
+  "Diabetes mellitus.": "#3366CC"
+}
+
+var svg = d3.select(this.$refs["svg-im"])
+    .attr("width", 1500).attr("height", 800);
+
+var d = this.dataset
+mode = '2016';
+all = d;
+data = [];
+
+for (var i = 0; i < d.length; i++) {
+    data.push([d[i]['Causes'], d[i]['Category'], mode, d[i][mode]]);
+}
+drawSankey();
+
+d3.select("#yr1950").on('click', function() {
+  if(mode != '1950'){
+    d3.select('#yr1950').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '1950';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr1960").on('click', function() {
+  if(mode != '1960'){
+    d3.select('#yr1960').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '1960';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr1970").on('click', function() {
+  if(mode != '1970'){
+    d3.select('#yr1970').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '1970';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr1980").on('click', function() {
+  if(mode != '1980'){
+    d3.select('#yr1980').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '1980';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr1990").on('click', function() {
+  if(mode != '1990'){
+    d3.select('#yr1990').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '1990';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2000").on('click', function() {
+  if(mode != '2000'){
+    d3.select('#yr2000').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '2000';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2005").on('click', function() {
+  if(mode != '2005'){
+    d3.select('#yr2005').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '2005';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2010").on('click', function() {
+  if(mode != '2010'){
+    d3.select('#yr2010').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '2010';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2014").on('click', function() {
+  if(mode != '2014'){
+    d3.select('#yr2014').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '2014';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2015").on('click', function() {
+  if(mode != '2015'){
+    d3.select('#yr2015').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+    d3.select('#yr2016').classed('active', false);
+      mode = '2015';
+      filterdata();
+      drawSankey();
+    }
+});
+
+d3.select("#yr2016").on('click', function() {
+  if(mode != '2016'){
+    d3.select('#yr2016').classed('active', true).attr('aria-pressed', "true");
+    d3.select('#yr1960').classed('active', false);
+    d3.select('#yr1970').classed('active', false);
+    d3.select('#yr1980').classed('active', false);
+    d3.select('#yr1990').classed('active', false);
+    d3.select('#yr1950').classed('active', false);
+    d3.select('#yr2005').classed('active', false);
+    d3.select('#yr2010').classed('active', false);
+    d3.select('#yr2014').classed('active', false);
+    d3.select('#yr2015').classed('active', false);
+    d3.select('#yr2000').classed('active', false);
+      mode = '2016';
+      filterdata();
+      drawSankey();
+    }
+});
+
+
+function filterdata() {
+  d = all;
+  data = [];
+  for (var i = 0; i < d.length; i++) {
+    data.push([d[i]['Causes'], d[i]['Category'], mode, d[i][mode]]);
+  }
+}
+
+function drawSankey() {
+  d3.selectAll("g").remove();
+  d3.selectAll("text").remove();
+  d3.selectAll("line").remove();
+  d3.selectAll(".mainBars").remove();
+
+  var g =[svg.append("g").attr("transform","translate(550,100)")];
+
+  var bp=[ viz.bP()
+      .data(data)
+      .value(d=>d[3])
+      .min(12)
+      .pad(1)
+      .height(650)
+      .width(400)
+      .barSize(35)
+      .fill(function(d) {return color[d.primary] })
+  ];
+      
+  [0].forEach(function(i){
+    g[i].call(bp[i])
+    
+    g[i].append("text").attr("x",-155).attr("y",-8).style("text-anchor","middle").text("Disease");
+    g[i].append("text").attr("x", 555).attr("y",-8).style("text-anchor","middle").text("Category");
+    
+    g[i].append("line").attr("x1",-310).attr("x2",0);
+    g[i].append("line").attr("x1",400).attr("x2",710);
+    
+    g[i].selectAll(".mainBars")
+      .on("mouseover",mouseover)
+      .on("mouseout",mouseout);
+
+    g[i].selectAll(".mainBars").append("text").attr("class","label")
+      .attr("x",d=>(d.part=="primary"? -25: 30))
+      .attr("y",d=>+6)
+      .text(d=>d.key)
+      .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+    
+    g[i].selectAll(".mainBars").append("text").attr("class","perc")
+      .attr("x",d=>(d.part=="primary"? -300: 280))
+      .attr("y",d=>+6)
+      .text(function(d) {return d3.format(".1f")(d.value);})
+      .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+  });
+
+  function mouseover(d){
+    [0].forEach(function(i){
+      bp[i].mouseover(d);
+      
+      g[i].selectAll(".mainBars").select(".label")
+      .text(function(d) {return d.key});
+      //.text(function(d){ return d3.format("0.0%")(d.percent)});
+    });
+  }
+  function mouseout(d){
+    [0].forEach(function(i){
+      bp[i].mouseout(d);
+      
+      g[i].selectAll(".mainBars").select(".perc")
+      .text(function(d) {return (d.key, d3.format(".1f")(d.value))});
+      //.text(function(d){ return d3.format("0.0%")(d.percent)});
+    });
+  }
+  d3.select(self.frameElement).style("height", "800px");
+}
+
+    }
+  }
+</script-->
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+button {
+margin:12.5px;
+}
+
+text{
+  font-size:12px;
+}
+.mainBars rect{
+  shape-rendering: auto;
+  fill-opacity: 0;
+  stroke-width: 0.5px;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0;
+}
+.subBars{
+  shape-rendering:crispEdges;
+}
+.edges{
+  stroke:none;
+  fill-opacity:0.5;
+}
+.header{
+  text-anchor:middle;
+  font-size:16px;
+}
+line{
+  stroke:grey;
+}
+</style>
