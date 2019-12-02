@@ -1,21 +1,26 @@
 <html>
     <head>
-        <script src="node_modules/d3/dist/d3.min.js"></script>
+      <!-- Bootstrap CSS -->
+		  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	  
+      <script src="node_modules/d3/dist/d3.min.js"></script>
     </head>
     <body>
-        <div style="width:100%;text-align:left;margin-left:150px;">
-            <tspan>Set chart type:</tspan>&ensp;&ensp;
-            <button id="stacked">Stacked</button>&ensp;&ensp;
-            <button id="grouped">Grouped</button>
+        <tspan>Set chart type:</tspan>&ensp;&ensp;
+        <div id="div1" style="margin-left:15px;margin-right:15px;margin-bottom:15px;">
+        <!--<div style="width:100%;text-align:left;margin-left:150px;"-->
+            <button button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" autocomplete="off" id="stacked">Stacked</button>
+            <button button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="grouped">Grouped</button>
         </div>
-        <br>
-        <div id="series" style="width:100%;text-align:left;">
-            <tspan>Series to include:</tspan>&ensp;&ensp;
+        <tspan>Series to include:</tspan>&ensp;&ensp;
+        <div class="btn-group d-flex" role="group" aria-label="Basic example" id="series" style="width:100%;text-align:left;">
+        </div>
+        <div id="div3">
         </div>
         <script src="stacked.js"></script>
     </body>
     <style>
-            button {
+            /*button {
               font-size:12px;
               background-color: white;
               border:2px solid #2C3E4F;
@@ -31,6 +36,6 @@
             button.unselected:hover {
               filter: brightness(130%);
               
-            }
-            </style>
+            }*/
+    </style>
 </html>
