@@ -21,12 +21,20 @@ d3.select('body').append('div').attr('id','div2').attr('class','column').append(
   function  createChart(json){
 
     d3.json(json).then(function(data){
-    color = d3.scaleLinear()
+    color = 
+      d3.scaleOrdinal().domain([0,5]).range(["#ededed","#bfbfbf","#e8d1cf","#b9b8d1","#a18ead"])
+      /*d3.scaleLinear()
       .domain([0, 5])
-      //.range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
-      .range(["hsl(255,100%,100%)", "hsl(30,20%,50%)"])
-      .interpolate(d3.interpolateHcl)
-  
+      .range(["hsl(256,4%,80%)", "hsl(300,10%,60%)"])
+      //.range(["hsl(255,100%,100%)", "hsl(30,20%,50%)"])
+      .interpolate(d3.interpolateHcl)*/
+
+  console.log(color(0))
+  console.log(color(1))
+  console.log(color(2))
+  console.log(color(3))
+  console.log(color(5))
+
       format = d3.format(",d")
       width = 800
       height = width
