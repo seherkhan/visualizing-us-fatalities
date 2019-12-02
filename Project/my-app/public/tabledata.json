@@ -1,0 +1,632 @@
+[
+  {
+    "index": 1,
+    "Category": "Under 1 year",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Congenital anomalies",
+    "Deaths_1980": 9220,
+    "Cause_2016": "Congenital malformations, deformations and chromosomal abnormalities",
+    "Deaths_2016": 4816
+  },
+  {
+    "index": 2,
+    "Category": "Under 1 year",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Sudden infant death syndrome",
+    "Deaths_1980": 5510,
+    "Cause_2016": "Disorders related to short gestation and low birthweight",
+    "Deaths_2016": 3927
+  },
+  {
+    "index": 3,
+    "Category": "Under 1 year",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Respiratory distress syndrome",
+    "Deaths_1980": 4989,
+    "Cause_2016": "Sudden infant death syndrome",
+    "Deaths_2016": 1500
+  },
+  {
+    "index": 4,
+    "Category": "Under 1 year",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Disorders relating to short gestation and unspecified low birthweight",
+    "Deaths_1980": 3648,
+    "Cause_2016": "Newborn affected by maternal complications of pregnancy",
+    "Deaths_2016": 1402
+  },
+  {
+    "index": 5,
+    "Category": "Under 1 year",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Newborn affected by maternal complications of pregnancy",
+    "Deaths_1980": 1572,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 1219
+  },
+  {
+    "index": 6,
+    "Category": "Under 1 year",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Intrauterine hypoxia and birth asphyxia",
+    "Deaths_1980": 1497,
+    "Cause_2016": "Newborn affected by complications of placenta, cord, and membranes",
+    "Deaths_2016": 841
+  },
+  {
+    "index": 7,
+    "Category": "Under 1 year",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 1166,
+    "Cause_2016": "Bacterial sepsis of newborn",
+    "Deaths_2016": 583
+  },
+  {
+    "index": 8,
+    "Category": "Under 1 year",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Birth trauma",
+    "Deaths_1980": 1058,
+    "Cause_2016": "Respiratory distress of newborn",
+    "Deaths_2016": 488
+  },
+  {
+    "index": 9,
+    "Category": "Under 1 year",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 1012,
+    "Cause_2016": "Diseases of circulatory system",
+    "Deaths_2016": 460
+  },
+  {
+    "index": 10,
+    "Category": "Under 1 year",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Newborn affected by complications of placenta, cord, and membranes",
+    "Deaths_1980": 985,
+    "Cause_2016": "Neonatal hemorrhage",
+    "Deaths_2016": 398
+  },
+  {
+    "index": 11,
+    "Category": "1–4 years",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 3313,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 1261
+  },
+  {
+    "index": 12,
+    "Category": "1–4 years",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Congenital anomalies",
+    "Deaths_1980": 1026,
+    "Cause_2016": "Congenital malformations, deformations and chromosomal abnormalities",
+    "Deaths_2016": 433
+  },
+  {
+    "index": 13,
+    "Category": "1–4 years",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 573,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 377
+  },
+  {
+    "index": 14,
+    "Category": "1–4 years",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 338,
+    "Cause_2016": "Homicide",
+    "Deaths_2016": 339
+  },
+  {
+    "index": 15,
+    "Category": "1–4 years",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Homicide",
+    "Deaths_1980": 319,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 118
+  },
+  {
+    "index": 16,
+    "Category": "1–4 years",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 267,
+    "Cause_2016": "Influenza and pneumonia",
+    "Deaths_2016": 103
+  },
+  {
+    "index": 17,
+    "Category": "1–4 years",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Meningitis",
+    "Deaths_1980": 223,
+    "Cause_2016": "Septicemia",
+    "Deaths_2016": 70
+  },
+  {
+    "index": 18,
+    "Category": "1–4 years",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Meningococcal infection",
+    "Deaths_1980": 110,
+    "Cause_2016": "Conditions originating in perinatal period",
+    "Deaths_2016": 60
+  },
+  {
+    "index": 19,
+    "Category": "1–4 years",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Certain conditions originating in the perinatal period",
+    "Deaths_1980": 84,
+    "Cause_2016": "Cerebrovascular diseases",
+    "Deaths_2016": 55
+  },
+  {
+    "index": 20,
+    "Category": "1–4 years",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Septicemia",
+    "Deaths_1980": 71,
+    "Cause_2016": "Chronic lower respiratory diseases",
+    "Deaths_2016": 51
+  },
+  {
+    "index": 21,
+    "Category": "5–14 years",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 5224,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 1634
+  },
+  {
+    "index": 22,
+    "Category": "5–14 years",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 1497,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 880
+  },
+  {
+    "index": 23,
+    "Category": "5–14 years",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Congenital anomalies",
+    "Deaths_1980": 561,
+    "Cause_2016": "Suicide",
+    "Deaths_2016": 443
+  },
+  {
+    "index": 24,
+    "Category": "5–14 years",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Homicide",
+    "Deaths_1980": 415,
+    "Cause_2016": "Congenital malformations, deformations and chromosomal abnormalities",
+    "Deaths_2016": 349
+  },
+  {
+    "index": 25,
+    "Category": "5–14 years",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 330,
+    "Cause_2016": "Homicide",
+    "Deaths_2016": 286
+  },
+  {
+    "index": 26,
+    "Category": "5–14 years",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 194,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 188
+  },
+  {
+    "index": 27,
+    "Category": "5–14 years",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Suicide",
+    "Deaths_1980": 142,
+    "Cause_2016": "Chronic lower respiratory diseases",
+    "Deaths_2016": 143
+  },
+  {
+    "index": 28,
+    "Category": "5–14 years",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Benign neoplasms",
+    "Deaths_1980": 104,
+    "Cause_2016": "Cerebrovascular diseases",
+    "Deaths_2016": 88
+  },
+  {
+    "index": 29,
+    "Category": "5–14 years",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Cerebrovascular diseases",
+    "Deaths_1980": 95,
+    "Cause_2016": "Influenza and pneumonia",
+    "Deaths_2016": 87
+  },
+  {
+    "index": 30,
+    "Category": "5–14 years",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Chronic obstructive pulmonary diseases",
+    "Deaths_1980": 85,
+    "Cause_2016": "Septicemia",
+    "Deaths_2016": 71
+  },
+  {
+    "index": 31,
+    "Category": "15–24 years",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 26206,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 13895
+  },
+  {
+    "index": 32,
+    "Category": "15–24 years",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Homicide",
+    "Deaths_1980": 6537,
+    "Cause_2016": "Suicide",
+    "Deaths_2016": 5723
+  },
+  {
+    "index": 33,
+    "Category": "15–24 years",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Suicide",
+    "Deaths_1980": 5239,
+    "Cause_2016": "Homicide",
+    "Deaths_2016": 5172
+  },
+  {
+    "index": 34,
+    "Category": "15–24 years",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 2683,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 1431
+  },
+  {
+    "index": 35,
+    "Category": "15–24 years",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 1223,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 949
+  },
+  {
+    "index": 36,
+    "Category": "15–24 years",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Congenital anomalies",
+    "Deaths_1980": 600,
+    "Cause_2016": "Congenital malformations, deformations and chromosomal abnormalities",
+    "Deaths_2016": 388
+  },
+  {
+    "index": 37,
+    "Category": "15–24 years",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Cerebrovascular diseases",
+    "Deaths_1980": 418,
+    "Cause_2016": "Diabetes mellitus",
+    "Deaths_2016": 211
+  },
+  {
+    "index": 38,
+    "Category": "15–24 years",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 348,
+    "Cause_2016": "Chronic lower respiratory diseases",
+    "Deaths_2016": 206
+  },
+  {
+    "index": 39,
+    "Category": "15–24 years",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Chronic obstructive pulmonary diseases",
+    "Deaths_1980": 141,
+    "Cause_2016": "Influenza and pneumonia",
+    "Deaths_2016": 189
+  },
+  {
+    "index": 40,
+    "Category": "15–24 years",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Anemias",
+    "Deaths_1980": 133,
+    "Cause_2016": "Pregnancy, childbirth and puerperium",
+    "Deaths_2016": 184
+  },
+  {
+    "index": 41,
+    "Category": "25–44 years",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 26722,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 44959
+  },
+  {
+    "index": 42,
+    "Category": "25–44 years",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 17551,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 14694
+  },
+  {
+    "index": 43,
+    "Category": "25–44 years",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 14513,
+    "Cause_2016": "Suicide",
+    "Deaths_2016": 14396
+  },
+  {
+    "index": 44,
+    "Category": "25–44 years",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Homicide",
+    "Deaths_1980": 10983,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 13922
+  },
+  {
+    "index": 45,
+    "Category": "25–44 years",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Suicide",
+    "Deaths_1980": 9855,
+    "Cause_2016": "Homicide",
+    "Deaths_2016": 8745
+  },
+  {
+    "index": 46,
+    "Category": "25–44 years",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Chronic liver disease and cirrhosis",
+    "Deaths_1980": 4782,
+    "Cause_2016": "Chronic liver disease and cirrhosis",
+    "Deaths_2016": 3776
+  },
+  {
+    "index": 47,
+    "Category": "25–44 years",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Cerebrovascular diseases",
+    "Deaths_1980": 3154,
+    "Cause_2016": "Diabetes mellitus",
+    "Deaths_2016": 2841
+  },
+  {
+    "index": 48,
+    "Category": "25–44 years",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Diabetes mellitus",
+    "Deaths_1980": 1472,
+    "Cause_2016": "Cerebrovascular diseases",
+    "Deaths_2016": 2426
+  },
+  {
+    "index": 49,
+    "Category": "25–44 years",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 1467,
+    "Cause_2016": "Human immunodeficiency virus (HIV) disease",
+    "Deaths_2016": 1517
+  },
+  {
+    "index": 50,
+    "Category": "25–44 years",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Congenital anomalies",
+    "Deaths_1980": 817,
+    "Cause_2016": "Influenza and pneumonia",
+    "Deaths_2016": 1346
+  },
+  {
+    "index": 51,
+    "Category": "45–64 years",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 148322,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 157655
+  },
+  {
+    "index": 52,
+    "Category": "45–64 years",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 135675,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 112637
+  },
+  {
+    "index": 53,
+    "Category": "45–64 years",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Cerebrovascular diseases",
+    "Deaths_1980": 19909,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 45237
+  },
+  {
+    "index": 54,
+    "Category": "45–64 years",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 18140,
+    "Cause_2016": "Chronic lower respiratory diseases",
+    "Deaths_2016": 22117
+  },
+  {
+    "index": 55,
+    "Category": "45–64 years",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Chronic liver disease and cirrhosis",
+    "Deaths_1980": 16089,
+    "Cause_2016": "Chronic liver disease and cirrhosis",
+    "Deaths_2016": 21812
+  },
+  {
+    "index": 56,
+    "Category": "45–64 years",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Chronic obstructive pulmonary diseases",
+    "Deaths_1980": 11514,
+    "Cause_2016": "Diabetes mellitus",
+    "Deaths_2016": 20518
+  },
+  {
+    "index": 57,
+    "Category": "45–64 years",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Diabetes mellitus",
+    "Deaths_1980": 7977,
+    "Cause_2016": "Cerebrovascular diseases",
+    "Deaths_2016": 17663
+  },
+  {
+    "index": 58,
+    "Category": "45–64 years",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Suicide",
+    "Deaths_1980": 7079,
+    "Cause_2016": "Suicide",
+    "Deaths_2016": 16196
+  },
+  {
+    "index": 59,
+    "Category": "45–64 years",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 5804,
+    "Cause_2016": "Septicemia",
+    "Deaths_2016": 8413
+  },
+  {
+    "index": 60,
+    "Category": "45–64 years",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Homicide",
+    "Deaths_1980": 4019,
+    "Cause_2016": "Nephritis, nephrotic syndrome and nephrosis",
+    "Deaths_2016": 7790
+  },
+  {
+    "index": 61,
+    "Category": "65 years and over",
+    "Rank": 1, "Color": "#a6cee3",
+    "Cause_1980": "Diseases of heart",
+    "Deaths_1980": 595406,
+    "Cause_2016": "Diseases of heart",
+    "Deaths_2016": 507118
+  },
+  {
+    "index": 62,
+    "Category": "66 years and over",
+    "Rank": 2, "Color": "#1f78b4",
+    "Cause_1980": "Malignant neoplasms",
+    "Deaths_1980": 258389,
+    "Cause_2016": "Malignant neoplasms",
+    "Deaths_2016": 422927
+  },
+  {
+    "index": 63,
+    "Category": "67 years and over",
+    "Rank": 3, "Color": "#b2df8a",
+    "Cause_1980": "Cerebrovascular diseases",
+    "Deaths_1980": 146417,
+    "Cause_2016": "Chronic lower respiratory diseases",
+    "Deaths_2016": 131002
+  },
+  {
+    "index": 64,
+    "Category": "68 years and over",
+    "Rank": 4, "Color": "#33a02c",
+    "Cause_1980": "Pneumonia and influenza",
+    "Deaths_1980": 45512,
+    "Cause_2016": "Cerebrovascular diseases",
+    "Deaths_2016": 121630
+  },
+  {
+    "index": 65,
+    "Category": "69 years and over",
+    "Rank": 5, "Color": "#fb9a99",
+    "Cause_1980": "Chronic obstructive pulmonary diseases",
+    "Deaths_1980": 43587,
+    "Cause_2016": "Alzheimer's disease",
+    "Deaths_2016": 114883
+  },
+  {
+    "index": 66,
+    "Category": "70 years and over",
+    "Rank": 6, "Color": "#e31a1c",
+    "Cause_1980": "Atherosclerosis",
+    "Deaths_1980": 28081,
+    "Cause_2016": "Diabetes mellitus",
+    "Deaths_2016": 56452
+  },
+  {
+    "index": 67,
+    "Category": "71 years and over",
+    "Rank": 7, "Color": "#fdbf6f",
+    "Cause_1980": "Diabetes mellitus",
+    "Deaths_1980": 25216,
+    "Cause_2016": "Unintentional injuries",
+    "Deaths_2016": 53141
+  },
+  {
+    "index": 68,
+    "Category": "72 years and over",
+    "Rank": 8, "Color": "#ff7f00",
+    "Cause_1980": "Unintentional injuries",
+    "Deaths_1980": 24844,
+    "Cause_2016": "Influenza and pneumonia",
+    "Deaths_2016": 42479
+  },
+  {
+    "index": 69,
+    "Category": "73 years and over",
+    "Rank": 9, "Color": "#cab2d6",
+    "Cause_1980": "Nephritis, nephrotic syndrome and nephrosis",
+    "Deaths_1980": 12968,
+    "Cause_2016": "Nephritis, nephrotic syndrome and nephrosis",
+    "Deaths_2016": 41095
+  },
+  {
+    "index": 70,
+    "Category": "74 years and over",
+    "Rank": 10, "Color": "#6a3d9a",
+    "Cause_1980": "Chronic liver disease and cirrhosis",
+    "Deaths_1980": 9519,
+    "Cause_2016": "Septicemia",
+    "Deaths_2016": 30405
+  }
+]
