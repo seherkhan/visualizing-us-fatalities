@@ -105,13 +105,13 @@ text.label {
 	<hr class="my-5">
 
 		<div class="btn-group" role="group">
-			<button type="button" class="btn btn-outline-danger" id="ap">All Persons</button>
-			<button type="button" class="btn btn-outline-primary" id="wh">White</button>
-			<button type="button" class="btn btn-outline-primary" id="baa">Black or African American</button>
-			<button type="button" class="btn btn-outline-primary" id="api">Asian or Pacific Islander</button>
-			<button type="button" class="btn btn-outline-primary" id="hl">Hispanic or Latino</button>
-			<button type="button" class="btn btn-outline-primary" id="whl">White, not Hispanic or Latino</button>
-			<button type="button" class="btn btn-outline-primary" id="bhl">Black, not Hispanic or Latino</button>
+			<button type="button" class="btn btn-outline-danger active" data-toggle="button" aria-pressed="true" id="ap">All Persons</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="wh">White</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="baa">Black or African American</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="api">Asian or Pacific Islander</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="hl">Hispanic or Latino</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="whl">White, not Hispanic or Latino</button>
+			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="bhl">Black, not Hispanic or Latino</button>
 		</div>  
 	
 	<br/><br/><br/><br/>
@@ -618,11 +618,19 @@ text.label {
 		drawChart();
 
 
-
+		//#ap, #wh, #baa, #aia, #api, #hl, #whl, #bhl
 		//--------------- ON CLICK LISTENERS FOR BUTTONS --------------------------------
 		d3.select("#ap")
 			.on("click", function () {
 				if (people != 'ap') {
+					d3.select('#ap').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'ap';
 					bardata = filterData();
 					filterChart();
@@ -633,6 +641,14 @@ text.label {
 		d3.select("#wh")
 			.on("click", function () {
 				if (people != 'wh') {
+					d3.select('#wh').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'wh';
 					bardata = filterData();
 					filterChart();
@@ -643,6 +659,14 @@ text.label {
 		d3.select("#baa")
 			.on("click", function () {
 				if (people != 'baa') {
+					d3.select('#baa').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'baa';
 					bardata = filterData();
 					filterChart();
@@ -653,6 +677,14 @@ text.label {
 		d3.select("#aia")
 			.on("click", function () {
 				if (people != 'aia') {
+					d3.select('#aia').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'aia';
 					bardata = filterData();
 					filterChart();
@@ -663,6 +695,14 @@ text.label {
 		d3.select("#api")
 			.on("click", function () {
 				if (people != 'api') {
+					d3.select('#api').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'api';
 					bardata = filterData();
 					filterChart();
@@ -673,6 +713,14 @@ text.label {
 		d3.select("#hl")
 			.on("click", function () {
 				if (people != 'hl') {
+					d3.select('#hl').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#whl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'hl';
 					bardata = filterData();
 					filterChart();
@@ -683,6 +731,14 @@ text.label {
 		d3.select("#whl")
 			.on("click", function () {
 				if (people != 'whl') {
+					d3.select('#whl').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#bhl').classed('active', false);
 					people = 'whl';
 					bardata = filterData();
 					filterChart();
@@ -693,6 +749,14 @@ text.label {
 		d3.select("#bhl")
 			.on("click", function () {
 				if (people != 'bhl') {
+					d3.select('#bhl').classed('active', true).attr('aria-pressed', "true");
+					d3.select('#ap').classed('active', false);
+					d3.select('#wh').classed('active', false);
+					d3.select('#baa').classed('active', false);
+					d3.select('#aia').classed('active', false);
+					d3.select('#api').classed('active', false);
+					d3.select('#hl').classed('active', false);
+					d3.select('#whl').classed('active', false);
 					people = 'bhl';
 					bardata = filterData();
 					filterChart();

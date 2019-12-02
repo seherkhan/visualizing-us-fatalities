@@ -12,7 +12,7 @@
 
 
         <style>
-            #tooltip {   
+        #tooltip {   
             position: absolute;           
             text-align: center;
             padding: 20px;             
@@ -61,16 +61,16 @@
                     </div>
                 
                     <hr class="my-5">
-                    <button type="button" class="btn btn-outline-danger" id="AP">All Persons</button>  
-                    <button type="button" class="btn btn-outline-dark" id="M">Male</button>
-                    <button type="button" class="btn btn-outline-dark" id="F">Female</button>
-                    <button type="button" class="btn btn-outline-dark" id="W">White</button>
-                    <button type="button" class="btn btn-outline-dark" id="BAA">Black or African American</button>        
-                    <button type="button" class="btn btn-outline-dark" id="AIA">American Indian or Alaska Native</button><br/>
-                    <button type="button" class="btn btn-outline-dark" id="API">Asian or Pacific Islander</button>   
-                    <button type="button" class="btn btn-outline-dark" id="HL">Hispanic or Latino</button>
-                    <button type="button" class="btn btn-outline-dark" id="WHL">White, not Hispanic or Latino</button>
-                    <button type="button" class="btn btn-outline-dark" id="BHL">Black, not Hispanic or Latino</button>              
+                    <button type="button" class="btn btn-outline-danger active" data-toggle="button" aria-pressed="true" id="AP">All Persons</button>  
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="M">Male</button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="F">Female</button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="W">White</button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="BAA">Black or African American</button>        
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="AIA">American Indian or Alaska Native</button><br/>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="API">Asian or Pacific Islander</button>   
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="HL">Hispanic or Latino</button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="WHL">White, not Hispanic or Latino</button>
+                    <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="BHL">Black, not Hispanic or Latino</button>              
                 </div>
                 <br/><br/>
     
@@ -100,25 +100,25 @@
                 </div>
 
         <script>
-            var width = 1500;
-            var height = 400;
-            var margin = {top: 20, right: 50, bottom: 25, left: 50};
+            var widthx = 1500;
+            var heightx = 400;
+            var marginx = {top: 20, right: 50, bottom: 25, left: 50};
 
-            var svg = d3.select('#barchart')
+            var svgx = d3.select('#barchart')
                 .append('svg')
                 .attr('id', 'svg-bar')
-                .attr('width', width)
-                .attr('height', height)
+                .attr('width', widthx)
+                .attr('height', heightx)
                 .append('g')
-                .attr('transform', 'translate('+ width +', '+ height +')');
+                .attr('transform', 'translate('+ widthx +', '+ heightx +')');
 
             
-            var data, mode, all;
+            var datax, modex, allx;
             keys = ["1950", "1960", "1970", "1980", "1990", 
                 "1995", "2000", "2005", "2010", "2014", "2015", 
                 "2016"];
 
-            color = d3.scaleOrdinal()
+            colorx = d3.scaleOrdinal()
                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a8a29e", "#a05d56", "#d0743c", "#ff8c00", "#ebaf8a", "#d4bfb2", "#807c7a", "#bababa"])
 
             var groupKey = "disease_id";
@@ -128,88 +128,190 @@
 
 
             d3.json('Data/stacked-bar-chart.json', function(d) {
-                mode = 'AP';
-                data = d.slice(0, 7);
-                all = d;
+                modex = 'AP';
+                datax = d.slice(0, 7);
+                allx = d;
                 drawBarChart();
             });
 
+            //#AP, #M, #F, #W, #BAA, #AIA, #API, #HL, #WHL, #BHL
+
             d3.select('#AP').on('click', function() {
-                if(mode != 'AP'){
-                    data = all.slice(0, 7);
-                    mode = 'AP';
+                if(modex != 'AP'){
+                    d3.select('#AP').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(0, 7);
+                    modex = 'AP';
                     drawBarChart();
                 }
             });
 
             d3.select('#M').on('click', function() {
-                if(mode != 'M'){
-                    data = all.slice(7, 14);
-                    mode = 'M';
+                if(modex != 'M'){
+                    d3.select('#M').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(7, 14);
+                    modex = 'M';
                     drawBarChart();
                 }
             });
 
             d3.select('#F').on('click', function() {
-                if(mode != 'F'){
-                    data = all.slice(14, 21);
-                    mode = 'F';
+                if(modex != 'F'){
+                    d3.select('#F').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(14, 21);
+                    modex = 'F';
                     drawBarChart();
                 }
             });
 
             d3.select('#W').on('click', function() {
-                if(mode != 'W'){
-                    data = all.slice(21, 28);
-                    mode = 'W';
+                if(modex != 'W'){
+                    d3.select('#W').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(21, 28);
+                    modex = 'W';
                     drawBarChart();
                 }
             });
 
             d3.select('#BAA').on('click', function() {
-                if(mode != 'BAA'){
-                    data = all.slice(28, 35);
-                    mode = 'BAA';
+                if(modex != 'BAA'){
+                    d3.select('#BAA').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(28, 35);
+                    modex = 'BAA';
                     drawBarChart();
                 }
             });
 
             d3.select('#AIA').on('click', function() {
-                if(mode != 'AIA'){
-                    data = all.slice(35, 42);
-                    mode = 'AIA';
+                if(modex != 'AIA'){
+                    d3.select('#AIA').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(35, 42);
+                    modex = 'AIA';
                     drawBarChart();
                 }
             });
 
             d3.select('#API').on('click', function() {
-                if(mode != 'API'){
-                    data = all.slice(42, 49);
-                    mode = 'API';
+                if(modex != 'API'){
+                    d3.select('#API').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(42, 49);
+                    modex = 'API';
                     drawBarChart();
                 }
             });
 
             d3.select('#HL').on('click', function() {
-                if(mode != 'HL'){
-                    data = all.slice(49, 56);
-                    mode = 'HL';
+                if(modex != 'HL'){
+                    d3.select('#HL').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(49, 56);
+                    modex = 'HL';
                     drawBarChart();
                 }
             });
 
             d3.select('#WHL').on('click', function() {
-                if(mode != 'WHL'){
-                    data = all.slice(56, 63);
-                    mode = 'WHL';
+                if(modex != 'WHL'){
+                    d3.select('#WHL').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    d3.select('#BHL').classed('active', false);
+                    datax = allx.slice(56, 63);
+                    modex = 'WHL';
                     drawBarChart();
                 }
             });
 
             d3.select('#BHL').on('click', function() {
-                if(mode != 'BHL'){
-                    data = all.slice(63, 70);
-                    mode = 'BHL';
+                if(modex != 'BHL'){
+                    d3.select('#BHL').classed('active', true).attr('aria-pressed', "true");
+                    d3.select('#M').classed('active', false);
+                    d3.select('#F').classed('active', false);
+                    d3.select('#W').classed('active', false);
+                    d3.select('#BAA').classed('active', false);
+                    d3.select('#AIA').classed('active', false);
+                    d3.select('#API').classed('active', false);
+                    d3.select('#HL').classed('active', false);
+                    d3.select('#WHL').classed('active', false);
+                    d3.select('#AP').classed('active', false);
+                    datax = allx.slice(63, 70);
+                    modex = 'BHL';
                     drawBarChart();
                 }
             });
@@ -217,24 +319,24 @@
             
             
 
-            function legend(svg) {
+            function legend(svgx) {
                 var g = d3.select('#svg-bar')
                     .selectAll(".legends")
-                    .data(color.domain().slice().reverse())
+                    .data(colorx.domain().slice().reverse())
                     .enter()
                     .append("g")
                     .attr('class', 'legends')
-                    .attr("transform", `translate(${width},0)`)
+                    .attr("transform", `translate(${widthx},0)`)
                     .attr("text-anchor", "end")
                     .attr("font-family", "sans-serif")
                     .attr("font-size", 10)
-                    .attr("transform", (d, i) => `translate(${width - 35},${i * 20})`);
+                    .attr("transform", (d, i) => `translate(${widthx - 35},${i * 20})`);
 
                 g.append("rect")
                     .attr("x", -19)
                     .attr("width", 19)
                     .attr("height", 19)
-                    .attr("fill", color);
+                    .attr("fill", colorx);
 
                 g.append("text")
                     .attr("x", -24)
@@ -266,34 +368,34 @@
 			d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
 		}
 
-        x0.domain(data.map(function(d) { return d['disease_id']; }))
-            .rangeRound([margin.left, width - margin.right])
+        x0.domain(datax.map(function(d) { return d['disease_id']; }))
+            .rangeRound([marginx.left, widthx - marginx.right])
             .paddingInner(0.20);
 
         x1.domain(keys)
             .rangeRound([0, x0.bandwidth()])
             .padding(0.25);
 
-        y.domain([0,  d3.max(data, d => d3.max(keys, key => d[key]))]).nice()
-            .rangeRound([height - margin.bottom, margin.top]);
+        y.domain([0,  d3.max(datax, d => d3.max(keys, key => d[key]))]).nice()
+            .rangeRound([heightx - marginx.bottom, marginx.top]);
             
         xAxis = g => g
-            .attr("transform", `translate(0,${height - margin.bottom})`)
+            .attr("transform", `translate(0,${heightx - marginx.bottom})`)
             .call(d3.axisBottom(x0).tickSizeOuter(0))
             .call(g => g.select(".domain").remove());
 
         yAxis = g => g
-            .attr("transform", `translate(${margin.left},0)`)
+            .attr("transform", `translate(${marginx.left},0)`)
             .call(d3.axisLeft(y).ticks(null, "s"))
             .call(g => g.select(".domain").remove())
             .call(g => g.select(".tick:last-of-type text").clone()
                 .attr("x", 3)
                 .attr("text-anchor", "start")
                 .attr("font-weight", "bold")
-                .text(data.y)); 
+                .text(datax.y)); 
 
         var svgroot =  d3.select('#svg-bar').selectAll(".inside")
-                .data(data);
+                .data(datax);
 
         var svgx = svgroot
             .enter()
@@ -313,7 +415,7 @@
             .attr("y", d => y(d.value))
             .attr("width", x1.bandwidth())
             .attr("height", d => y(0) - y(d.value))
-            .attr("fill", d => color(d.key));
+            .attr("fill", d => colorx(d.key));
 
         svgx.selectAll('rect').on("mouseover", mouseOver).on("mouseout", mouseOut); 
 

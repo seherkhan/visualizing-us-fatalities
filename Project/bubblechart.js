@@ -169,6 +169,9 @@ buttons = d3.select('#div2');
 for (var key in colors) {
   buttons.append('div').append('button')
     .attr('class','button')
+    .attr('class', 'btn btn-outline-dark')
+    .attr('data-toggle', 'button')
+    .attr('aria-pressed', 'true')
     .attr('id',key.replace(/ /g,"_"))
     .text(key)
     .style('font-size','12px')
