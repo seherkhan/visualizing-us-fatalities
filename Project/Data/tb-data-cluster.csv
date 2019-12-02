@@ -1,0 +1,35 @@
+,State,Region,Division,No. of Cases
+0,Utah,West,Mountain,1 to 59
+1,Oklahoma,South,West South Central,1 to 59
+2,District of Columbia,Northeast,Middle Atlantic,1 to 59
+3,Maine,Northeast,New England,1 to 59
+4,Wisconsin,Midwest,East North Central,1 to 59
+5,Kansas,Midwest,West North Central,1 to 59
+6,Nebraska,Midwest,West North Central,1 to 59
+7,Delaware,South,South Atlantic,1 to 59
+8,South Carolina,South,South Atlantic,60 to 147
+9,Indiana,Midwest,East North Central,60 to 147
+10,Hawaii,West,Pacific,60 to 147
+11,Oregon,West,Pacific,60 to 147
+12,Alaska,West,Pacific,60 to 147
+13,Kentucky,South,East South Central,60 to 147
+14,Alabama,South,East South Central,60 to 147
+15,Mississippi,South,East South Central,60 to 147
+16,Arkansas,South,West South Central,60 to 147
+17,Louisiana,South,West South Central,60 to 147
+18,Missouri,Midwest,West North Central,60 to 147
+19,Colorado,West,Mountain,60 to 147
+20,North Carolina,South,South Atlantic,148 or more
+21,Virginia,South,South Atlantic,148 or more
+22,New Jersey,Northeast,Middle Atlantic,148 or more
+23,Ohio,Midwest,East North Central,148 or more
+24,Massachusetts,Northeast,New England,148 or more
+25,Maryland,South,South Atlantic,148 or more
+26,Florida,South,South Atlantic,148 or more
+27,Georgia,South,South Atlantic,148 or more
+28,Illinois,Midwest,East North Central,148 or more
+29,Tennessee,South,East South Central,148 or more
+30,Texas,South,West South Central,148 or more
+31,California,West,Pacific,148 or more
+32,Arizona,West,Mountain,148 or more
+33,Washington,West,Pacific,148 or more

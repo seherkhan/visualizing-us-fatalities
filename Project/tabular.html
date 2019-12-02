@@ -40,13 +40,13 @@
 
             <hr class="my-3">
 
-                <button type="button" class="btn btn-outline-dark" id="under1">Under 1 year</button>
-                <button type="button" class="btn btn-outline-dark" id="b1to4">1 - 4 years</button>
-                <button type="button" class="btn btn-outline-dark" id="b5to14">5 - 14 years</button>
-                <button type="button" class="btn btn-outline-dark" id="b15to24">15 - 24 years</button>
-                <button type="button" class="btn btn-outline-dark" id="b25to44">25 - 44 years</button>
-                <button type="button" class="btn btn-outline-dark" id="b45to64">45 - 64 years</button>   
-                <button type="button" class="btn btn-outline-dark" id="b64over">65 years and over</button>
+                <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="under1">Under 1 year</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b1to4">1 - 4 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b5to14">5 - 14 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b15to24">15 - 24 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b25to44">25 - 44 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b45to64">45 - 64 years</button>   
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b64over">65 years and over</button>
             
             <br/><br/>
         
@@ -218,9 +218,18 @@
             .text(function(d) {if(d['index']%10 == 1) {return d['Deaths_2016']}})
             .style('padding', function(d) {if(d['index']%10 != 1) {return 0}});
       };
+      
 
+      //#under1, #b1to4, #b5to14, #b25to44, #b45to64, #b64over
       d3.select('#under1').on('click', function() {
         if(mode != 'under1'){
+            d3.select('#under1').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(0, 10);
             mode = 'under1';
             filterTable();
@@ -230,6 +239,13 @@
 
     d3.select('#b1to4').on('click', function() {
         if(mode != 'b1to4'){
+            d3.select('#b1to4').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#under1').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(10, 20);
             mode = 'b1to4';
             filterTable();
@@ -239,6 +255,13 @@
 
     d3.select('#b5to14').on('click', function() {
         if(mode != 'b5to14'){
+            d3.select('#b5to14').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(20, 30);
             mode = 'b5to14';
             filterTable();
@@ -248,6 +271,13 @@
 
     d3.select('#b15to24').on('click', function() {
         if(mode != 'b15to24'){
+            d3.select('#b15to24').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(30, 40);
             mode = 'b15to24';
             filterTable();
@@ -257,6 +287,13 @@
 
     d3.select('#b25to44').on('click', function() {
         if(mode != 'b25to44'){
+            d3.select('#b25to44').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(40, 50);
             mode = 'b25to44';
             filterTable();
@@ -266,6 +303,13 @@
 
     d3.select('#b45to64').on('click', function() {
         if(mode != 'b45to64'){
+            d3.select('#b45to64').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(50, 60);
             mode = 'b45to64';
             filterTable();
@@ -276,6 +320,13 @@
 
     d3.select('#b64over').on('click', function() {
         if(mode != 'b64over'){
+            d3.select('#b64over').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#under1').classed('active', false);
             dataset = all.slice(60, 70);
             mode = 'b64over';
             filterTable();

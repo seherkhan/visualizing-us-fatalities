@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 <style>
+button {
+margin:12.5px;
+}
+
 text{
 	font-size:12px;
 }
@@ -47,17 +51,17 @@ line{
 		</div>
 
 		<hr class="my-5">
-		<button type="button" class="btn btn-outline-dark" id="yr1950">1950</button>
-		<button type="button" class="btn btn-outline-dark" id="yr1960">1960</button>
-		<button type="button" class="btn btn-outline-dark" id="yr1970">1970</button>
-		<button type="button" class="btn btn-outline-dark" id="yr1980">1980</button>        
-		<button type="button" class="btn btn-outline-dark" id="yr1990">1990</button>
-		<button type="button" class="btn btn-outline-dark" id="yr2000">2000</button>   
-		<button type="button" class="btn btn-outline-dark" id="yr2005">2005</button>
-		<button type="button" class="btn btn-outline-dark" id="yr2010">2010</button>
-		<button type="button" class="btn btn-outline-dark" id="yr2014">2014</button>
-		<button type="button" class="btn btn-outline-dark" id="yr2015">2015</button>
-		<button type="button" class="btn btn-outline-dark" id="yr2016">2016</button>              
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1950"> 1950</button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1960"> 1960 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1970"> 1970 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1980"> 1980 </button>        
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1990"> 1990 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2000"> 2000 </button>   
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2005"> 2005 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2010"> 2010 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2014"> 2014 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2015"> 2015 </button>
+		<button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="yr2016"> 2016 </button>              
 		
 	</div>
 
@@ -139,6 +143,17 @@ d3.json('Data/sankey-data.json', function(d) {
 
 d3.select("#yr1950").on('click', function() {
 	if(mode != '1950'){
+		d3.select('#yr1950').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '1950';
 			filterdata();
 			drawSankey();
@@ -147,6 +162,17 @@ d3.select("#yr1950").on('click', function() {
 
 d3.select("#yr1960").on('click', function() {
 	if(mode != '1960'){
+		d3.select('#yr1960').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '1960';
 			filterdata();
 			drawSankey();
@@ -155,6 +181,17 @@ d3.select("#yr1960").on('click', function() {
 
 d3.select("#yr1970").on('click', function() {
 	if(mode != '1970'){
+		d3.select('#yr1970').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '1970';
 			filterdata();
 			drawSankey();
@@ -163,6 +200,17 @@ d3.select("#yr1970").on('click', function() {
 
 d3.select("#yr1980").on('click', function() {
 	if(mode != '1980'){
+		d3.select('#yr1980').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '1980';
 			filterdata();
 			drawSankey();
@@ -171,6 +219,17 @@ d3.select("#yr1980").on('click', function() {
 
 d3.select("#yr1990").on('click', function() {
 	if(mode != '1990'){
+		d3.select('#yr1990').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '1990';
 			filterdata();
 			drawSankey();
@@ -179,6 +238,17 @@ d3.select("#yr1990").on('click', function() {
 
 d3.select("#yr2000").on('click', function() {
 	if(mode != '2000'){
+		d3.select('#yr2000').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '2000';
 			filterdata();
 			drawSankey();
@@ -187,6 +257,17 @@ d3.select("#yr2000").on('click', function() {
 
 d3.select("#yr2005").on('click', function() {
 	if(mode != '2005'){
+		d3.select('#yr2005').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '2005';
 			filterdata();
 			drawSankey();
@@ -195,6 +276,17 @@ d3.select("#yr2005").on('click', function() {
 
 d3.select("#yr2010").on('click', function() {
 	if(mode != '2010'){
+		d3.select('#yr2010').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '2010';
 			filterdata();
 			drawSankey();
@@ -203,6 +295,17 @@ d3.select("#yr2010").on('click', function() {
 
 d3.select("#yr2014").on('click', function() {
 	if(mode != '2014'){
+		d3.select('#yr2014').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '2014';
 			filterdata();
 			drawSankey();
@@ -211,6 +314,17 @@ d3.select("#yr2014").on('click', function() {
 
 d3.select("#yr2015").on('click', function() {
 	if(mode != '2015'){
+		d3.select('#yr2015').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
 			mode = '2015';
 			filterdata();
 			drawSankey();
@@ -219,6 +333,17 @@ d3.select("#yr2015").on('click', function() {
 
 d3.select("#yr2016").on('click', function() {
 	if(mode != '2016'){
+		d3.select('#yr2016').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
 			mode = '2016';
 			filterdata();
 			drawSankey();

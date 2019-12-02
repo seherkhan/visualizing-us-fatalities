@@ -1,0 +1,669 @@
+{
+  "name": "Diabetes",
+  "children": [{
+      "name": "Midwest",
+      "children": [{
+          "name": "East North Central",
+          "children": [{
+              "name": "Michigan",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.8
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.2
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            },
+            {
+              "name": "Ohio",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.7
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.0
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.3
+                }
+              ]
+            },
+            {
+              "name": "Wisconsin",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.7
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "West North Central",
+          "children": [{
+              "name": "Kansas",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.5
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.0
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.0
+                }
+              ]
+            },
+            {
+              "name": "Minnesota",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 7.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.0
+                }
+              ]
+            },
+            {
+              "name": "Missouri",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.2
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.4
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 11.2
+                }
+              ]
+            },
+            {
+              "name": "Nebraska",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.0
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.5
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.6
+                }
+              ]
+            },
+            {
+              "name": "North Dakota",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.2
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.4
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.0
+                }
+              ]
+            },
+            {
+              "name": "South Dakota",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 6.9
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 6.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 7.8
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "Northeast",
+      "children": [{
+          "name": "Middle Atlantic",
+          "children": [{
+              "name": "New York",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.4
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.9
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.0
+                }
+              ]
+            },
+            {
+              "name": "Pennsylvania",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.8
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "New England",
+          "children": [{
+              "name": "Maine",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.5
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.8
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.2
+                }
+              ]
+            },
+            {
+              "name": "Massachusetts",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.3
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.6
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.0
+                }
+              ]
+            },
+            {
+              "name": "New Hampshire",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 7.7
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.0
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.5
+                }
+              ]
+            },
+            {
+              "name": "Rhode Island",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.8
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.5
+                }
+              ]
+            },
+            {
+              "name": "Vermont",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 7.3
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 6.5
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+
+    {
+      "name": "South",
+      "children": [{
+          "name": "East South Central",
+          "children": [{
+              "name": "Mississippi",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 12.4
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 11.4
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 13.5
+                }
+              ]
+            },
+            {
+              "name": "Tennessee",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 11.2
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 10.3
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 12.1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "South Atlantic",
+          "children": [{
+              "name": "Florida",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.8
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.2
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            },
+            {
+              "name": "Georgia",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 11.4
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 10.5
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 12.4
+                }
+              ]
+            },
+            {
+              "name": "Maryland",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.8
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.2
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            },
+            {
+              "name": "North Carolina",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.1
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.3
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.9
+                }
+              ]
+            },
+            {
+              "name": "South Carolina",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 11.5
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 10.8
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 12.2
+                }
+              ]
+            },
+            {
+              "name": "Virginia",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.9
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.2
+                }
+              ]
+            },
+            {
+              "name": "West Virginia",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 12.7
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 11.9
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 13.5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "West South Central",
+          "children": [{
+              "name": "Louisiana",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 11.1
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 10.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 12.2
+                }
+              ]
+            },
+            {
+              "name": "Oklahoma",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.9
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 10.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 11.8
+                }
+              ]
+            },
+            {
+              "name": "Texas",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.9
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.9
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 11.9
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "name": "West",
+      "children": [{
+          "name": "Mountain",
+          "children": [{
+              "name": "Idaho",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.1
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.3
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.0
+                }
+              ]
+            },
+            {
+              "name": "Montana",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 6.9
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 6.2
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 7.7
+                }
+              ]
+            },
+            {
+              "name": "Nevada",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.1
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 11.3
+                }
+              ]
+            },
+            {
+              "name": "New Mexico",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 10.4
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.4
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 11.4
+                }
+              ]
+            },
+            {
+              "name": "Utah",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 7.7
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.3
+                }
+              ]
+            },
+            {
+              "name": "Wyoming",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 7.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 6.7
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 8.6
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pacific",
+          "children": [{
+              "name": "California",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.7
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 9.0
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            },
+            {
+              "name": "Hawaii",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 9.5
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.7
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 10.4
+                }
+              ]
+            },
+            {
+              "name": "Oregon",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.4
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 7.6
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.2
+                }
+              ]
+            },
+            {
+              "name": "Washington",
+              "children": [{
+                  "name": "Percentage",
+                  "value": 8.6
+                },
+                {
+                  "name": "Lower Limit",
+                  "value": 8.1
+                },
+                {
+                  "name": "Upper Limit",
+                  "value": 9.1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+  ]
+}
