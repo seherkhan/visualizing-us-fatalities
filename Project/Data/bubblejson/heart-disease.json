@@ -1,0 +1,84 @@
+{
+	"name": "heart-disease-types",
+	"children": [{
+			"name": "Northeast",
+			"children": [{
+					"name": "All types of Heart Diseases",
+					"value": 11.2
+				},
+				{
+					"name": "Coronary Heart Disease",
+					"value": 5.5
+				},
+				{
+					"name": "Hypertension",
+					"value": 22.6
+				},
+				{
+					"name": "Stroke",
+					"value": 2.4
+				}
+			]
+		},
+		{
+			"name": "Midwest",
+			"children": [{
+					"name": "All types of Heart Diseases",
+					"value": 11.9
+				},
+				{
+					"name": "Coronary Heart Disease",
+					"value": 5.7
+				},
+				{
+					"name": "Hypertension",
+					"value": 24.4
+				},
+				{
+					"name": "Stroke",
+					"value": 2.6
+				}
+			]
+		},
+		{
+			"name": "South",
+			"children": [{
+					"name": "All types of Heart Diseases",
+					"value": 11.8
+				},
+				{
+					"name": "Coronary Heart Disease",
+					"value": 6.3
+				},
+				{
+					"name": "Hypertension",
+					"value": 27.9
+				},
+				{
+					"name": "Stroke",
+					"value": 3.4
+				}
+			]
+		},
+		{
+			"name": "West",
+			"children": [{
+					"name": "All types of Heart Diseases",
+					"value": 9.6
+				},
+				{
+					"name": "Coronary Heart Disease",
+					"value": 4.7
+				},
+				{
+					"name": "Hypertension",
+					"value": 21.9
+				},
+				{
+					"name": "Stroke",
+					"value": 2.3
+				}
+			]
+		}
+	]
+}

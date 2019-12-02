@@ -1,0 +1,273 @@
+{
+  "name": "tbtypes",
+  "children": [{
+      "name": "Midwest",
+      "children": [{
+          "name": "East North Central",
+          "children": [{
+              "name": "Wisconsin",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Indiana",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Ohio",
+              "value": "148 or more"
+            },
+            {
+              "name": "Illinois",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "West North Central",
+          "children": [{
+              "name": "Kansas",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Nebraska",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Missouri",
+              "value": "60 to 147"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Northeast",
+      "children": [{
+          "name": "Middle Atlantic",
+          "children": [{
+              "name": "District of Columbia",
+              "value": "1 to 59"
+            },
+            {
+              "name": "New Jersey",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "New England",
+          "children": [{
+              "name": "Maine",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Massachusetts",
+              "value": "148 or more"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "South",
+      "children": [{
+          "name": "West South Central",
+          "children": [{
+              "name": "Oklahoma",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Arkansas",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Louisiana",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Texas",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "South Atlantic",
+          "children": [{
+              "name": "Delaware",
+              "value": "1 to 59"
+            },
+            {
+              "name": "South Carolina",
+              "value": "60 to 147"
+            },
+            {
+              "name": "North Carolina",
+              "value": "148 or more"
+            },
+            {
+              "name": "Virginia",
+              "value": "148 or more"
+            },
+            {
+              "name": "Maryland",
+              "value": "148 or more"
+            },
+            {
+              "name": "Florida",
+              "value": "148 or more"
+            },
+            {
+              "name": "Georgia",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "East South Central",
+          "children": [{
+              "name": "Kentucky",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Alabama",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Mississippi",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Tennessee",
+              "value": "148 or more"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "West",
+      "children": [{
+          "name": "Mountain",
+          "children": [{
+              "name": "Utah",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Colorado",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Arizona",
+              "value": "148 or more"
+            },
+            {
+              "name": "Utah",
+              "value": "1 to 59"
+            },
+            {
+              "name": "Colorado",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Arizona",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "West South Central",
+          "children": [{
+            "name": "Texas",
+            "value": "148 or more"
+          }]
+        },
+        {
+          "name": "Middle Atlantic",
+          "children": [{
+            "name": "New Jersey",
+            "value": "148 or more"
+          }]
+        },
+        {
+          "name": "New England",
+          "children": [{
+            "name": "Massachusetts",
+            "value": "148 or more"
+          }]
+        },
+        {
+          "name": "East North Central",
+          "children": [{
+            "name": "Illinois",
+            "value": "148 or more"
+          }]
+        },
+        {
+          "name": "West North Central",
+          "children": [{
+            "name": "Missouri",
+            "value": "60 to 147"
+          }]
+        },
+        {
+          "name": "South Atlantic",
+          "children": [{
+            "name": "Georgia",
+            "value": "148 or more"
+          }]
+        },
+        {
+          "name": "Pacific",
+          "children": [{
+              "name": "Hawaii",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Oregon",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Alaska",
+              "value": "60 to 147"
+            },
+            {
+              "name": "California",
+              "value": "148 or more"
+            },
+            {
+              "name": "Washington",
+              "value": "148 or more"
+            },
+            {
+              "name": "Hawaii",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Oregon",
+              "value": "60 to 147"
+            },
+            {
+              "name": "Alaska",
+              "value": "60 to 147"
+            },
+            {
+              "name": "California",
+              "value": "148 or more"
+            },
+            {
+              "name": "Washington",
+              "value": "148 or more"
+            }
+          ]
+        },
+        {
+          "name": "East South Central",
+          "children": [{
+            "name": "Tennessee",
+            "value": "148 or more"
+          }]
+        }
+      ]
+    }
+  ]
+}
