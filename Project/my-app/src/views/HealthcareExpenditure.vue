@@ -1,5 +1,5 @@
 <template>
-  <div class='cost'>
+  <div class='expend'>
     <svg id="primary-area"/>
     <svg id="secondary-area"/>
   </div>
@@ -72,7 +72,7 @@ export default {
         
         var color = d3.scaleOrdinal()
             .domain(data.columns.slice(1))
-            .range(d3.schemeYlOrRd[9].reverse()) 
+            .range(d3.schemeYlOrRd[9]) 
             
         var xAxis = g =>
             g.attr("transform", `translate(0,${height - margin.bottom})`)
@@ -308,9 +308,9 @@ var makeSecondaryChart = function(keyfilename){
                 .data(d => d)
                 .join("rect")
                 .attr("x", d => x(d[0]))
-                .attr("y", (d, i) => y(d.data.year))
+                .attr("y", (d, i) => y(d.data.year)+15)
                 .attr("width", d => x(d[1]) - x(d[0]))
-                .attr("height", y.bandwidth())
+                .attr("height", y.bandwidth()-30)
                 .append("title")
                 .text(d=>d3.format(",.1%")(d[1]-d[0]));
                 // TODO make custom tooltip
@@ -372,9 +372,9 @@ var updateSecondaryChart = function(keyfilename){
             .data(d => d)
             .join("rect")
             .attr("x", d => x(d[0]))
-            .attr("y", (d, i) => y(d.data.year))
+            .attr("y", (d, i) => y(d.data.year)+15)
             .attr("width", d => x(d[1]) - x(d[0]))
-            .attr("height", y.bandwidth())
+            .attr("height", y.bandwidth()-30)
             .append("title")
             .text(d=>d3.format(",.1%")(d[1]-d[0]));
 

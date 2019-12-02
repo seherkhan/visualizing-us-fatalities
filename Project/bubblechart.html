@@ -1,11 +1,19 @@
 <html>
-    <head> 
+    <head>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	  
 		<script src="node_modules/d3/dist/d3.min.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    </head>
+		<title>Deaths breakdown by age and years</title>
+	  </head>
+	  <body>
+		  <div class="container">
+			<h1 class="display-4">Area-wise Clustering</h1>
+						
+			<p class="lead">United States, 1999-2016. Instances of cancer occurance by type and location.</p>
+		</div>
+		<script src="bubblechart.js"></script>
+	</body>
     <style>
         * {
 			box-sizing: border-box;
@@ -29,8 +37,4 @@
 		}
         
     </style>
-    <body>        
-        <script src="bubblechart.js"></script>
-    </body>
-
 </html>     

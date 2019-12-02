@@ -18,15 +18,15 @@ div = d3.select('body').select('#series')
 seriesNames_org.forEach((el,i) => {
     div.append('button')
         .attr('id','btn_'+i)
-        .attr('class','selected')
-        .style('width','120px')
-        .style('margin-left','10px')
+        .attr("class","btn btn-outline-dark active")
         .text(el)
 });
 
 function transitionGrouped() {
-    d3.select('button[id=stacked]').classed('unselected',true)
-    d3.select('button[id=grouped]').classed('unselected',false)
+    d3.select('button[id=stacked]').classed('active',false)
+    d3.select('button[id=stacked]').classed('aria-pressed',"false")
+    d3.select('button[id=grouped]').classed('active',true)
+    d3.select('button[id=grouped]').classed('aria-pressed',"true")
     y.domain([0, yGroupMax]);
 
     rect.transition()
@@ -46,8 +46,10 @@ function transitionGrouped() {
 }
 
 function transitionStacked() {
-    d3.select('button[id=grouped]').classed('unselected',true)
-    d3.select('button[id=stacked]').classed('unselected',false)
+    d3.select('button[id=stacked]').classed('active',true)
+    d3.select('button[id=stacked]').classed('aria-pressed',"true")
+    d3.select('button[id=grouped]').classed('active',false)
+    d3.select('button[id=grouped]').classed('aria-pressed',"false")
     y.domain([0, yStackMax]);
 
     rect.transition()
@@ -139,8 +141,10 @@ function updateChart(data,seriesNames){
         .style("font-size", "10px")
         .call(yAxis);
     
-    d3.select('button[id=grouped]').attr('class','unselected')
-    d3.select('button[id=stacked]').attr('class','selected')
+        d3.select('button[id=stacked]').classed('active',true)
+        d3.select('button[id=stacked]').classed('aria-pressed',"true")
+        d3.select('button[id=grouped]').classed('active',false)
+        d3.select('button[id=grouped]').classed('aria-pressed',"false")
 }
 
 
@@ -191,13 +195,8 @@ svg.append('text')
     .text('Death Rate')
     .style('font-size',14);
 
-/*var color = d3.scaleLinear()
-        .domain([0, n - 1])
-        .range(["#aad", "#556"]);*/
 var color = d3.scaleOrdinal()
     .domain(seriesNames_org.map(function(i){return seriesNames_org.indexOf(i);}))
-    //.domain(seriesNames_org)
-//    .range(["#1B234A","#3e4b87","#2263B8","#82B6D5","#cfcbbc"]);
     .range(d3.schemeYlOrRd[9].reverse());
 
 var n, y, yAxis, layers, yStackMax, yGroupMax, rect;
@@ -225,9 +224,10 @@ d3.json("Data/stacked.json").then(function(data_org){
 
     clickbtn = function(){
         el = this
-        if(el.getAttribute('class')=="selected"){ // currently selected, now unselect
-            d3.select(el).attr('class','unselected');
-            ids = Array.from(d3.select('#series').selectAll('button[class=unselected]')._groups[0])
+        if(el.classList.contains("active")){ // currently selected, now unselect
+            console.log(el)
+            d3.select(el).classed('active',false).attr("aria-pressed","false");
+            ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=false]')._groups[0])
                 .map(btn=>parseInt(btn.id.split('_')[1]))
             ids = seriesNames_org.map((d,i)=>i).filter(d=>!ids.includes(d)); 
             console.log(ids)
@@ -241,9 +241,10 @@ d3.json("Data/stacked.json").then(function(data_org){
             console.log(data);
         }
         else{ // currently unselected, now select
-            d3.select(el).attr('class','selected')
+            d3.select(el).classed('active',true)
+                .attr("aria-pressed","true");
 
-            ids = Array.from(d3.select('#series').selectAll('button[class=selected]')._groups[0])
+            ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=true]')._groups[0])
                 .map(btn=>parseInt(btn.id.split('_')[1]))
             ids = seriesNames_org.map((d,i)=>i).filter(d=>ids.includes(d)); 
             console.log(ids)
@@ -262,7 +263,6 @@ d3.json("Data/stacked.json").then(function(data_org){
             console.log(data[i])
             data1.push( data[i][el] )});
         console.log(data1)
-        // TRY SETTING ALL VALS TO ZERO INSTEAD OF FILTERING
         
         data = data1[0].map(function(col, i) { 
             return data1.map(function(row) { 

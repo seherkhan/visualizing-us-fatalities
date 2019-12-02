@@ -1,15 +1,38 @@
+<!--<template>
+  <div id="app">
+    <div id ="nav" style="padding: 5px;">
+      <span id="websitename">Diease Control and<br>
+      Prevention Analysis</span>
+    </div>
+    <b-nav pills>
+      <b-nav-item active href="/">Home</b-nav-item>
+      <b-nav-item href="/diseasecate">Disease-Category Correspondence</b-nav-item>
+      <b-nav-item href="/age1">Age Group Analysis - I</b-nav-item>
+      <b-nav-item href="/age2">Age Group Analysis - II</b-nav-item>
+      <b-nav-item href="/geomort">Geographic Mortality Exploration</b-nav-item>
+      <b-nav-item href="/expend">Healthcare Expenditure</b-nav-item>
+      <b-nav-item href="/areawise">Area-wise Clustering</b-nav-item>
+      <b-nav-item href="/teampage">Team Page</b-nav-item>
+    </b-nav>
+  </div>
+</template>-->
+
 <template>
   <div id="app">
     <div id="nav">
-      <div style="padding: 5px;">
-        <span id="websitename">Diease Control and<br>
-        Prevention Analysis</span>
+      <div style="display:block;">
+        <p style="text-align:left;display:inline;position:absolute;">Diease Control and Prevention Analysis</p>
+        <p style="text-align:right;padding-right:10px">GroupOne</p>
       </div>
-      <div class=text>
+      <div class="lead" style="margin-top:-15px;text-align:center;padding-bottom:5px">
         <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
-        <router-link to="/cost">Cost</router-link>
-        <span id="groupname">GroupOne</span>
+        <router-link to="/diseasecate">Disease-Category Correlation</router-link> |
+        <router-link to="/age1">Age Group Analysis - I</router-link> |
+        <router-link to="/age2">Age Group Analysis - II</router-link> |
+        <router-link to="/geomort">Geo-Mortality Exploration</router-link> |
+        <router-link to="/expend">Healthcare Expenditure</router-link> |
+        <router-link to="/areawise">Area-wise Clustering</router-link> |
+        <router-link to="/teampage">Team Page</router-link>  
       </div>
     </div>
     <router-view/>
@@ -21,38 +44,37 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color:#2c3e50;
 }
 
 #nav {
-  padding: 10px;
-  height: 50px;
-  color: white;
-  background-color: #2c3e50
-}
-.text {
-  padding-top: 5px
+  padding: 5px;
+  color: #d2d1dd;
+  background-color: #6b476b;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #DCDDE2;
+  color: white;
+  font-size:14px;
+  text-decoration: none;
+  padding-right: 0px;
+  padding-left: 0px; 
 }
 
 #nav a.router-link-exact-active {
   color: #e0797c;
+  font-weight: bold;
+  font-size: 15px;
 }
-#nav span#websitename{
-  float:left;
+#nav #websitename{
+  text-align:left;
   color:white;
-  font-size:20px;
-  font-style:bold;
 }
 #nav span#groupname{
-  float:right;
   color:#65788a;
-  font-size:20px;
+  font-size:15px;
   font-style:italic;
+  margin-top: 0px;
+  margin-right: 0px; 
 }
 </style>
