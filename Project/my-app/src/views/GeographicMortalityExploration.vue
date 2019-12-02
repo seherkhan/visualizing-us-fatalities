@@ -1,5 +1,754 @@
 <template>
   <div class="geomort">
-    <h1>This is an about page</h1>
+    <div style="margin-left:25px;margin-right:25px">
+      <!-- Explain the Page Content -->
+      <!-- Ask them to Click on the Buttons to view different population and click on States -->
+      <h1 class="display-4"> Age-adjusted death rates, by race, Hispanic origin, state, and territory</h1>
+      <p class="lead">Geochart and Barchart are used to display the death rates in United States and U.S. Dependent Areas. 
+        The charts represent data from year 1970 to 2016.</p>
+      <div class="alert alert-info" role="alert">
+          Click below Buttons to know the rates for specific Races. 
+            Click on the particular State to see Trend over the years.
+      </div>
+      <hr class="my-5">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-outline-danger active" data-toggle="button" aria-pressed="true" id="ap">All Persons</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="wh">White</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="baa">Black or African American</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="api">Asian or Pacific Islander</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="hl">Hispanic or Latino</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="whl">White, not Hispanic or Latino</button>
+        <button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="bhl">Black, not Hispanic or Latino</button>
+      </div>  
+      <br/><br/><br/><br/>
+      <div id="tooltip"></div><!-- div to hold tooltip. -->
+      <div width="960" height="600" id="statesvg" ></div> <!-- svg to hold the map. -->
+      <br/><br/><br/>
+      <svg id="chart"></svg>
+      <!-- Add Data References -->
+      <br/><br/><br/>
+      <div class="container">
+        <p><u>Important Information:</u></p>
+        <li><b>Prior to 2009–2011,</b> data for states with populations under 10,000 in the middle year of a 3-year period, or fewer than 50 deaths for the 3-year period, <b>are
+            considered unreliable and are not shown.</b></li>
+      
+        <li><b>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution because of inconsistencies in reporting</b> Hispanic origin or
+        race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
+        rates for races other than white and black. </li>
+      
+        <li><b>Age-adjusted average annual death rates are calculated using the year 2000 standard population.</b> Prior to 2001, age-adjusted rates were calculated using standard million proportions based on
+        rounded population numbers. Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates. </li><br/>
+        
+        <p><u>References:</u></p>
+        <ul>
+          <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/016.pdf'>https://www.cdc.gov/nchs/data/hus/2017/016.pdf</a></li>
+          <li>2011 and beyond from 2010-based postcensal bridged-race files. Available from: 
+            <a href='https://www.cdc.gov/nchs/nvss/bridged_race.htm'>https://www.cdc.gov/nchs/nvss/bridged_race.htm</a></li>
+        </ul>
+      </div>
+    </div>  
   </div>
 </template>
+<script>
+import * as d3 from 'd3'
+export default {
+  name: 'chart',
+  mounted () {
+
+var margin = { top: 50, left: 20, bottom: 80, right: 15 }
+  var width = 900 - margin.left - margin.right;
+  var height = 500 - margin.top - margin.bottom;
+
+  var stdwid = 1500;
+  var stdheight = 600;
+       
+  var sampleData = {}
+  var bardata = {}
+  var people;
+  var state;
+  var minVal, maxVal;
+  var svg, svgmap;
+  
+  var x = d3.scaleBand();
+  var y = d3.scaleLinear();
+  var xAxis, yAxis;
+  var allData;
+
+
+  var statedict = {'HI': 'Hawaii', 'AK': 'Alaska', 'FL': 'Florida', 'NH': 'New Hampshire', 
+  'MI': 'Michigan', 'VT': 'Vermont', 'ME': 'Maine', 'RI': 'Rhode Island', 'NY': 'New York', 
+  'PA': 'Pennsylvania', 'NJ': 'New Jersey', 'DE': 'Delaware', 'MD': 'Maryland', 'VA': 'Virginia', 
+  'WV': 'West Virginia', 'OH': 'Ohio', 'IN': 'Indiana', 'IL': 'Illinois', 'CT': 'Connecticut', 
+  'WI': 'Wisconsin', 'NC': 'North Carolina', 'DC': 'Washington DC', 'MA': 'Massachusets', 
+  'TN': 'Tennessee', 'AR': 'Arkansas', 'MO': 'Missouri', 'GA': 'Georgia', 'SC': 'South Carolina', 
+  'KY': 'Kentucky', 'AL': 'Alabama', 'LS': 'Louisiana', 'MS': 'Mississippi', 'IA': 'Iowa', 
+  'MN': 'Minnesota', 'OK': 'Oklahoma', 'TX': 'Texas', 'NM': 'New Mexico', 'KS': 'Kansas', 
+  'NE': 'Nebraska', 'SD': 'South Dakota', 'ND': 'North Dakota', 'WY': 'Wyoming', 'MT': 'Montana', 
+  'CO': 'Colarado', 'ID': 'Idaho', 'UT': 'Utah', 'AZ': 'Arizona', 'NV': 'Nevada', 'OR': 'Oregon', 
+  'WA': 'Washington', 'CA': 'California'}
+
+  var peopledict = {'ap': 'All persons', 'wh': 'White', 'baa': 'Black or African American',
+    'aia': 'American Indian or Alaska Native', 'api': 'Asian or Pacific Islander', 
+    'hl': 'Hispanic or Latino', 'whl': 'White, not Hispanic or Latino', 
+    'bhl': 'Black, not Hispanic or Latino'}
+
+
+  var ids = ["HI", "AK", "FL", "NH", "MI", "VT", "ME", "RI", "NY", "PA",
+     "NJ", "DE", "MD", "VA", "WV", "OH", "IN", "IL", "CT", "WI", 
+     "NC", "DC", "MA", "TN", "AR", "MO", "GA", "SC", "KY", "AL", 
+     "LS", "MS", "IA", "MN", "OK", "TX", "NM", "KS", "NE", "SD", 
+     "ND", "WY", "MT", "CO", "ID", "UT", "AZ", "NV", "OR", "WA", "CA"];
+
+  var idstr = '#HI,#AK,#FL,#NH,#MI,#VT,#ME,#RI,#NY,#PA,#NJ,#DE,#MD,#VA,#WV,#OH,#IN,\
+    #IL,#CT,#WI,#NC,#DC,#MA,#TN,#AR,#MO,#GA,#SC,#KY,#AL,#LS,#MS,#IA,#MN,#OK,#TX,#NM,\
+    #KS,#NE,#SD,#ND,#WY,#MT,#CO,#ID,#UT,#AZ,#NV,#OR,#WA,#CA';
+
+  var colsname = ['AP_1979–1981', 'AP_1989–1991', 'AP_2009–2011',
+    'AP_2010–2012', 'AP_2011–2013', 'AP_2012–2014', 'AP_2013–2015',
+    'AP_2014–2016', 'W_2009–2011', 'W_2010–2012', 'W_2011–2013',
+    'W_2012–2014', 'W_2013–2015', 'W_2014–2016', 'BAA_2009–2011',
+    'BAA_2010–2012', 'BAA_2011–2013', 'BAA_2012–2014', 'BAA_2013–2015',
+    'BAA_2014–2016', 'AIA_2009–2011', 'AIA_2010–2012', 'AIA_2011–2013',
+    'AIA_2012–2014', 'AIA_2013–2015', 'AIA_2014–2016', 'API_2009–2011',
+    'API_2010–2012', 'API_2011–2013', 'API_2012–2014', 'API_2013–2015',
+    'API_2014–2016', 'HL_2009–2011', 'HL_2010–2012', 'HL_2011–2013',
+    'HL_2012–2014', 'HL_2013–2015', 'HL_2014–2016', 'WHL_2009–2011',
+    'WHL_2010–2012', 'WHL_2011–2013', 'WHL_2012–2014', 'WHL_2013–2015',
+    'WHL_2014–2016', 'BHL_2009–2011', 'BHL_2010–2012', 'BHL_2011–2013',
+    'BHL_2012–2014', 'BHL_2013–2015', 'BHL_2014–2016'];
+     
+  
+  var ap = ['AP_1979–1981', 'AP_1989–1991', 'AP_2009–2011',
+       'AP_2010–2012', 'AP_2011–2013', 'AP_2012–2014', 'AP_2013–2015',
+     'AP_2014–2016'];
+  
+  var ap_year = ['1979–1981', '1989–1991', '2009–2011',
+       '2010–2012', '2011–2013', '2012–2014', '2013–2015',
+     '2014–2016'];
+
+  var wh = ['W_2009–2011', 'W_2010–2012', 'W_2011–2013',
+     'W_2012–2014', 'W_2013–2015', 'W_2014–2016'];
+     
+  var baa = ['BAA_2009–2011',
+       'BAA_2010–2012', 'BAA_2011–2013', 'BAA_2012–2014', 'BAA_2013–2015',
+     'BAA_2014–2016']
+     
+  var aia = ['AIA_2009–2011', 'AIA_2010–2012', 'AIA_2011–2013',
+     'AIA_2012–2014', 'AIA_2013–2015', 'AIA_2014–2016'];
+     
+  var api = ['API_2009–2011',
+       'API_2010–2012', 'API_2011–2013', 'API_2012–2014', 'API_2013–2015',
+     'API_2014–2016'];
+     
+  var hl = ['HL_2009–2011', 'HL_2010–2012', 'HL_2011–2013',
+     'HL_2012–2014', 'HL_2013–2015', 'HL_2014–2016'];
+     
+  var whl = ['WHL_2009–2011',
+       'WHL_2010–2012', 'WHL_2011–2013', 'WHL_2012–2014', 'WHL_2013–2015',
+     'WHL_2014–2016'];
+     
+  var bhl = ['BHL_2009–2011', 'BHL_2010–2012', 'BHL_2011–2013',
+     'BHL_2012–2014', 'BHL_2013–2015', 'BHL_2014–2016'];
+  
+  var gyear = ['2009–2011', '2010–2012', '2011–2013',
+     '2012–2014', '2013–2015', '2014–2016'];
+
+  
+  var referdict = {'ap': [ap, ap_year, 'All persons'], 
+    'wh': [wh, gyear, 'White'], 
+    'baa': [baa,gyear, 'Black or African American'],
+    'aia': [aia,gyear, 'American Indian or Alaska Native'], 
+    'api': [api,gyear, 'Asian or Pacific Islander '],
+    'hl': [hl,gyear, 'Hispanic or Latino '],
+    'whl': [whl,gyear, 'White, not Hispanic or Latino'],
+    'bhl': [bhl, gyear,'Black, not Hispanic or Latino']}
+
+
+  var colorsbar = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#d49b81"];
+
+
+  //---------------------- MAP FUNCTIONS -------------------------------------
+  var uStatePaths;
+  d3.json('usmap.json').then(function(d) {
+      uStatePaths = d['features'];
+    });
+
+  
+  function tooltipHtml(n, d){  /* function to create html content string in tooltip div. */
+    return "<h4>"+n+"</h4><h2>";
+  }
+
+
+  function drawMap(id, data, toolTip) {
+    d3.select("#svgmap")
+      .selectAll(".state")
+      .remove();
+ 
+
+    //console.log(minVal, maxVal);
+    function mouseOver(d){
+      d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
+      
+      d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
+        .style("left", (d3.event.pageX) + "px")     
+        .style("top", (d3.event.pageY - 28) + "px");
+    }
+    
+    function mouseOut(){
+      d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+    }
+
+    var states = d3.select(id).selectAll('.state')
+      .data(uStatePaths);
+
+    states.enter().append("path").attr("class", "state")
+      .attr('id', function(d) { return d.id; })
+      .attr("d",function(d){return d.d;})
+      .style("fill",function(d){
+        return data[d.id].color; })
+      .on("mouseover", mouseOver).on("mouseout", mouseOut)
+      .on("click", function(d) {
+        if (state != d.id) {
+          state = d.id;
+          bardata = filterData();
+          filterChart();
+        }
+      });
+
+
+    //legend
+    d3.select("#svgmap")
+      .selectAll("#legendmap")
+      .remove();
+
+    var w = 140, h = 300;
+    var lowColor = '#ffffcc';
+    var highColor = '#800026';  
+
+    var key = d3.select("#svgmap")
+      .append('svg')
+      .attr('id', 'legendmap')
+      .attr("width", stdwid)
+      .attr("height", stdheight)
+      .attr('transform', 'translate(0, 0)')
+      .attr("class", "legend");
+
+    var legend = key.append("defs")
+      .append("svg:linearGradient")
+      .attr("id", "gradient")
+      .attr("x1", "100%")
+      .attr("y1", "0%")
+      .attr("x2", "100%")
+      .attr("y2", "100%")
+      .attr("spreadMethod", "pad");
+
+    legend.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", highColor)
+      .attr("stop-opacity", 1);
+      
+    legend.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", lowColor)
+      .attr("stop-opacity", 1);
+
+    key.append("rect")
+      .attr("width", w - 100)
+      .attr("height", h)
+      .style("fill", "url(#gradient)")
+      .attr("transform", "translate(1000, 80)");
+
+    var y = d3.scaleLinear()
+      .range([h, 0])
+      .domain([minVal - 50, maxVal]);
+
+    var yAxis = d3.axisRight(y).ticks(5);
+
+    key.append("g")
+      .attr("class", "y axis")
+      .attr("transform", "translate(1041,80)")
+      .call(yAxis);
+  }
+    
+  function filterMap() {
+    //console.log(sampleData);
+    var d = allData;
+    var sampleData1 = {}
+
+    var arr = referdict[people][0];
+    var col = arr[arr.length-1];
+    
+    
+    //minVal = Math.min(d[col]);
+    //maxVal = Math.max(d[col]);
+    
+
+    for (var i = 0; i < ids.length; i ++ ) {
+      var takein = {}
+
+      var val = Math.round(d[ids[i]][col])/1000;
+      if(val >= 0.9){ val = 0.9 * val; }
+      else if (val >= 0.8 && val < 0.9) { val = 0.75 * val; }
+      else if (val >= 0.7 && val < 0.8) { val = 0.65 * val; }
+      else if (val >= 0.6 && val < 0.7) { val = 0.55 * val; }
+      else { val = 0.50 * val; }
+
+      if (minVal > d[ids[i]][col]) {
+        minVal = d[ids[i]][col]
+      }
+
+      if (maxVal < d[ids[i]][col]) {
+        maxVal = d[ids[i]][col]
+      }
+
+      takein['color'] = d3.interpolateRgb("#ffffcc", '#800026')(val);
+      takein['State'] = d[ids[i]]['State'];
+
+      for (var j = 0; j < colsname.length; j ++ ){
+                takein[colsname[j]] = parseFloat(d[ids[i]][colsname[j]]);
+      }
+      sampleData1[ids[i]] = takein;
+    }
+    
+
+    //console.log(sampleData1);
+    //uStates.draw("#statesvg", sampleData, tooltipHtml);
+    sampleData = sampleData1;
+    drawMap("#svgmap", sampleData, tooltipHtml);
+  }
+
+
+  
+
+  //--------------------------BAR CHART FUNCTIONS --------------------------------------
+  
+  function drawChart() {
+    x.domain(bardata.map(function(d) { return d.year; }))
+      .range([0, width])
+      .padding(0.25);
+
+    y.domain([0, 1100])
+      .range([height, 0]);
+
+    var u1 = svg.selectAll(".bar")
+      .data(bardata, function (d) { return d.year; });
+    
+    u1.enter().append("rect")
+            .transition()
+            .duration(800)
+      .attr("class", "bar")
+      .attr("x", function (d) { return x(d.year); })
+      .attr("y", function (d) { return y(d.death); })
+      .attr("width", x.bandwidth())
+      .attr("height", function (d) { return height - y(d.death); })
+      .attr("fill", function(d, i) {return colorsbar[i]});
+
+
+    u1.exit().remove();
+
+
+    //xAxis;
+    xAxis = d3.axisBottom()
+      .scale(x);
+
+    svg.append("g")
+      .attr("class", "x_axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+    svg.append("text")
+      .attr("class", "xlabel")
+      .text("Year Range")
+      .attr("x", width/2)
+      .attr("y", height + 40)
+      .style("baseline-shift", "nomal")
+
+    //yAxis;
+    yAxis = d3.axisLeft()
+      .scale(y)
+      .ticks(7, 'd');
+
+    svg.append("g")
+      .attr("class", "y_axis")
+      .call(yAxis);
+
+    svg.append("text")
+      .attr('class', 'ylabel')
+      .text("No. of Deaths")
+      .attr("x", - height / 2)
+      .attr("y", - (margin.left + 20))
+      .attr("transform", "rotate(-90)")
+      .style("baseline-shift", "nomal")
+    
+    //title class="alert alert-info" role="alert"
+    svg.append("text")
+      .attr("class", "lead")
+      .text("Displaying No. of Deaths vs Year Trends of All Persons for the State of California")
+      .attr("x", width/2 - 350)
+      .attr("y", -20)
+      .style("baseline-shift", "normal");
+    }
+
+
+  
+  function filterData() {
+    //Bar Chart
+    var keep = [];
+    var recieve = referdict[people][0];
+    var yearss = referdict[people][1];
+
+    for(var i = 0; i < recieve.length; i ++) {
+      keep.push({'year': yearss[i],
+          'death': sampleData[state][recieve[i]]}); 
+    }
+    return keep;
+  }
+
+
+
+
+  function filterChart() {
+    //update scale
+    x.domain(bardata.map(function (d) { return d.year; }));
+
+    ////////////////////////////////
+    // DATA JOIN FOR BARS.
+    var bars = svg.selectAll(".bar")
+      .data(bardata, function (d) { return d.year; });
+
+    // UPDATE + ENTER.
+    bars.enter().append("rect")
+      .attr("x", function (d) { return x(d.year); })
+      .attr("y", function (d) { return y(d.death); })
+      .merge(bars)
+      .transition()
+      .duration(750)
+      .attr("class", "bar")
+      .attr("x", function (d) { return x(d.year); })
+      .attr("y", function (d) { return y(d.death); })
+      .attr("width", x.bandwidth())
+      .attr("height", function (d) { return height - y(d.death); })
+      .attr("fill", function(d, i) {return colorsbar[i]});
+
+    // EXIT.
+    bars.exit()
+      .transition()
+      .duration(750)
+      .style("opacity", 0)
+      .remove();
+
+    ////////////////////////////////
+    // x_axis.                 
+    xAxis = d3.axisBottom()
+      .scale(x);
+
+    svg.select(".x_axis")
+      .transition()
+      .duration(750)
+      .call(xAxis);
+
+    // y_axis. 
+    svg.select(".y_axis")
+      .call(yAxis);
+
+    ////////////////////////////////
+    // title.   
+    var titles = svg.select(".lead")  
+      .attr("x", width/2 - 350)
+      .attr("y", -20)            
+      .transition()
+      .duration(750)
+      .text("Displaying No. of Deaths vs Year Trends of "+ peopledict[people] +" for the State of " + statedict[state])
+    }
+
+
+
+  
+  //---------------------- DATA LOADING -------------------------------------
+    d3.csv('choropleth_data.csv', function(d) {
+
+        var takein = {}
+    var val = Math.round(d['AP_2014–2016'])/1000;
+    minVal = Math.min(d['AP_2014–2016']);
+    maxVal = Math.max(d['AP_2014–2016']);
+    if(val >= 0.9){ val = 0.9 * val; }
+    else if (val >= 0.8 && val < 0.9) { val = 0.75 * val; }
+    else if (val >= 0.7 && val < 0.8) { val = 0.65 * val; }
+    else if (val >= 0.6 && val < 0.7) { val = 0.55 * val; }
+    else { val = 0.50 * val; }
+
+        takein['color'] = d3.interpolateRgb("#ffffcc", '#800026')(val);
+      
+    takein['State'] = d['State'];
+      
+    for (var j = 0; j < colsname.length; j ++ ){
+                takein[colsname[j]] = parseFloat(d[colsname[j]]);
+            }
+    sampleData[d['id']] = takein;
+    
+    }).then(function(data) {
+    //---------------------- MAP SVG BUILD -------------------------------------
+    allData = sampleData;
+    svgmap = d3.select('#statesvg').append("svg")
+      .attr('id', 'svgmap')
+      .attr('width', stdwid)
+      .attr('height', stdheight);
+
+    drawMap("#svgmap", sampleData, tooltipHtml);
+
+    d3.select(self.frameElement).style("height", "600px"); 
+
+
+    
+    //----------------- DRAWING BAR CHART ---------------------------------------
+    svg = d3.select("#chart")
+      .attr('width', width + margin.left + margin.right + 100)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + (50 + margin.left) + ', ' + margin.top + ')');
+      
+    
+    people = 'ap';
+    state = 'CA';
+
+    var keep = [];
+    var recieve = referdict[people][0];
+    var yearss = referdict[people][1];
+    for(var i = 0; i < recieve.length; i ++) {
+      keep.push({'year': yearss[i],
+          'death': sampleData[state][recieve[i]]}); 
+    }
+    bardata = keep;
+    //console.log(bardata);
+    
+    drawChart();
+
+
+    //#ap, #wh, #baa, #aia, #api, #hl, #whl, #bhl
+    //--------------- ON CLICK LISTENERS FOR BUTTONS --------------------------------
+    d3.select("#ap")
+      .on("click", function () {
+        if (people != 'ap') {
+          d3.select('#ap').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'ap';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#wh")
+      .on("click", function () {
+        if (people != 'wh') {
+          d3.select('#wh').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'wh';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#baa")
+      .on("click", function () {
+        if (people != 'baa') {
+          d3.select('#baa').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'baa';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#aia")
+      .on("click", function () {
+        if (people != 'aia') {
+          d3.select('#aia').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'aia';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#api")
+      .on("click", function () {
+        if (people != 'api') {
+          d3.select('#api').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'api';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#hl")
+      .on("click", function () {
+        if (people != 'hl') {
+          d3.select('#hl').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'hl';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+
+    d3.select("#whl")
+      .on("click", function () {
+        if (people != 'whl') {
+          d3.select('#whl').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#bhl').classed('active', false);
+          people = 'whl';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+    });
+    d3.select("#bhl")
+      .on("click", function () {
+        if (people != 'bhl') {
+          d3.select('#bhl').classed('active', true).attr('aria-pressed', "true");
+          d3.select('#ap').classed('active', false);
+          d3.select('#wh').classed('active', false);
+          d3.select('#baa').classed('active', false);
+          d3.select('#aia').classed('active', false);
+          d3.select('#api').classed('active', false);
+          d3.select('#hl').classed('active', false);
+          d3.select('#whl').classed('active', false);
+          people = 'bhl';
+          bardata = filterData();
+          filterChart();
+          filterMap();
+        }
+      });
+    
+  });
+  }
+}
+
+</script>
+<style>
+  .state{
+    fill: none;
+    stroke: #0f0f0f;
+    stroke-width: 1;
+  }
+  .state:hover{
+    fill-opacity:0.5;
+  }
+  #tooltip {   
+    position: absolute;           
+    text-align: center;
+    padding: 20px;             
+    margin: 10px;
+    font: 12px sans-serif;        
+    background: lightsteelblue;   
+    border: 1px;      
+    border-radius: 2px;           
+    pointer-events: none;         
+  }
+  #tooltip h4{
+    margin:0;
+    font-size:14px;
+  }
+  #tooltip{
+    background:rgba(0,0,0,0.9);
+    border:1px solid grey;
+    border-radius:5px;
+    font-size:12px;
+    width:auto;
+    padding:4px;
+    color:white;
+    opacity:0;
+  }
+  #tooltip table{
+    table-layout:fixed;
+  }
+  #tooltip tr td{
+    padding:0;
+    margin:0;
+  }
+  #tooltip tr td:nth-child(1){
+    width:50px;
+  }
+  #tooltip tr td:nth-child(2){
+    text-align:center;
+  }
+
+  .bar:hover {
+    fill:rgba(207, 134, 94, 0.527);
+    border: 1px solid black;
+}
+
+.bar {
+  stroke: #0f0f0f;
+    shape-rendering: crispEdges;}
+
+text.xlabel, text.ylabel {
+    font-size: 14px;
+    font-weight: bold;
+    text-anchor: middle; }
+
+text.title {
+    font-size: 18px;
+    font-weight: bold;
+    text-anchor: middle; }
+
+text.label {
+    font-size: 10px;
+    fill: black;
+    text-anchor: middle;}
+
+.container {
+    margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+</style>
