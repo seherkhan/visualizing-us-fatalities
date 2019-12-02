@@ -65,7 +65,8 @@ line{
 		
 	</div>
 
-		<div id="svg-im"></div>
+		<div id="svg-im">
+		</div>
 	
 	
 		<br/><br/><br/>
@@ -94,7 +95,7 @@ line{
 	
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+<script src="viz.js"></script>
 
 <script>
 
@@ -367,7 +368,7 @@ function drawSankey() {
 
 	var g =[svg.append("g").attr("transform","translate(550,100)")];
 
-	var bp=[ viz.bP()
+	var bp=[ viz.biPartite()
 			.data(data)
 			.value(d=>d[3])
 			.min(12)
@@ -387,17 +388,17 @@ function drawSankey() {
 		g[i].append("line").attr("x1",-310).attr("x2",0);
 		g[i].append("line").attr("x1",400).attr("x2",710);
 		
-		g[i].selectAll(".mainBars")
+		g[i].selectAll(".viz-biPartite-mainBar")
 			.on("mouseover",mouseover)
 			.on("mouseout",mouseout);
 
-		g[i].selectAll(".mainBars").append("text").attr("class","label")
+		g[i].selectAll(".viz-biPartite-mainBar").append("text").attr("class","label")
 			.attr("x",d=>(d.part=="primary"? -25: 30))
 			.attr("y",d=>+6)
 			.text(d=>d.key)
 			.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
 		
-		g[i].selectAll(".mainBars").append("text").attr("class","perc")
+		g[i].selectAll(".viz-biPartite-mainBar").append("text").attr("class","perc")
 			.attr("x",d=>(d.part=="primary"? -300: 280))
 			.attr("y",d=>+6)
 			.text(function(d) {return d3.format(".1f")(d.value);})
@@ -408,7 +409,7 @@ function drawSankey() {
 		[0].forEach(function(i){
 			bp[i].mouseover(d);
 			
-			g[i].selectAll(".mainBars").select(".label")
+			g[i].selectAll(".viz-biPartite-mainBar").select(".label")
 			.text(function(d) {return d.key});
 			//.text(function(d){ return d3.format("0.0%")(d.percent)});
 		});
@@ -417,7 +418,7 @@ function drawSankey() {
 		[0].forEach(function(i){
 			bp[i].mouseout(d);
 			
-			g[i].selectAll(".mainBars").select(".perc")
+			g[i].selectAll(".viz-biPartite-mainBar").select(".perc")
 			.text(function(d) {return (d.key, d3.format(".1f")(d.value))});
 			//.text(function(d){ return d3.format("0.0%")(d.percent)});
 		});
