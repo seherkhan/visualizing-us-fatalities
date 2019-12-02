@@ -19,7 +19,7 @@
 
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" style="margin-bottom:10px">
       <div style="display:block;">
         <p style="text-align:left;display:inline;position:absolute;">Diease Control and Prevention Analysis</p>
         <p style="text-align:right;padding-right:10px">GroupOne</p>
