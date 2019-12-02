@@ -1,18 +1,13 @@
 <template>
-  <div class="heatmap" style="margin-right:15px;margin-left:15px">
-    <h1 class="display-4"> Death rates by age groups</h1>
-                
-    <p class="lead">United States, 2006-2016. Includes deaths of persons who were not residents of the 50 states and the District of Columbia (D.C.).
-        <b>Age-adjusted death rate per 100,000 population.</b></p>
-
+  <div class="heatmap" style="margin-right:15px;margin-left:15px">             
     <div class="alert alert-info" role="alert">
         Click on the buttons to adjust color range to highlight across years and age groups
     </div>
 
-    <div style="width:100%;text-align:center;margin-top:15px;margin-bottom:15px">
-        <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" autocomplete="off" id="overall">Overall</button>&ensp;&ensp;
-        <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="yr">Year</button>&ensp;&ensp;
-        <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="grp">Age Group</button> 
+    <div style="margin-top:15px;margin-bottom:15px;margin-left:120px">
+        <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" autocomplete="off" id="overall">Overall</button>
+        <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="yr">Year</button>
+        <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="grp">Age Group</button>  
     </div>
     <div>
         <svg ref="heatmap_age"></svg>
@@ -152,6 +147,7 @@ import * as d3 from 'd3'
             .text(function(d){return d;});
         
         svg.append('g')
+            .attr('class','cells')
             .selectAll('g')
             .data(data)
             .enter()
@@ -212,10 +208,8 @@ import * as d3 from 'd3'
                 .attr('fill',d3.rgb(tmp_fill).brighter(0.99))
                 .attr('stroke',d3.rgb(tmp_fill).darker(0.5))
                 .attr('stroke-width',2);
-                console.log();
                 yr = this.id.split('_')[0]
                 grp_ind =  this.id.split('_')[1]
-                console.log('#y_'+grp_ind);
                 d3.select('#x_'+yr).attr('font-weight','bold');
                 d3.select('#y_'+grp_ind).attr('font-weight','bold');
             })
@@ -238,12 +232,12 @@ import * as d3 from 'd3'
             .on("mouseover", function() {
                 d3.select(this).attr('font-weight','bold');
                 yr = this.id.split('_')[1];
-                d3.selectAll('rect').transition().style('opacity',function () {
+                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
                 return (this.getAttribute('class').includes('yr'+yr)) ? 1.0 : 0.1;
                 });
             })
             .on("mouseout", function() {
-                d3.selectAll('rect').transition().style('opacity',1.0);
+                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
                 d3.select(this).attr('font-weight','normal');
             });
             xaxis_event=true;
@@ -255,12 +249,12 @@ import * as d3 from 'd3'
                 //console.log(this.id);
                 d3.select(this).attr('font-weight','bold');
                 grp = this.id.split('_')[1];
-                d3.selectAll('rect').transition().style('opacity',function () {
-                return (this.getAttribute('class').includes('grp'+grp)) ? 1.0 : 0.1;
+                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
+                    return (this.getAttribute('class').includes('grp'+grp)) ? 1.0 : 0.1;
                 });
             })
             .on("mouseout", function() {
-                d3.selectAll('rect').transition().style('opacity',1.0);
+                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
                 d3.select(this).attr('font-weight','normal');
             });
             yaxis_event=true;
