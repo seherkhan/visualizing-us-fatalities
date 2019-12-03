@@ -4,7 +4,7 @@
       <h1 class="display-4">Team Page</h1>
       <div style="text-align:center;margin-top:25px">
         <h3>Demo Video</h3>
-        <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/watch?v=_8V5o2UHG0E" width="560"/>
+        <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/tgbNymZ7vqY" width="560"/>
         <h3 style="margin-top:25px">Conference paper</h3>
         <object data="public/paper.pdf" height="600px" type="application/pdf" width="70%"/>
         <p>The paper can be found <a href="public/paper.pdf">here</a>.</p>
