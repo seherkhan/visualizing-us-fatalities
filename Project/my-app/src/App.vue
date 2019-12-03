@@ -1,22 +1,3 @@
-<!--<template>
-  <div id="app">
-    <div id ="nav" style="padding: 5px;">
-      <span id="websitename">Diease Control and<br>
-      Prevention Analysis</span>
-    </div>
-    <b-nav pills>
-      <b-nav-item active href="/">Home</b-nav-item>
-      <b-nav-item href="/diseasecate">Disease-Category Correspondence</b-nav-item>
-      <b-nav-item href="/age1">Age Group Analysis - I</b-nav-item>
-      <b-nav-item href="/age2">Age Group Analysis - II</b-nav-item>
-      <b-nav-item href="/geomort">Geographic Mortality Exploration</b-nav-item>
-      <b-nav-item href="/expend">Healthcare Expenditure</b-nav-item>
-      <b-nav-item href="/areawise">Area-wise Clustering</b-nav-item>
-      <b-nav-item href="/teampage">Team Page</b-nav-item>
-    </b-nav>
-  </div>
-</template>-->
-
 <template>
   <div id="app">
     <div id="nav" style="margin-bottom:10px">
