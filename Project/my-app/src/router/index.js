@@ -16,7 +16,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Disease-CategoryCorrespondence.vue')
+    component: () => import(/* webpackChunkName: "diseasecate" */ '../views/Disease-CategoryCorrespondence.vue')
   },
   { 
     path: '/age1',
@@ -24,7 +24,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AgegroupAnalysis-I.vue')
+    component: () => import(/* webpackChunkName: "age1" */ '../views/AgegroupAnalysis-I.vue')
   },
   {
     path: '/age2',
@@ -32,7 +32,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AgegroupAnalysis-II.vue')
+    component: () => import(/* webpackChunkName: "age2" */ '../views/AgegroupAnalysis-II.vue')
   },
   {   
     path: '/geomort',
@@ -40,7 +40,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/GeographicMortalityExploration.vue')
+    component: () => import(/* webpackChunkName: "geomort" */ '../views/GeographicMortalityExploration.vue')
   },
   {
     path: '/expend',
@@ -48,7 +48,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/HealthcareExpenditure.vue')
+    component: () => import(/* webpackChunkName: "expend" */ '../views/HealthcareExpenditure.vue')
   },
   {
     path: '/areawise',
@@ -56,7 +56,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Area-wiseClustering.vue')
+    component: () => import(/* webpackChunkName: "areawise" */ '../views/Area-wiseClustering.vue')
   },
   {
     path: '/teampage',
@@ -64,13 +64,13 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/TeamPage.vue')
+    component: () => import(/* webpackChunkName: "teampage" */ '../views/TeamPage.vue')
   }
 ]
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes //:[]
 })
 
 export default router

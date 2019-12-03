@@ -54,7 +54,7 @@
 <script>
 import * as d3 from 'd3'
 export default {
-  name: 'chart',
+  name: 'age1',
   mounted () {
 
   var width = 600,

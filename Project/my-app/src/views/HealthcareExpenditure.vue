@@ -7,7 +7,7 @@
 <script>
 import * as d3 from 'd3'
 export default {
-  name: 'chart',
+  name: 'expend',
   mounted () {
     var width = 1100;
     var height = 600;
@@ -250,7 +250,7 @@ export default {
 // Secondary Chart
 var x, y, color, xAxis, yAxis;
 var makeSecondaryChart = function(keyfilename){
-    d3.csv('area/'+keyfilename+'.csv',
+    d3.csv(keyfilename+'.csv',
         function(d){
             return {
                 "year":+d["year"],
@@ -342,7 +342,7 @@ var updateSecondaryChart = function(keyfilename){
     svg.select('#title')
         .text('Sources of '+filename2key(keyfilename)+' Expenditures, 1960–2016');
 
-    d3.csv('area/'+keyfilename+'.csv',
+    d3.csv(keyfilename+'.csv',
         function(d){
             return {
                 "year":+d["year"],

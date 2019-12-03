@@ -52,7 +52,7 @@
 <script>
 import * as d3 from 'd3'
 export default {
-  name: 'chart',
+  name: 'geomort',
   mounted () {
 
 var margin = { top: 50, left: 20, bottom: 80, right: 15 }

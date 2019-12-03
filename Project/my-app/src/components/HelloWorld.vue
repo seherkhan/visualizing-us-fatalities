@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img alt="Cover image" src="../assets/cover.jpg" class="coverimg"/>
+    <img alt="Cover image" src="cover.jpg" class="coverimg"/>
     <div class="overlay">
         <p>Your one and only source of US medical data</p>
     </div>

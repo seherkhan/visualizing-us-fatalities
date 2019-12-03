@@ -12,14 +12,14 @@
         <hr style="margin-left:120px; margin-right:120px">
         <div class="row" style="text-align:center">
           <div class="col-lg-4">
-            <img height="100px" src="../assets/shraddha.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
+            <img height="100px" src="shraddha.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
             <p>Shraddha Kulkarni<br>shraddhak@usc.edu<br>(Team Member)</p>
           </div>
           <div class="col-lg-4">
-            <img height="100px" src="../assets/seher.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
+            <img height="100px" src="seher.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
             <p>Seher Khan<br >seherkha@usc.edu<br>(Team Member)</p>
           </div>
-          <div class="col-lg-4"><img height="100px" src="../assets/prof.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
+          <div class="col-lg-4"><img height="100px" src="prof.jpg" style="border-radius:50%;margin-top:10px;" width="100px">
               <p>Dr. Luciano Nocera<br >nocera@usc.edu<br>(Advisor)</p>
           </div>
       </div>
@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'chart',
+  name: 'teampage',
   mounted () {
 
   }
