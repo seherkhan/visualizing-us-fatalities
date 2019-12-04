@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
   export default {
     name: 'Stacked',
     props: {
@@ -26,17 +26,18 @@ import * as d3 from 'd3'
       }
     }, 
     mounted() {
+        console.log(this.dataset)
     
         var clickbtn;
-        var stack = d3.stack();
-        var formatPercent = d3.format(".0%");
-        var formatNumber = d3.format("");
+        var stack = d3v5.stack();
+        var formatPercent = d3v5.format(".0%");
+        var formatNumber = d3v5.format("");
         var seriesNames_org = ['1–14 years','15–24 years','25–44 years','45–64 years','65 years and over'];
         var years = [2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016];
 
         ///////////////////////////
         // BUTTONS
-        var div = d3.select('body').select('#series')
+        var div = d3v5.select('body').select('#series')
         seriesNames_org.forEach((el,i) => {
             div.append('button')
                 .attr('id','btn_'+i)
@@ -45,10 +46,10 @@ import * as d3 from 'd3'
         });
 
         function transitionGrouped() {
-            d3.select('button[id=stacked]').classed('active',false)
-            d3.select('button[id=stacked]').classed('aria-pressed',"false")
-            d3.select('button[id=grouped]').classed('active',true)
-            d3.select('button[id=grouped]').classed('aria-pressed',"true")
+            d3v5.select('button[id=stacked]').classed('active',false)
+            d3v5.select('button[id=stacked]').classed('aria-pressed',"false")
+            d3v5.select('button[id=grouped]').classed('active',true)
+            d3v5.select('button[id=grouped]').classed('aria-pressed',"true")
             y.domain([0, yGroupMax]);
 
             rect.transition()
@@ -68,10 +69,10 @@ import * as d3 from 'd3'
         }
 
         function transitionStacked() {
-            d3.select('button[id=stacked]').classed('active',true)
-            d3.select('button[id=stacked]').classed('aria-pressed',"true")
-            d3.select('button[id=grouped]').classed('active',false)
-            d3.select('button[id=grouped]').classed('aria-pressed',"false")
+            d3v5.select('button[id=stacked]').classed('active',true)
+            d3v5.select('button[id=stacked]').classed('aria-pressed',"true")
+            d3v5.select('button[id=grouped]').classed('active',false)
+            d3v5.select('button[id=grouped]').classed('aria-pressed',"false")
             y.domain([0, yStackMax]);
 
             rect.transition()
@@ -119,15 +120,15 @@ import * as d3 from 'd3'
             svg.selectAll(".yaxis").remove()
             
             n = seriesNames.length;
-            layers = stack.keys(d3.range(n))(data)
-            yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d[1]; }); })
-            yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d[1] - d[0]; }); })
+            layers = stack.keys(d3v5.range(n))(data)
+            yStackMax = d3v5.max(layers, function(layer) { return d3v5.max(layer, function(d) { return d[1]; }); })
+            yGroupMax = d3v5.max(layers, function(layer) { return d3v5.max(layer, function(d) { return d[1] - d[0]; }); })
             
-            y = d3.scaleLinear()
+            y = d3v5.scaleLinear()
                 .domain([0, yStackMax])
                 .rangeRound([height, 0]);
 
-            yAxis = d3.axisLeft()
+            yAxis = d3v5.axisLeft()
                 .scale(y)
                 .tickSize(2)
                 .tickPadding(6);
@@ -163,10 +164,10 @@ import * as d3 from 'd3'
                 .style("font-size", "10px")
                 .call(yAxis);
             
-                d3.select('button[id=stacked]').classed('active',true)
-                d3.select('button[id=stacked]').classed('aria-pressed',"true")
-                d3.select('button[id=grouped]').classed('active',false)
-                d3.select('button[id=grouped]').classed('aria-pressed',"false")
+                d3v5.select('button[id=stacked]').classed('active',true)
+                d3v5.select('button[id=stacked]').classed('aria-pressed',"true")
+                d3v5.select('button[id=grouped]').classed('active',false)
+                d3v5.select('button[id=grouped]').classed('aria-pressed',"false")
         }
 
 
@@ -176,21 +177,21 @@ import * as d3 from 'd3'
             width = 1060 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
-        var svg = d3.select(this.$refs["stacked_age"])
+        var svg = d3v5.select(this.$refs["stacked_age"])
             .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom])
             //.attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-        var x = d3.scaleBand()
-            //.domain(d3.range(m))
+        var x = d3v5.scaleBand()
+            //.domain(d3v5.range(m))
             .domain(years)
             .rangeRound([0, width])
             .padding(0.1)
             .align(0.1);
 
-        var xAxis = d3.axisBottom()
+        var xAxis = d3v5.axisBottom()
             .scale(x)
             .tickSize(0)
             .tickPadding(6);
@@ -218,10 +219,10 @@ import * as d3 from 'd3'
             .text('Death Rate')
             .style('font-size',14);
 
-        var color = d3.scaleOrdinal()
+        var color = d3v5.scaleOrdinal()
             .domain(seriesNames_org.map(function(i){return seriesNames_org.indexOf(i);}))
-            //.range(d3.schemeYlOrRd[9].reverse());
-            .range(d3.schemeBlues[6].reverse())
+            //.range(d3v5.schemeYlOrRd[9].reverse());
+            .range(d3v5.schemeBlues[6].reverse())
 //,
             
 
@@ -245,8 +246,8 @@ import * as d3 from 'd3'
             var el = this
             var ids
             if(el.classList.contains("active")){ // currently selected, now unselect
-                d3.select(el).classed('active',false).attr("aria-pressed","false");
-                ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=false]')._groups[0])
+                d3v5.select(el).classed('active',false).attr("aria-pressed","false");
+                ids = Array.from(d3v5.select('#series').selectAll('button[aria-pressed=false]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
                 ids = seriesNames_org.map((d,i)=>i).filter(d=>!ids.includes(d)); 
                 
@@ -257,10 +258,10 @@ import * as d3 from 'd3'
                 })
             }
             else{ // currently unselected, now select
-                d3.select(el).classed('active',true)
+                d3v5.select(el).classed('active',true)
                     .attr("aria-pressed","true");
 
-                ids = Array.from(d3.select('#series').selectAll('button[aria-pressed=true]')._groups[0])
+                ids = Array.from(d3v5.select('#series').selectAll('button[aria-pressed=true]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
                 ids = seriesNames_org.map((d,i)=>i).filter(d=>ids.includes(d)); 
                 
@@ -288,10 +289,10 @@ import * as d3 from 'd3'
         
         updateChart(data,seriesNames);
 
-        d3.select('button[id=stacked]').on('click',transitionStacked)
-        d3.select('button[id=grouped]').on('click',transitionGrouped)
-        d3.select('button[id=reset]').on('click',function(){
-            d3.select('#series').selectAll('button').classed('active',true).attr("aria-pressed","true")
+        d3v5.select('button[id=stacked]').on('click',transitionStacked)
+        d3v5.select('button[id=grouped]').on('click',transitionGrouped)
+        d3v5.select('button[id=reset]').on('click',function(){
+            d3v5.select('#series').selectAll('button').classed('active',true).attr("aria-pressed","true")
             seriesNames = [...seriesNames_org]
             data = []
             seriesNames.forEach((el,i)=>data.push( data_org[i][el] ));
@@ -302,7 +303,7 @@ import * as d3 from 'd3'
             });
             updateChart(data,seriesNames)   
         })
-        d3.select('#series').selectAll('button').on('click',clickbtn)
+        d3v5.select('#series').selectAll('button').on('click',clickbtn)
         }
   }
 </script>

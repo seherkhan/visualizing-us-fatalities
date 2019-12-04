@@ -7,11 +7,28 @@
         </div>
         <svg id="primary-area"/>
         <svg id="secondary-area"/>
+            <div class="container">
+        <p><u>Important Information:</u></p>
+        <ul>
+            <li><b>Hospital expenditures</b> include hospital-based nursing home and home health agency care.</li>
+            <li><b>Home health care expenditures</b> include expenditures for care in freestanding facilities only. Additional services of this type are provided in hospital-based facilities and are considered hospital care.</li>
+            <li><b>Nursing care facilities and continuing care retirement communities expenditures</b> include expenditures for care in freestanding nursing homes. Expenditures for care in hospital-based nursing homes are included with hospital care.</li>
+            <li><b>Other expenditures</b> include expenditures for other professional services, other nondurable medical products, durable medical equipment, and other health, residential, and personal care, not shown separately.</li>
+            <li><b>Other sources of payment</b> includes worksite health care, other private revenues, Indian Health Service, workers' compensation, general assistance, maternal and child health, vocational rehabilitation, other federal
+programs, Substance Abuse and Mental Health Services Administration, other state and local programs, and school health.</li>
+        </ul>
+
+        <p><u>References:</u></p>
+        <ul>
+            <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/095.pdf'></a></li>
+            <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+        </ul>
+    </div>
     </div>
   </div>
 </template>
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
 export default {
   name: 'expend',
   mounted () {
@@ -52,40 +69,40 @@ export default {
         return filename.replace(/_/g,' ').replace(/-/,'/');
     }
 
-    d3.csv("area.csv").then(function(data)
+    d3v5.csv("area.csv").then(function(data)
     {
         data = Object.assign(data, { y: "expend", x: "year" });
 
         var keys = data.columns.slice(1);
-        var series = d3.stack().keys(data.columns.slice(1))(data)
+        var series = d3v5.stack().keys(data.columns.slice(1))(data)
         var years = data.map(d=>+d.year);
 
-        var area = d3.area()
+        var area = d3v5.area()
             .x(function(d, i) {
                 return x(d.data[data.x]);
             })
             .y0(d => y(d[0]))
             .y1(d => y(d[1]));
     
-        var x = d3.scaleLinear()
-            .domain(d3.extent(data, d => d.year))
+        var x = d3v5.scaleLinear()
+            .domain(d3v5.extent(data, d => d.year))
             .range([margin.left, width - margin.right])
           
-        var y = d3.scaleLinear()
-            .domain([0, d3.max(series, d => d3.max(d, d => d[1]))]).nice()
+        var y = d3v5.scaleLinear()
+            .domain([0, d3v5.max(series, d => d3v5.max(d, d => d[1]))]).nice()
             .range([height - margin.bottom, margin.top])
         
-        var color = d3.scaleOrdinal()
+        var color = d3v5.scaleOrdinal()
             .domain(data.columns.slice(1))
-            .range(d3.schemeYlOrRd[9]) 
+            .range(d3v5.schemeYlOrRd[9]) 
             
         var xAxis = g =>
             g.attr("transform", `translate(0,${height - margin.bottom})`)
             .call(
-                d3.axisBottom(x)
+                d3v5.axisBottom(x)
                     .ticks(width / 80)
                     .tickSizeOuter(0)
-                    .tickFormat(d3.format("d"))
+                    .tickFormat(d3v5.format("d"))
             ).append('text')
             .attr('dx',width/2)
             .attr('dy',30)
@@ -95,7 +112,7 @@ export default {
 
         var yAxis = g => g
             .attr("transform", `translate(${margin.left},0)`)
-            .call(d3.axisLeft(y))
+            .call(d3v5.axisLeft(y))
             //.call(g => g.select(".domain").remove())
             .append('text')
             .attr('dy',height/2)
@@ -105,7 +122,7 @@ export default {
             .text('Expenditure ($ bn)')
         
         
-        const svg = d3.select('body')
+        const svg = d3v5.select('body')
             .select('#primary-area')
             .attr("viewBox", [0, 0, width, height])  
         svg.append('rect')
@@ -133,7 +150,8 @@ export default {
             .append("g")
             .selectAll("path")
             .data(series)
-            .join("path")
+            .enter().append("path") //
+            //.join("path")
             .attr('id',({key})=>key2filename(key))
             .attr("fill", ({ key }) => color(key))
             .attr('stroke','white')
@@ -141,10 +159,10 @@ export default {
             .attr("d", area)
             .on("mouseenter",function(){
                 tmp_fill = this.getAttribute('fill');
-                this.setAttribute('fill',d3.rgb(tmp_fill).brighter(0.3));
+                this.setAttribute('fill',d3v5.rgb(tmp_fill).brighter(0.3));
                 this.setAttribute('stroke-width',1);
 
-                svg.select('rect[id='+this.id+']').attr('fill',d3.rgb(tmp_fill).brighter(0.3));
+                svg.select('rect[id='+this.id+']').attr('fill',d3v5.rgb(tmp_fill).brighter(0.3));
                 svg.select('rect[id='+this.id+']').attr('stroke-width',1);
             })
             .on("mouseout",function(){
@@ -186,7 +204,7 @@ export default {
                     var val = data.filter(d=>d.year==yr)[0][type]
                     var width = 180
                     var height = 40
-                    d3.select(this.parentElement)
+                    d3v5.select(this.parentElement)
                         .append('rect')
                         .attr('id','tooltip_r')
                         .attr('x',x_)
@@ -195,7 +213,7 @@ export default {
                         .attr('height',height)
                         .attr('fill','#2c3e50')
                         .attr('stroke','white');
-                    d3.select(this.parentElement)
+                    d3v5.select(this.parentElement)
                         .append('text')
                         .attr('id','tooltip_t1')
                         .attr('x',x_+width/2)
@@ -205,7 +223,7 @@ export default {
                         .attr('text-anchor','middle')
                         .attr('alignment-baseline','center')
                         .text(type+",")
-                    d3.select(this.parentElement)
+                    d3v5.select(this.parentElement)
                         .append('text')
                         .attr('id','tooltip_t2')
                         .attr('x',x_+width/2)
@@ -217,9 +235,9 @@ export default {
                         .text(yr+": $"+val+" bn")
                 })
                 .on("mouseout",function(){
-                    d3.select("#tooltip_r").remove()
-                    d3.select("#tooltip_t1").remove()
-                    d3.select("#tooltip_t2").remove()
+                    d3v5.select("#tooltip_r").remove()
+                    d3v5.select("#tooltip_t1").remove()
+                    d3v5.select("#tooltip_t2").remove()
                 })
         }
         
@@ -229,10 +247,10 @@ export default {
             .on("mouseenter",function(){
                 tmp_fill = this.getAttribute('fill');
 
-                svg.select('path[id='+this.id+']').attr('fill',d3.rgb(tmp_fill).brighter(0.3));
+                svg.select('path[id='+this.id+']').attr('fill',d3v5.rgb(tmp_fill).brighter(0.3));
                 svg.select('path[id='+this.id+']').attr('stroke-width',1);
 
-                this.setAttribute('fill',d3.rgb(tmp_fill).brighter(0.3));
+                this.setAttribute('fill',d3v5.rgb(tmp_fill).brighter(0.3));
                 this.setAttribute('stroke-width',1);
             })
             .on("mouseout",function(){
@@ -243,7 +261,7 @@ export default {
                 this.setAttribute('fill',tmp_fill);
                 this.setAttribute('stroke-width',0);
                 tmp_fill='white';
-                d3.select('#tooltip').remove();
+                d3v5.select('#tooltip').remove();
             })
             .on("click",function(){
                 updateSecondaryChart(this.id);
@@ -256,7 +274,7 @@ export default {
 // Secondary Chart
 var x, y, color, xAxis, yAxis;
 var makeSecondaryChart = function(keyfilename){
-    d3.csv(keyfilename+'.csv',
+    d3v5.csv(keyfilename+'.csv',
         function(d){
             return {
                 "year":+d["year"],
@@ -271,34 +289,34 @@ var makeSecondaryChart = function(keyfilename){
         
             var keys = data.columns.slice(1);
 
-            var series = d3.stack()
+            var series = d3v5.stack()
                 .keys(keys)
-                .offset(d3.stackOffsetExpand)(data)
+                .offset(d3v5.stackOffsetExpand)(data)
           
-            x = d3.scaleLinear()
+            x = d3v5.scaleLinear()
                 .range([margin.left, width - margin.right]);
             
-            y = d3.scaleBand()
+            y = d3v5.scaleBand()
                 .domain(data.map(d => d.year))
                 .range([margin.top, height - margin.bottom])
                 .padding(0.1);
 
-            color = d3.scaleOrdinal()
+            color = d3v5.scaleOrdinal()
                 .domain(series.map(d => d.key))
-                //.range(d3.quantize(t => d3.interpolateSpectral(t * 0.8 + 0.1), series.length).reverse())
-                .range(d3.schemeOrRd[4].reverse())
+                //.range(d3v5.quantize(t => d3v5.interpolateSpectral(t * 0.8 + 0.1), series.length).reverse())
+                .range(d3v5.schemeOrRd[4].reverse())
                 .unknown("#ccc");
 
             xAxis = g => g
                 .attr("transform", `translate(0,${margin.top})`)
-                .call(d3.axisTop(x).ticks(width / 100, "%"))
+                .call(d3v5.axisTop(x).ticks(width / 100, "%"))
                 .call(g => g.selectAll(".domain").remove());
             yAxis = g => g
                 .attr("transform", `translate(${margin.left},0)`)
-                .call(d3.axisLeft(y).tickSizeOuter(0))
+                .call(d3v5.axisLeft(y).tickSizeOuter(0))
                 .call(g => g.selectAll(".domain").remove());
 
-            const svg = d3.select('body')
+            const svg = d3v5.select('body')
                 .select('#secondary-area')
                 .attr("viewBox", [0, 0, width, height])
                 .style("overflow", "visible");
@@ -310,14 +328,17 @@ var makeSecondaryChart = function(keyfilename){
                 .enter().append("g")
                 .attr("fill", d => color(d.key))
                 .selectAll("rect")
-                .data(d => d)
-                .join("rect")
+                .data(function(d){return d;})
+                //.data(d => d)
+                //.join("rect")
+                .enter()
+                .append("rect")
                 .attr("x", d => x(d[0]))
                 .attr("y", (d, i) => y(d.data.year)+15)
                 .attr("width", d => x(d[1]) - x(d[0]))
                 .attr("height", y.bandwidth()-30)
                 .append("title")
-                .text(d=>d3.format(",.1%")(d[1]-d[0]));
+                .text(d=>d3v5.format(",.1%")(d[1]-d[0]));
                 // TODO make custom tooltip
 
             svg.append("g")
@@ -343,12 +364,12 @@ var makeSecondaryChart = function(keyfilename){
 
 makeSecondaryChart('All')
 var updateSecondaryChart = function(keyfilename){
-    var svg = d3.select('#secondary-area');
+    var svg = d3v5.select('#secondary-area');
     svg.select('#plot').remove();
     svg.select('#title')
         .text('Sources of '+filename2key(keyfilename)+' Expenditures, 1960–2016');
 
-    d3.csv(keyfilename+'.csv',
+    d3v5.csv(keyfilename+'.csv',
         function(d){
             return {
                 "year":+d["year"],
@@ -363,9 +384,9 @@ var updateSecondaryChart = function(keyfilename){
         
         var keys = data.columns.slice(1);
 
-        var series = d3.stack()
+        var series = d3v5.stack()
             .keys(keys)
-            .offset(d3.stackOffsetExpand)(data);
+            .offset(d3v5.stackOffsetExpand)(data);
 
         svg.append("g")
             .attr('id','plot')
@@ -374,14 +395,17 @@ var updateSecondaryChart = function(keyfilename){
             .enter().append("g")
             .attr("fill", d => color(d.key))
             .selectAll("rect")
-            .data(d => d)
-            .join("rect")
+            .data(function(d){return d;})
+            .enter()
+            .append("rect")
+            //.data(d => d)
+            //.join("rect")
             .attr("x", d => x(d[0]))
             .attr("y", (d, i) => y(d.data.year)+15)
             .attr("width", d => x(d[1]) - x(d[0]))
             .attr("height", y.bandwidth()-30)
             .append("title")
-            .text(d=>d3.format(",.1%")(d[1]-d[0]));
+            .text(d=>d3v5.format(",.1%")(d[1]-d[0]));
 
 });
 }

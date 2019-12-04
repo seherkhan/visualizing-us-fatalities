@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
   export default {
     name: 'HeatMap',
     props: {
@@ -35,7 +35,7 @@ import * as d3 from 'd3'
             width = 900,
             height = (width/n_yrs)*n_grps;
 
-        var svg = d3.select(this.$refs["heatmap_age"])
+        var svg = d3v5.select(this.$refs["heatmap_age"])
             .attr("viewBox", [0, 0, width + margin.left + margin.right,height + margin.top + margin.bottom])
             //.attr("width", width + margin.left + margin.right)
             //.attr("height", height + margin.top + margin.bottom)
@@ -55,22 +55,22 @@ import * as d3 from 'd3'
             return [r[grps[0]], r[grps[1]], r[grps[2]], r[grps[3]],r[grps[4]]];
             });
         function getMin(nums){
-            return Math.floor(d3.min(nums) / 100.0) * 100;
+            return Math.floor(d3v5.min(nums) / 100.0) * 100;
         }
         function getMax(nums){
-            return Math.ceil(d3.max(nums) / 100.0) * 100;
+            return Math.ceil(d3v5.max(nums) / 100.0) * 100;
         }
 
-        var x = d3.scaleBand().domain(yrs).range([0, width]).paddingInner(0.05);
-        var y = d3.scaleBand().domain(grps).range([0, height]).paddingInner(0.05);
+        var x = d3v5.scaleBand().domain(yrs).range([0, width]).paddingInner(0.05);
+        var y = d3v5.scaleBand().domain(grps).range([0, height]).paddingInner(0.05);
         
         
         function mkcolor(min_ceil,max_ceil){ 
             color = new Map()
 
-            d3.range(min_ceil,min_ceil+max_ceil,max_ceil/9).map(function(n){
-            color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemeBlues[9])(n));
-            //color.set(n,d3.scaleQuantize([min_ceil,max_ceil], d3.schemePurples[9])(n));
+            d3v5.range(min_ceil,min_ceil+max_ceil,max_ceil/9).map(function(n){
+            color.set(n,d3v5.scaleQuantize([min_ceil,max_ceil], d3v5.schemeBlues[9])(n));
+            //color.set(n,d3v5.scaleQuantize([min_ceil,max_ceil], d3v5.schemePurples[9])(n));
             
             });
             return color;
@@ -96,7 +96,7 @@ import * as d3 from 'd3'
             return [r[grps[0]], r[grps[1]], r[grps[2]], r[grps[3]],r[grps[4]]];
             });
             num_yrs.push(num_yr);
-            color_yr = mkcolor(d3.min(num_yr),d3.max(num_yr));
+            color_yr = mkcolor(d3v5.min(num_yr),d3v5.max(num_yr));
             color_yrs.push(color_yr);
 
             data_yr = data.filter(function(r){return r['Year']==yr})
@@ -115,7 +115,7 @@ import * as d3 from 'd3'
             });
         
             num_grps.push(num_grp);
-            color_grp = mkcolor(d3.min(num_grp),d3.max(num_grp));
+            color_grp = mkcolor(d3v5.min(num_grp),d3v5.max(num_grp));
             color_grps.push(color_grp);
         });
 
@@ -204,24 +204,24 @@ import * as d3 from 'd3'
 
             // moveover for rect
             var tmp_fill = 'black'
-            d3.selectAll('rect').on("mouseenter", function() {
+            d3v5.selectAll('rect').on("mouseenter", function() {
                 rect = this
-                tmp_fill = d3.select(this).attr('fill')
-                d3.select(this)
-                .attr('fill',d3.rgb(tmp_fill).brighter(0.99))
-                .attr('stroke',d3.rgb(tmp_fill).darker(0.5))
+                tmp_fill = d3v5.select(this).attr('fill')
+                d3v5.select(this)
+                .attr('fill',d3v5.rgb(tmp_fill).brighter(0.99))
+                .attr('stroke',d3v5.rgb(tmp_fill).darker(0.5))
                 .attr('stroke-width',2);
                 yr = this.id.split('_')[0]
                 grp_ind =  this.id.split('_')[1]
-                d3.select('#x_'+yr).attr('font-weight','bold');
-                d3.select('#y_'+grp_ind).attr('font-weight','bold');
+                d3v5.select('#x_'+yr).attr('font-weight','bold');
+                d3v5.select('#y_'+grp_ind).attr('font-weight','bold');
             })
             .on("mouseout", function() {
-                d3.select(this).attr('fill',tmp_fill)
-                .attr('stroke',d3.rgb(tmp_fill))
+                d3v5.select(this).attr('fill',tmp_fill)
+                .attr('stroke',d3v5.rgb(tmp_fill))
                 .attr('stroke-width',0);
-                d3.select('#x_'+yr).attr('font-weight','normal');
-                d3.select('#y_'+grp_ind).attr('font-weight','normal');
+                d3v5.select('#x_'+yr).attr('font-weight','normal');
+                d3v5.select('#y_'+grp_ind).attr('font-weight','normal');
             });
         });
 
@@ -233,15 +233,15 @@ import * as d3 from 'd3'
             if(xaxis_event){return;}
             svg.selectAll('g.x').selectAll('text')  
             .on("mouseover", function() {
-                d3.select(this).attr('font-weight','bold');
+                d3v5.select(this).attr('font-weight','bold');
                 yr = this.id.split('_')[1];
-                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
+                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
                 return (this.getAttribute('class').includes('yr'+yr)) ? 1.0 : 0.1;
                 });
             })
             .on("mouseout", function() {
-                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
-                d3.select(this).attr('font-weight','normal');
+                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
+                d3v5.select(this).attr('font-weight','normal');
             });
             xaxis_event=true;
         }
@@ -249,15 +249,15 @@ import * as d3 from 'd3'
             if(yaxis_event){return;}
             svg.selectAll('g.y').selectAll('text')  
             .on("mouseover", function() {
-                d3.select(this).attr('font-weight','bold');
+                d3v5.select(this).attr('font-weight','bold');
                 grp = this.id.split('_')[1];
-                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
+                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
                     return (this.getAttribute('class').includes('grp'+grp)) ? 1.0 : 0.1;
                 });
             })
             .on("mouseout", function() {
-                d3.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
-                d3.select(this).attr('font-weight','normal');
+                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
+                d3v5.select(this).attr('font-weight','normal');
             });
             yaxis_event=true;
         }
@@ -274,11 +274,11 @@ import * as d3 from 'd3'
         enable_mouseover_yaxis();
 
         // BUTTONS FUNCTIONALITY
-        d3.select("button[id=overall]").on('click', function(){
-            d3.select('button[id=yr]').classed('active',false)
-            d3.select('button[id=grp]').classed('active',false)
-            d3.select('button[id=overall]').classed('active',true)
-            d3.select('button[id=overall]').attr('aria-pressed',"true")
+        d3v5.select("button[id=overall]").on('click', function(){
+            d3v5.select('button[id=yr]').classed('active',false)
+            d3v5.select('button[id=grp]').classed('active',false)
+            d3v5.select('button[id=overall]').classed('active',true)
+            d3v5.select('button[id=overall]').attr('aria-pressed',"true")
             svg.selectAll("g[id^=col_]")
             .selectAll('rect')
             .attr('fill',function(){
@@ -290,11 +290,11 @@ import * as d3 from 'd3'
             enable_mouseover_xaxis();
             enable_mouseover_yaxis();
         })
-        d3.select("button[id=yr]").on('click', function(){
-            d3.select('button[id=overall]').classed('active',false)
-            d3.select('button[id=grp]').classed('active',false)
-            d3.select('button[id=yr]').classed('active',true)
-            d3.select('button[id=yr]').attr('aria-pressed',"true")
+        d3v5.select("button[id=yr]").on('click', function(){
+            d3v5.select('button[id=overall]').classed('active',false)
+            d3v5.select('button[id=grp]').classed('active',false)
+            d3v5.select('button[id=yr]').classed('active',true)
+            d3v5.select('button[id=yr]').attr('aria-pressed',"true")
             yrs.forEach(yr => {
             svg.select("#col_"+yr)
                 .selectAll('rect')
@@ -308,11 +308,11 @@ import * as d3 from 'd3'
             disable_mouseover_yaxis();
         })
 
-        d3.select("button[id=grp").on('click', function(){
-            d3.select('button[id=yr]').classed('active',false)
-            d3.select('button[id=overall]').classed('active',false)
-            d3.select('button[id=grp]').classed('active',true)
-            d3.select('button[id=grp]').attr('aria-pressed',"true")
+        d3v5.select("button[id=grp").on('click', function(){
+            d3v5.select('button[id=yr]').classed('active',false)
+            d3v5.select('button[id=overall]').classed('active',false)
+            d3v5.select('button[id=grp]').classed('active',true)
+            d3v5.select('button[id=grp]').attr('aria-pressed',"true")
             grps.forEach(grp => {
             grp_ind = grp2ind(grp);
             svg.selectAll('rect[id$=_'+grp_ind+']')
@@ -326,10 +326,10 @@ import * as d3 from 'd3'
             enable_mouseover_yaxis();
         })
         
-        d3.select('button[id=yr]').classed('active',false)
-        d3.select('button[id=grp]').classed('active',false)
-        d3.select('button[id=overall]').classed('active',true)
-        d3.select('button[id=overall]').attr('aria-pressed',"true")
+        d3v5.select('button[id=yr]').classed('active',false)
+        d3v5.select('button[id=grp]').classed('active',false)
+        d3v5.select('button[id=overall]').classed('active',true)
+        d3v5.select('button[id=overall]').attr('aria-pressed',"true")
 
     }
   }

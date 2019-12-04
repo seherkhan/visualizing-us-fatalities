@@ -12,12 +12,26 @@
       <br/><br/><br/><br/><br/>
       
       <Stacked v-bind:dataset ="dataset2" v-if="dataLoaded"/>
+      <div class="container">
+        <p><u>Important Information:</u></p>
+        <ul>
+            <li><b>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
+                    based on rounded population numbers.</b> Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
+            <li><b>Death Rates for less than 1 years of age have not been reported since the standard measure of reporting statistics for Infant Mortality is the Infant Mortality Rate</b> (the number of deaths per live births in an year)</li>
+        </ul>
+
+        <p><u>References:</u></p>
+        <ul>
+            <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/fig21.pdf'>https://www.cdc.gov/nchs/data/hus/2017/fig21.pdf</a></li>
+            <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+        </ul>
+    </div>
     </div>
 </div>
 
 </template>
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
 import HeatMap from '@/components/HeatMap.vue'
 import Stacked from '@/components/Stacked.vue'
 
@@ -40,8 +54,8 @@ export default {
   },
   mounted() {
     var promises = [];
-    promises.push(d3.json("heatmap.json"));
-    promises.push(d3.json("stacked.json"));
+    promises.push(d3v5.json("heatmap.json"));
+    promises.push(d3v5.json("stacked.json"));
     var view = this;
     Promise.all(promises).then(function(values) {
       view.dataset1 = values[0];

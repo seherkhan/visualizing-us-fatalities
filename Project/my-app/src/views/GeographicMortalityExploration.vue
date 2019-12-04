@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
 export default {
   name: 'geomort',
   mounted () {
@@ -70,8 +70,8 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
   var minVal, maxVal;
   var svg, svgmap;
   
-  var x = d3.scaleBand();
-  var y = d3.scaleLinear();
+  var x = d3v5.scaleBand();
+  var y = d3v5.scaleLinear();
   var xAxis, yAxis;
   var allData;
 
@@ -170,7 +170,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
   //---------------------- MAP FUNCTIONS -------------------------------------
   var uStatePaths;
-  /*d3.json('usmap.json').then(function(d) {
+  /*d3v5.json('usmap.json').then(function(d) {
       uStatePaths = d['features'];
     });*/
 
@@ -181,25 +181,25 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
 
   function drawMap(id, data, toolTip) {
-    d3.select("#svgmap")
+    d3v5.select("#svgmap")
       .selectAll(".state")
       .remove();
  
 
     //console.log(minVal, maxVal);
     function mouseOver(d){
-      d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
+      d3v5.select("#tooltip").transition().duration(200).style("opacity", .9);      
       
-      d3.select("#tooltip").html(toolTip(d.n, data[d.id]))  
-        .style("left", (d3.event.pageX) + "px")     
-        .style("top", (d3.event.pageY - 28) + "px");
+      d3v5.select("#tooltip").html(toolTip(d.n, data[d.id]))  
+        .style("left", (d3v5.event.pageX) + "px")     
+        .style("top", (d3v5.event.pageY - 28) + "px");
     }
     
     function mouseOut(){
-      d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+      d3v5.select("#tooltip").transition().duration(500).style("opacity", 0);      
     }
 
-    var states = d3.select("#svgmap").selectAll('.state') //
+    var states = d3v5.select("#svgmap").selectAll('.state') //
       .data(uStatePaths);
 
     states.enter().append("path").attr("class", "state")
@@ -218,7 +218,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
 
     //legend
-    d3.select("#svgmap")
+    d3v5.select("#svgmap")
       .selectAll("#legendmap")
       .remove();
 
@@ -226,7 +226,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     var lowColor = '#ffffcc';
     var highColor = '#800026';  
 
-    var key = d3.select("#svgmap")
+    var key = d3v5.select("#svgmap")
       .append('svg')
       .attr('id', 'legendmap')
       .attr("width", stdwid)
@@ -259,11 +259,11 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
       .style("fill", "url(#gradient)")
       .attr("transform", "translate(1000, 80)");
 
-    var y = d3.scaleLinear()
+    var y = d3v5.scaleLinear()
       .range([h, 0])
       .domain([minVal - 50, maxVal]);
 
-    var yAxis = d3.axisRight(y).ticks(5);
+    var yAxis = d3v5.axisRight(y).ticks(5);
 
     key.append("g")
       .attr("class", "y axis")
@@ -302,7 +302,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         maxVal = d[ids[i]][col]
       }
 
-      takein['color'] = d3.interpolateRgb("#ffffcc", '#800026')(val);
+      takein['color'] = d3v5.interpolateRgb("#ffffcc", '#800026')(val);
       takein['State'] = d[ids[i]]['State'];
 
       for (var j = 0; j < colsname.length; j ++ ){
@@ -349,7 +349,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
 
     //xAxis;
-    xAxis = d3.axisBottom()
+    xAxis = d3v5.axisBottom()
       .scale(x);
 
     svg.append("g")
@@ -365,7 +365,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
       .style("baseline-shift", "nomal")
 
     //yAxis;
-    yAxis = d3.axisLeft()
+    yAxis = d3v5.axisLeft()
       .scale(y)
       .ticks(7, 'd');
 
@@ -440,7 +440,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
     ////////////////////////////////
     // x_axis.                 
-    xAxis = d3.axisBottom()
+    xAxis = d3v5.axisBottom()
       .scale(x);
 
     svg.select(".x_axis")
@@ -466,12 +466,12 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
   
   //---------------------- DATA LOADING -------------------------------------
-  d3.json('usmap.json').then(function(d) {
+  d3v5.json('usmap.json').then(function(d) {
       uStatePaths = d['features'];
     }).then(function(d){
 
     
-    d3.csv('choropleth_data.csv', function(d) {
+    d3v5.csv('choropleth_data.csv', function(d) {
 
         var takein = {}
     var val = Math.round(d['AP_2014–2016'])/1000;
@@ -483,7 +483,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     else if (val >= 0.6 && val < 0.7) { val = 0.55 * val; }
     else { val = 0.50 * val; }
 
-        takein['color'] = d3.interpolateRgb("#ffffcc", '#800026')(val);
+        takein['color'] = d3v5.interpolateRgb("#ffffcc", '#800026')(val);
       
     takein['State'] = d['State'];
       
@@ -495,7 +495,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     }).then(function(data) {
     //---------------------- MAP SVG BUILD -------------------------------------
     allData = sampleData;
-    svgmap = d3.select('#statesvg').append("svg")
+    svgmap = d3v5.select('#statesvg').append("svg")
       .attr('id', 'svgmap')
       .attr("viewBox", [3, 0, width + margin.left + margin.right +50, height + margin.top + 3*margin.bottom])
       //.attr("viewBox", [0, 0, stdwid+200, stdheight + 250])
@@ -505,11 +505,11 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
     drawMap("#svgmap", sampleData, tooltipHtml);
 
-    d3.select(self.frameElement).style("height", "600px"); 
+    d3v5.select(self.frameElement).style("height", "600px"); 
 
     
     //----------------- DRAWING BAR CHART ---------------------------------------
-    svg = d3.select("#chart")
+    svg = d3v5.select("#chart")
       .attr("viewBox", [-50, 0, width + margin.left + margin.right+50, height + margin.top + margin.bottom])
       //.attr('width', width + margin.left + margin.right + 100)
       //.attr('height', height + margin.top + margin.bottom)
@@ -535,17 +535,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
     //#ap, #wh, #baa, #aia, #api, #hl, #whl, #bhl
     //--------------- ON CLICK LISTENERS FOR BUTTONS --------------------------------
-    d3.select("#ap")
+    d3v5.select("#ap")
       .on("click", function () {
         if (people != 'ap') {
-          d3.select('#ap').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#ap').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'ap';
           bardata = filterData();
           filterChart();
@@ -553,17 +553,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#wh")
+    d3v5.select("#wh")
       .on("click", function () {
         if (people != 'wh') {
-          d3.select('#wh').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#wh').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'wh';
           bardata = filterData();
           filterChart();
@@ -571,17 +571,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#baa")
+    d3v5.select("#baa")
       .on("click", function () {
         if (people != 'baa') {
-          d3.select('#baa').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#baa').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'baa';
           bardata = filterData();
           filterChart();
@@ -589,17 +589,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#aia")
+    d3v5.select("#aia")
       .on("click", function () {
         if (people != 'aia') {
-          d3.select('#aia').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#aia').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'aia';
           bardata = filterData();
           filterChart();
@@ -607,17 +607,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#api")
+    d3v5.select("#api")
       .on("click", function () {
         if (people != 'api') {
-          d3.select('#api').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#api').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'api';
           bardata = filterData();
           filterChart();
@@ -625,17 +625,17 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#hl")
+    d3v5.select("#hl")
       .on("click", function () {
         if (people != 'hl') {
-          d3.select('#hl').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#whl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#hl').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'hl';
           bardata = filterData();
           filterChart();
@@ -643,34 +643,34 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
     });
 
-    d3.select("#whl")
+    d3v5.select("#whl")
       .on("click", function () {
         if (people != 'whl') {
-          d3.select('#whl').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#bhl').classed('active', false);
+          d3v5.select('#whl').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#bhl').classed('active', false);
           people = 'whl';
           bardata = filterData();
           filterChart();
           filterMap();
         }
     });
-    d3.select("#bhl")
+    d3v5.select("#bhl")
       .on("click", function () {
         if (people != 'bhl') {
-          d3.select('#bhl').classed('active', true).attr('aria-pressed', "true");
-          d3.select('#ap').classed('active', false);
-          d3.select('#wh').classed('active', false);
-          d3.select('#baa').classed('active', false);
-          d3.select('#aia').classed('active', false);
-          d3.select('#api').classed('active', false);
-          d3.select('#hl').classed('active', false);
-          d3.select('#whl').classed('active', false);
+          d3v5.select('#bhl').classed('active', true).attr('aria-pressed', "true");
+          d3v5.select('#ap').classed('active', false);
+          d3v5.select('#wh').classed('active', false);
+          d3v5.select('#baa').classed('active', false);
+          d3v5.select('#aia').classed('active', false);
+          d3v5.select('#api').classed('active', false);
+          d3v5.select('#hl').classed('active', false);
+          d3v5.select('#whl').classed('active', false);
           people = 'bhl';
           bardata = filterData();
           filterChart();

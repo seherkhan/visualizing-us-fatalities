@@ -13,13 +13,13 @@
         <div class="btn-group d-flex" role="group" aria-label="Basic example" id="btngroup3"></div>
     </div>
     <div id="div1">
-      <svg id="bubble"></svg>
+      <svg id="bubble" style="border:1px solid #343A3F"></svg>
     </div>
     </div>
   </div>
 </template>
 <script>
-import * as d3 from 'd3'
+import * as d3v5 from 'd3v5'
 export default {
   name: 'areawise',
   mounted () {
@@ -30,7 +30,7 @@ export default {
 
     var c = ["#08519c","#238b45","#737373","#d94801",
       "#2171b5","#41ab5d","#969696","#f16913",
-      "#4292c6","#74c476","#bdbdbd","#fd8d3c",
+      "#4292c6","#74c476","#bdbdbd","#fd8d3v5c",
       "#6baed6","#a1d99b","#d9d9d9","#fdae6b",
       "#9ecae1","#c7e9c0","#e0e0e0","#fdd0a2",
       "#c6dbef","#e5f5e0","#ededed","#fee6ce",
@@ -43,24 +43,26 @@ export default {
 
     
     function  createChart(json){
-      d3.json(json).then(function(data){
-      color = d3.scaleOrdinal().domain([0,5]).range(["#ededed","#bfbfbf","#e8d1cf","#b9b8d1","#a18ead"])
+      d3v5.json(json).then(function(data){
+      color = d3v5.scaleOrdinal().domain([0,5])
+      .range(["white","red","#cfcfcf","#ded3d3","#d9b4b4","#a18ead"])
+      //.range(["#ededed","#bfbfbf","#e8d1cf","#b9b8d1","#a18ead"])
     
-      format = d3.format(",d")
+      format = d3v5.format(",d")
       width = 800
       height = width
     
-      pack = data => d3.pack()
+      pack = data => d3v5.pack()
         .size([width, height])
         .padding(3)(
-          d3.hierarchy(data).sum(d => d.value).sort((a, b) => b.value - a.value)
+          d3v5.hierarchy(data).sum(d => d.value).sort((a, b) => b.value - a.value)
         )
       
       const root = pack(data);
       let focus = root;
       let view;
       
-      svg = d3.select("body")
+      svg = d3v5.select("body")
           .select("#div1")
           .select("#bubble")
           .attr("viewBox", `-${width / 2} -${height / 2} ${width} ${height}`)
@@ -72,7 +74,9 @@ export default {
         
     const node =  svg.append("g").selectAll("circle")
         .data(root.descendants().slice(1))
-        .join("circle")
+        //.join("circle")
+        .enter()
+        .append("circle")
         .attr("fill", d => d.children ? color(d.depth) : 
           "white"
         )
@@ -82,11 +86,11 @@ export default {
         .attr("stroke-opacity",0)
         .on("mouseover",function(d){
           if(d.children){
-            d3.select(this).attr("stroke-dasharray", (10,1)).attr("stroke-opacity",1)
+            d3v5.select(this).attr("stroke-dasharray", (10,1)).attr("stroke-opacity",1)
           }
           else{
             if(d.parent == focus){
-            var txtel = d3.select(this.parentElement)
+            var txtel = d3v5.select(this.parentElement)
               .append('text')
               .attr('id','tmptext')
               .attr('text-anchor','middle')
@@ -94,7 +98,7 @@ export default {
               .attr('font','9px sans-serif')
               .attr('transform',this.getAttribute('transform'))
               .attr('dy','0.5em')
-              .text(d3.format(",")(d.data.value)+" cases");
+              .text(d3v5.format(",")(d.data.value)+" cases");
               
             
             }
@@ -102,16 +106,16 @@ export default {
         })
         .on("mouseout", function(d) { 
           if(d.children){
-            d3.select(this).attr("stroke-dasharray",null).attr("stroke-opacity",0)
+            d3v5.select(this).attr("stroke-dasharray",null).attr("stroke-opacity",0)
           }
           else{
-            d3.select("#tmptext").remove();
+            d3v5.select("#tmptext").remove();
           }
           
         })
         .on("click", function(d){
           if(d.children){
-            focus !== d && (zoom(d), d3.event.stopPropagation());
+            focus !== d && (zoom(d), d3v5.event.stopPropagation());
           }
         })
       
@@ -122,7 +126,9 @@ export default {
             .attr("alignment-baseline","bottom")
           .selectAll("text")
           .data(root.descendants())
-          .join("text")
+          //.join("text")
+          .enter()
+        .append("text")
           .style("fill-opacity",
           d => d.parent === root ? 1 : 0)
           .style("display", 
@@ -148,9 +154,9 @@ export default {
           focus = d;
       
           const transition = svg.transition()
-              .duration(d3.event.altKey ? 7500 : 750)
+              .duration(d3v5.event.altKey ? 7500 : 750)
               .tween("zoom", d => {
-                const i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
+                const i = d3v5.interpolateZoom(view, [focus.x, focus.y, focus.r * 2]);
                 return t => zoomTo(i(t));
               });
       
@@ -171,8 +177,8 @@ export default {
 
     ///////////////////////////
     // BUTTONS
-    //var buttons = d3.select('#div2');
-    var buttons = d3.select("#btngroup1")
+    //var buttons = d3v5.select('#div2');
+    var buttons = d3v5.select("#btngroup1")
     var key
     var colors1 = Object.entries(colors)
     colors1.slice(0,7).forEach(function(el){
@@ -185,19 +191,19 @@ export default {
         .on("click",function(){
           var currClr = svg.select(".circ"+this.id).attr("fill");
           if(currClr=="white"){
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color",colors[this.id.replace(/_/g," ")]);
               svg.selectAll(".circ"+this.id).attr("fill",colors[this.id.replace(/_/g," ")]); 
           }
           else{
             svg.selectAll(".circ"+this.id).attr("fill","white"); 
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color","white")
           }
         });
       }
     )
-    buttons = d3.select("#btngroup2")
+    buttons = d3v5.select("#btngroup2")
     colors1.slice(7,13).forEach(function(el){
         key=el[0]
         buttons.append('button')
@@ -208,19 +214,19 @@ export default {
         .on("click",function(){
           var currClr = svg.select(".circ"+this.id).attr("fill");
           if(currClr=="white"){
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color",colors[this.id.replace(/_/g," ")]);
               svg.selectAll(".circ"+this.id).attr("fill",colors[this.id.replace(/_/g," ")]); 
           }
           else{
             svg.selectAll(".circ"+this.id).attr("fill","white"); 
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color","white")
           }
         });
       }
     )
-    buttons = d3.select("#btngroup3")
+    buttons = d3v5.select("#btngroup3")
     colors1.slice(13,18).forEach(function(el){
         key=el[0]
         buttons.append('button')
@@ -231,13 +237,13 @@ export default {
         .on("click",function(){
           var currClr = svg.select(".circ"+this.id).attr("fill");
           if(currClr=="white"){
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color",colors[this.id.replace(/_/g," ")]);
               svg.selectAll(".circ"+this.id).attr("fill",colors[this.id.replace(/_/g," ")]); 
           }
           else{
             svg.selectAll(".circ"+this.id).attr("fill","white"); 
-            d3.select(this)
+            d3v5.select(this)
               .style("background-color","white")
           }
         });
@@ -248,9 +254,9 @@ export default {
         .attr('class','btn btn-outline-dark')
         .on("click",function(){
           svg.selectAll("circle[class^=circ]").attr("fill","white");
-          d3.select(this)
+          d3v5.select(this)
             .style("background-color","transparent")
-          d3.selectAll('button').style('background-color',"transparent")
+          d3v5.selectAll('button').style('background-color',"transparent")
         });
 
   }
