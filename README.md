@@ -12,22 +12,22 @@
 - [YouTube video](<youtube-video-url>)     
              
 ### PROJECT CONTRIBUTIONS
-- *Demonstration*: Seher Khan, Shraddha Kulkarni     
-- *Presentation*: Shraddha Kulkarni, Seher Khan     
-- *Transcript*: Shraddha Kulkarni     
-- *Youtube video*: Shraddha Kulkarni     
+- **Demonstration**: Seher Khan, Shraddha Kulkarni     
+- **Presentation**: Shraddha Kulkarni, Seher Khan     
+- **Transcript**: Shraddha Kulkarni     
+- **Youtube video**: Shraddha Kulkarni     
      
-- *Website*: Seher Khan (BackEnd), Shraddha Kulkarni (FrontEnd)     
-- *Cover Page & Team Page:* Shraddha Kulkarni and Seher Khan     
-- *Area Chart* - Personal Healthcare Expenditure: Seher Khan     
-- *Circle Packing* - Clustering the States of the USA based on the Diseases: Seher Khan     
-- *Geochart* - Age adjusted Death Rate by Category: Shraddha Kulkarni    
-- *Bipartite Graph* - Correspondence between disease and category: Shraddha Kulkarni    
-- *Stacked Bar Chart* - Death Rate - Age group over the years: Seher Khan     
-- *Heatmap* - Death Rate - Age group over the years: Seher Khan     
-- *Pie chart* - Top 10 Causes of Deaths over the years: Shraddha Kulkarni     
-- *Group Chart* - Death Rate over the years by Category: Shraddha Kulkarni     
-- *Sankey Diagram* - Shraddha Kulkarni      
+- **Website**: Seher Khan (BackEnd), Shraddha Kulkarni (FrontEnd)     
+- **Cover Page & Team Page:** Shraddha Kulkarni and Seher Khan     
+- **Area Chart** - Personal Healthcare Expenditure: Seher Khan     
+- **Circle Packing** - Clustering the States of the USA based on the Diseases: Seher Khan     
+- **Geochart** - Age adjusted Death Rate by Category: Shraddha Kulkarni    
+- **Bipartite Graph** - Correspondence between disease and category: Shraddha Kulkarni    
+- **Stacked Bar Chart** - Death Rate - Age group over the years: Seher Khan     
+- **Heatmap** - Death Rate - Age group over the years: Seher Khan     
+- **Pie chart** - Top 10 Causes of Deaths over the years: Shraddha Kulkarni     
+- **Group Chart** - Death Rate over the years by Category: Shraddha Kulkarni     
+- **Sankey Diagram** - Shraddha Kulkarni      
         
        
 # Project Implementation     
