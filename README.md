@@ -104,10 +104,10 @@ test locally using above command to put on pdms, transfer contents of dist folde
 The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.      
       
 To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)
-     
+          
+           
+        
        
-
-
 # INF 554 Assignment for 5: 
 
 # Project Proposal     
