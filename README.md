@@ -1,21 +1,37 @@
 ## PROJECT SUMMARY
 
 ### PROJECT INFORMATION
-
 - Project title: Disease Control and Prevention Analysis
 - Group name: GroupOne
 - Team names: [Shraddha Kulkarni (shraddhk), Seher Khan (seherkha)]
 
-### PROJECT ARTIFACTS
-
+### PROJECT ARTIFACTS  
 - [Demonstration URL](http://pdms.usc.edu/~seherkha/proj/)
 - [Presentation PDF](<presentation-pdf-url>) and [transcript](<presentation-transcript-md-url>)
-- [Article](<article-pdf-url>) and [Overleaf URL](https://www.overleaf.com/read/qdrprfctmrhc)
-- [YouTube video](<youtube-video-url>)
-        
-          
-# Project Implementation          
+- [Article](paper.pdf) and [Overleaf URL](https://www.overleaf.com/read/vxfjcwjhhzcp)
+- [YouTube video](<youtube-video-url>)     
+             
+### PROJECT CONTRIBUTIONS
+- Demonstration: Seher Khan, Shraddha Kulkarni     
+- Presentation: Shraddha Kulkarni, Seher Khan     
+- Transcript: Shraddha Kulkarni     
+- Youtube video: Shraddha Kulkarni     
      
+- Website: Seher Khan (BackEnd), Shraddha Kulkarni (FrontEnd)     
+- Cover Page & Team Page: Shraddha Kulkarni and Seher Khan     
+- Area Chart - Personal Healthcare Expenditure: Seher Khan     
+- Circle Packing - Clustering the States of the USA based on the Diseases: Seher Khan     
+- Geochart - Age adjusted Death Rate by Category: Shraddha Kulkarni    
+- Bipartite Graph - Correspondence between disease and category: Shraddha Kulkarni    
+- Stacked Bar Chart - Death Rate - Age group over the years: Seher Khan     
+- Heatmap - Death Rate - Age group over the years: Seher Khan     
+- Pie chart - Top 10 Causes of Deaths over the years: Shraddha Kulkarni     
+- Group Chart - Death Rate over the years by Category: Shraddha Kulkarni     
+- Sankey Diagram - Shraddha Kulkarni      
+        
+       
+# Project Implementation     
+       
 ## PROJECT SUMMARY
 Some of the leading causes of death in the United States include heart disease, cancer, alcoholism and injuries caused by accidents. Many of these are preventable, and being able to visualize the numbers could help us develop improved strategies to avoid and alleviate their occurrence. We expect our application to be useful for the general public. It will make them more aware of the diseases they are susceptible to based on their location and other demographic traits. 
 
