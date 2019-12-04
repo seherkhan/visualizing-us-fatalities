@@ -23,7 +23,7 @@ Using various visualizations that we’ve learned this semester through the cour
 
 
 ### Visualizations
-**1. Disease-Category Correspondence:** This visualization consists of two parts i.e. Bipartite Graph and Grouped Bar Chart. Both of them are used to display age-adjusted death rates for selected causes of death, by Category (sex, race, and Hispanic Origin) for selected years 1950-2016 in the United States. 
+**1. Disease-Category Correspondence:** This visualization consists of two parts i.e. Sankey Diagram and Grouped Bar Chart. Both of them are used to display age-adjusted death rates for selected causes of death, by Category (sex, race, and Hispanic Origin) for selected years 1950-2016 in the United States. 
      
 **2. Age Group Mortality Exploration - I:** The visualization consists of two pie charts and a table, for the year 1980 and 2016. There has been an attempt to compare the leading causes of death in the two respective years. Considering there are more than 35 years of difference, there is an expectation that the causes which were more relevant back then have taken been brought under control.    
    
