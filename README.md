@@ -7,7 +7,7 @@
 
 ### PROJECT ARTIFACTS  
 - [Demonstration URL](http://pdms.usc.edu/~seherkha/proj/)
-- [Presentation PDF](<presentation-pdf-url>) and [transcript](PRESENTATION_TRANSCRIPT.md)
+- [Presentation PDF](Project-INF554.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
 - [Article](paper.pdf) and [Overleaf URL](https://www.overleaf.com/read/vxfjcwjhhzcp)
 - [YouTube video](<youtube-video-url>)     
              
@@ -16,7 +16,6 @@
 - **Presentation**: Shraddha Kulkarni, Seher Khan     
 - **Transcript**: Shraddha Kulkarni     
 - **Youtube video**: Shraddha Kulkarni     
-     
 - **Website**: Seher Khan (BackEnd), Shraddha Kulkarni (FrontEnd)     
 - **Cover Page & Team Page:** Shraddha Kulkarni and Seher Khan     
 - **Area Chart** - Personal Healthcare Expenditure: Seher Khan     
@@ -119,11 +118,11 @@ test locally using above command to put on pdms, transfer contents of dist folde
      
 The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.      
       
-To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)
-          
+To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)       
+             
+               
+             
            
-        
-       
 # INF 554 Assignment for 5: 
 
 # Project Proposal     
