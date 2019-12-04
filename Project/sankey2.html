@@ -697,14 +697,14 @@ var groupColumns = ["year", "month"];   //defines how the data is grouped
 	 **/
     function groupData(bigdata, groups, groupI) {
     	groupI = typeof groupI !== 'undefined' ? groupI:0;
-    	var group = _.groupBy(bigdata, function(d) {
+    	var group = groupBy(bigdata, function(d) {
     		return d[groups[groupI]];
     		});
     	
     	groupI++;
     	if (groupI < groups.length) {
 	    	var data = {};
-	    	var keys = _.keys(group);
+	    	var keys = keys(group);
 	    	for (var i=0; i < keys.length; i++) {
 	    		data[keys[i]+""] = groupData(group[keys[i]], groups, groupI);
 	    	}
@@ -724,7 +724,7 @@ var groupColumns = ["year", "month"];   //defines how the data is grouped
  	function allKeys(bigdata, groups) {
  		var groupKeys = {}
  		groups.forEach(function(g) {
-			groupKeys[g] = _.keys(_.groupBy(bigdata, function(d) {
+			groupKeys[g] = keys(groupBy(bigdata, function(d) {
 		    	return d[g];
 		    }));
 			groupKeys[g].sort(function(a,b){ 
@@ -813,7 +813,7 @@ var groupColumns = ["year", "month"];   //defines how the data is grouped
  		
  		keysPerGroup["year"].forEach(function(year, y) {
  			groupedByMonth = groupedData[year];
- 			_.keys(groupedByMonth).forEach(function (d, i) {
+ 			keys(groupedByMonth).forEach(function (d, i) {
  				time_array[mm_ctr] = [y, i];
  				mm_ctr++;
  			});

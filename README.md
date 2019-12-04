@@ -124,14 +124,15 @@ Used Incremental commits. Updated Github README multiple times and commited chan
 
 
 #### Create Vue app
-`$ sudo npm install -g @vue/cli    
-$ vue create my-app    
+`$ sudo npm install -g @vue/cli`        
+`$ vue create my-app`         
     
 Vue CLI v4.1.1   
 ? Please pick a preset: (Use arrow keys)   
 Manually select features   
 ? Pick a linter / formatter config: (Use arrow keys)   
-ESLint with error prevention only   
+ESLint with error prevention only    
+    
 ? Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)   
 Lint on save   
 ? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)   
@@ -139,8 +140,8 @@ In dedicated config files
 ? Save this as a preset for future projects? (y/N) y    
 ? Save preset as: present1   
     
-$ cd my-app    
-$ npm run serve`    
+`$ cd my-app`      
+`$ npm run serve`    
     
     
 #### Bootstrap
@@ -150,21 +151,21 @@ For pages with multiple charts, create a component for each graph and then add t
     
     
 #### Deployment
-`$ cd my-app   
-delete node_modules fldr // skipped    
-$ sudo npm install -g @vue/cli-service-global    
-$ npm install // skipped    
-create vue.config.js along side package.json with production path set to '~seherkha/proj/'    
+`$ cd my-app`        
+`delete node_modules fldr` // skipped     
+`$ sudo npm install -g @vue/cli-service-global`         
+`$ npm install` // skipped    
+create vue.config.js along side package.json with production path set to '~seherkha/proj/'     
     
-module.exports = {    
-publicPath: process.env.NODE_ENV === 'production'    
-? '/~seherkha/proj/' //production path    
-: '/' //development path    
-}    
+module.exports = {     
+    publicPath: process.env.NODE_ENV === 'production'     
+    ? '/~seherkha/proj/' //production path       
+    : '/' //development path    
+}  
    
-$ sudo npm run build   
-$ sudo npm install -g serve    
-$ serve -s dist`    
+`$ sudo npm run build`       
+`$ sudo npm install -g serve`        
+`$ serve -s dist`      
     
 test locally using above command to put on pdms, transfer contents of dist folder to proj folder on pdms.    
      
