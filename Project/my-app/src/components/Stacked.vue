@@ -1,6 +1,6 @@
 <template>
   <div class="stacked" style="margin-right:15px;margin-left:15px">
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" style="width:82%">
         Click on the buttons to adjust chart type and to add/remove groups
     </div>
     <div id="div1" style="margin-bottom:15px;margin-left:120px">
@@ -173,13 +173,13 @@ import * as d3 from 'd3'
 
         // BASIC CHART ELEMENTS (svg, xaxis, yaxis label, color, legend)
         var margin = {top: 20, right: 200, bottom: 50, left: 120},
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            width = 1060 - margin.left - margin.right,
+            height = 400 - margin.top - margin.bottom;
 
         var svg = d3.select(this.$refs["stacked_age"])
-            //d3.select("body").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom])
+            //.attr("width", width + margin.left + margin.right)
+            //.attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

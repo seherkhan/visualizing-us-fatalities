@@ -1,7 +1,13 @@
 <template>
   <div class='expend'>
-    <svg id="primary-area"/>
-    <svg id="secondary-area"/>
+    <div class="container" style="margin:25px">
+        <h1 class="display-4" style="font-size:25px;font-weight:bold;">Public healthcare expenditure</h1>
+        <div class="alert alert-info" role="alert" style="width:82%">
+          Click on the area to see sources of spending on the chart below.
+        </div>
+        <svg id="primary-area"/>
+        <svg id="secondary-area"/>
+    </div>
   </div>
 </template>
 <script>

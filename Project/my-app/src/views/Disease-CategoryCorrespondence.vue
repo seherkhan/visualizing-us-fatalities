@@ -1,12 +1,12 @@
 <template>
 <div class="diseasecate">
-    <div id="div">
-    </div>
-    <h1 class="display-4">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>       
+    <div class="container" style="margin:25px">
+    <h1 class="display-4" style="font-size:25px;font-weight:bold;">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>       
     <p class="lead">Trends over the Years - United States, selected years 1950–2016.</p>
-                    
+    </div>
     <!--BarChart v-bind:dataset='dataset1'/-->
     <Sankey v-bind:dataset ="dataset1" v-if="dataLoaded"/>
+    <br/><br/><br/><br/><br/>
     <StackedBar v-bind:dataset ="dataset2" v-if="dataLoaded"/>
 </div>
 

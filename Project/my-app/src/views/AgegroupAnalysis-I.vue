@@ -1,10 +1,9 @@
 <template>
   <div class="age1">
-    
-    <div style="margin-left:25px;margin-right:25px">	
-      <h1 class="display-4">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
+    <div class="container" style="margin:25px;">	
+      <h1 class="display-4" style="font-size:25px;font-weight:bold;">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
       <br/>
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info" role="alert" style="width:82%">
           Click on the buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
       </div>
       <hr class="my-3">
@@ -48,7 +47,6 @@
           <li>National Center for Health Statistics; vol 67. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
       </ul>
     </div>
-
   </div>
 </template>
 <script>
@@ -67,15 +65,17 @@ export default {
   // append the svg object to the div called 'my_dataviz'
   var svg1980 = d3.select("#pie1980")
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      //.attr("width", width)
+      //.attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
   var svg2016 = d3.select("#pie2016")
       .append("svg")
-      .attr("width", width)
-      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      //.attr("width", width)
+      //.attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 

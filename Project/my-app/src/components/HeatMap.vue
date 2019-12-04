@@ -1,6 +1,7 @@
 <template>
-  <div class="heatmap" style="margin-right:15px;margin-left:15px">             
-    <div class="alert alert-info" role="alert">
+  <div class="heatmap">
+      <div class="container" style="margin:25px">
+    <div class="alert alert-info" role="alert" style="width:82%">
         Click on the buttons to adjust color range to highlight across years and age groups
     </div>
 
@@ -12,6 +13,7 @@
     <div>
         <svg ref="heatmap_age"></svg>
     </div>
+      </div>
 </div>
 </template>
 
@@ -33,9 +35,10 @@ import * as d3 from 'd3'
             width = 900,
             height = (width/n_yrs)*n_grps;
 
-        var svg = d3.select(this.$refs["heatmap_age"]) 
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+        var svg = d3.select(this.$refs["heatmap_age"])
+            .attr("viewBox", [0, 0, width + margin.left + margin.right,height + margin.top + margin.bottom])
+            //.attr("width", width + margin.left + margin.right)
+            //.attr("height", height + margin.top + margin.bottom)
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 

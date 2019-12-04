@@ -1,9 +1,10 @@
 <template>
-  <div class="areawise" style="margin-right:15px;margin-left:15px">
-			<h1 class="display-4">Area-wise Clustering</h1>		
-			<p class="lead" >United States, 1999-2016. Instances of cancer occurance by type and location.</p>
+  <div class="areawise">
+    <div class="container" style="margin:25px">
+      <h1 class="display-4" style="font-size:25px;font-weight:bold;">Area-wise Clustering</h1>		
+			<p>United States, 1999-2016. Instances of cancer occurance by type and location.</p>
 
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" style="width:82%">
           Click on the buttons to highlight type of disease
     </div>
     <div id="div2" style="margin-bottom:15px;">
@@ -13,6 +14,7 @@
     </div>
     <div id="div1">
       <svg id="bubble"></svg>
+    </div>
     </div>
   </div>
 </template>

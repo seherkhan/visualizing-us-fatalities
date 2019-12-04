@@ -1,12 +1,12 @@
 <template>
   <div class="geomort">
-    <div style="margin-left:25px;margin-right:25px">
+    <div class="container" style="margin:25px">
       <!-- Explain the Page Content -->
       <!-- Ask them to Click on the Buttons to view different population and click on States -->
-      <h1 class="display-4"> Age-adjusted death rates, by race, Hispanic origin, state, and territory</h1>
-      <p class="lead">Geochart and Barchart are used to display the death rates in United States and U.S. Dependent Areas. 
+      <h1 class="display-4" style="font-size:25px;font-weight:bold;">Age-adjusted death rates, by race, Hispanic origin, state, and territory</h1>
+      <p>Geochart and Barchart are used to display the death rates in United States and U.S. Dependent Areas. 
         The charts represent data from year 1970 to 2016.</p>
-      <div class="alert alert-info" role="alert">
+      <div class="alert alert-info" role="alert" style="width:82%">
           Click below Buttons to know the rates for specific Races. 
             Click on the particular State to see Trend over the years.
       </div>
@@ -22,7 +22,7 @@
       </div>  
       <br/><br/><br/><br/>
       <div id="tooltip"></div><!-- div to hold tooltip. -->
-      <div width="960" height="600" id="statesvg" ></div> <!-- svg to hold the map. -->
+      <div id="statesvg" ></div> <!-- svg to hold the map. -->
       <br/><br/><br/>
       <svg id="chart"></svg>
       <!-- Add Data References -->
@@ -56,6 +56,7 @@ export default {
   mounted () {
 
 var margin = { top: 50, left: 20, bottom: 80, right: 15 }
+//var margin = { top: 100, left: 100, bottom: 100, right: 100 }
   var width = 900 - margin.left - margin.right;
   var height = 500 - margin.top - margin.bottom;
 
@@ -169,9 +170,9 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
   //---------------------- MAP FUNCTIONS -------------------------------------
   var uStatePaths;
-  d3.json('usmap.json').then(function(d) {
+  /*d3.json('usmap.json').then(function(d) {
       uStatePaths = d['features'];
-    });
+    });*/
 
   
   function tooltipHtml(n, d){  /* function to create html content string in tooltip div. */
@@ -198,7 +199,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
       d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
     }
 
-    var states = d3.select(id).selectAll('.state')
+    var states = d3.select("#svgmap").selectAll('.state') //
       .data(uStatePaths);
 
     states.enter().append("path").attr("class", "state")
@@ -465,6 +466,11 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
 
   
   //---------------------- DATA LOADING -------------------------------------
+  d3.json('usmap.json').then(function(d) {
+      uStatePaths = d['features'];
+    }).then(function(d){
+
+    
     d3.csv('choropleth_data.csv', function(d) {
 
         var takein = {}
@@ -491,21 +497,24 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     allData = sampleData;
     svgmap = d3.select('#statesvg').append("svg")
       .attr('id', 'svgmap')
-      .attr('width', stdwid)
-      .attr('height', stdheight);
+      .attr("viewBox", [3, 0, width + margin.left + margin.right +50, height + margin.top + 3*margin.bottom])
+      //.attr("viewBox", [0, 0, stdwid+200, stdheight + 250])
+      /*.attr('width', stdwid)
+      .attr('height', stdheight);*/
+
 
     drawMap("#svgmap", sampleData, tooltipHtml);
 
     d3.select(self.frameElement).style("height", "600px"); 
 
-
     
     //----------------- DRAWING BAR CHART ---------------------------------------
     svg = d3.select("#chart")
-      .attr('width', width + margin.left + margin.right + 100)
-      .attr('height', height + margin.top + margin.bottom)
+      .attr("viewBox", [-50, 0, width + margin.left + margin.right+50, height + margin.top + margin.bottom])
+      //.attr('width', width + margin.left + margin.right + 100)
+      //.attr('height', height + margin.top + margin.bottom)
       .append('g')
-      .attr('transform', 'translate(' + (50 + margin.left) + ', ' + margin.top + ')');
+      .attr('transform', 'translate(' + (margin.left) + ', ' + margin.top + ')');
       
     
     people = 'ap';
@@ -669,7 +678,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
         }
       });
     
-  });
+  });});
   }
 }
 
@@ -750,5 +759,9 @@ text.label {
     margin-bottom: 20px;
   margin-top: 20px;
 }
+#statesvg {
+  margin-left: 120px; 
+}
+
 
 </style>
