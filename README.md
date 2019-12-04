@@ -13,8 +13,101 @@
 - [Article](<article-pdf-url>) and [Overleaf URL](https://www.overleaf.com/read/qdrprfctmrhc)
 - [YouTube video](<youtube-video-url>)
         
-      
+          
+# Project Implementation          
+     
+## PROJECT SUMMARY
+Some of the leading causes of death in the United States include heart disease, cancer, alcoholism and injuries caused by accidents. Many of these are preventable, and being able to visualize the numbers could help us develop improved strategies to avoid and alleviate their occurrence. We expect our application to be useful for the general public. It will make them more aware of the diseases they are susceptible to based on their location and other demographic traits. 
+
+Using various visualizations that we’ve learned this semester through the course Information Visualization we try to represent this information about various diseases and their effect on the Mortality rate of the country. 
+
+
+### Visualizations
+**1. Disease-Category Correspondence:** This visualization consists of two parts i.e. Bipartite Graph and Grouped Bar Chart. Both of them are used to display age-adjusted death rates for selected causes of death, by Category (sex, race, and Hispanic Origin) for selected years 1950-2016 in the United States. 
+     
+**2. Age Group Mortality Exploration - I:** The visualization consists of two pie charts and a table, for the year 1980 and 2016. There has been an attempt to compare the leading causes of death in the two respective years. Considering there are more than 35 years of difference, there is an expectation that the causes which were more relevant back then have taken been brought under control.    
    
+**3. Age Group Mortality Exploration - II:** The Heapmap serves to highlight the trend in death rate across time and age-groups. The default “overall” view colors each cell with respect to its number. This is to highlight any concerning number immediately. We can then either select “Age” or “Years”, through which the cells color range can be altered.  
+    
+**4. Geographic Mortality Exploration:** This visualization consists of a Choropleth and a Bar Chart. It represents the data from year 1970 to 2016. Clicking a particular race, or origin, the choropleth changes dynamically.
+    
+**5. Healthcare Expenditure:** The Stacked Area Chart depicts the trend in public health expenditure in the US by category since the 1960s. Clicking on a specific category in the area chart (or the legend), update the second chart. This allows one to see trends in source of funding for a particular category. Clicking on the white chart area resets the second chart.   
+   
+**6. Area-wise Clustering:** The Circle Packing chart displays data of cancer cases by type and by region (division, subdivision, state and city) over the period 1999-2016. Clicking on the button of a cancer type colors the circle of that type in all bubbles.   
+
+
+### Development
+This project has been developed on the Vue.js framework. Separate components have been created for each of the charts created in Vue. D3.js is a JavaScript library for manipulating documents based on data,which we have used to construct our charts for visualizing. We used bootstrap for grid layout and CSS for styling and creating buttons.
+
+
+### Node-Modules
+Downloaded all the node-Modules via command line `install` statements. From all the node modules utilized bootstrap, pooper, d3 and jquery node-modules instead of directly importing through cdn. For this assignment, instead of using the CDN link of D3 used te D3 provided in the node modules.
+
+For plotting maps and citites on maps we have used topojson, hence you also need to install topojson too.      
+Use command `npm install topojson`     
+
+
+### Visual-Studio
+Used visual studio IDE for programming the assignment and Angular CLI.
+
+
+### GitHub
+Used Incremental commits. Updated Github README multiple times and commited changes in increments.
+
+
+### Create Vue app
+`$ sudo npm install -g @vue/cli`        
+`$ vue create my-app`         
+    
+Vue CLI v4.1.1   
+? Please pick a preset: (Use arrow keys)   
+Manually select features   
+? Pick a linter / formatter config: (Use arrow keys)   
+ESLint with error prevention only    
+    
+? Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)   
+Lint on save   
+? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)   
+In dedicated config files    
+? Save this as a preset for future projects? (y/N) y    
+? Save preset as: present1   
+    
+`$ cd my-app`      
+`$ npm run serve`    
+    
+    
+### Bootstrap
+Import Bootstrap in main.js   
+For each page, create a new view  and add an entry in routes (index.js)    
+For pages with multiple charts, create a component for each graph and then add those components to the corresponding view.   
+    
+    
+### Deployment
+`$ cd my-app`        
+`delete node_modules fldr` // skipped     
+`$ sudo npm install -g @vue/cli-service-global`         
+`$ npm install` // skipped    
+create vue.config.js along side package.json with production path set to '~seherkha/proj/'     
+    
+module.exports = {     
+    publicPath: process.env.NODE_ENV === 'production'     
+    ? '/~seherkha/proj/' //production path       
+    : '/' //development path    
+}  
+   
+`$ sudo npm run build`       
+`$ sudo npm install -g serve`        
+`$ serve -s dist`      
+    
+test locally using above command to put on pdms, transfer contents of dist folder to proj folder on pdms.    
+     
+The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.      
+      
+To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)
+     
+       
+
+
 # INF 554 Assignment for 5: 
 
 # Project Proposal     
@@ -78,97 +171,8 @@ In the next few Slides, we are going to cover the type of visualization we are p
 ## Slide 10: Timeline 
 ![Slide10](slides_imgs/timeline.png)        
 * The figure explains it all.    
-         
-             
+              
+                
+                  
                
-            
-# Project Implementation        
-
-## PROJECT SUMMARY
-Some of the leading causes of death in the United States include heart disease, cancer, alcoholism and injuries caused by accidents. Many of these are preventable, and being able to visualize the numbers could help us develop improved strategies to avoid and alleviate their occurrence. We expect our application to be useful for the general public. It will make them more aware of the diseases they are susceptible to based on their location and other demographic traits. 
-
-Using various visualizations that we’ve learned this semester through the course Information Visualization we try to represent this information about various diseases and their effect on the Mortality rate of the country. 
-
-
-### Visualizations
-**1. Disease-Category Correspondence:** This visualization consists of two parts i.e. Bipartite Graph and Grouped Bar Chart. Both of them are used to display age-adjusted death rates for selected causes of death, by Category (sex, race, and Hispanic Origin) for selected years 1950-2016 in the United States. 
-     
-**2. Age Group Mortality Exploration - I:** The visualization consists of two pie charts and a table, for the year 1980 and 2016. There has been an attempt to compare the leading causes of death in the two respective years. Considering there are more than 35 years of difference, there is an expectation that the causes which were more relevant back then have taken been brought under control.    
-   
-**3. Age Group Mortality Exploration - II:** The Heapmap serves to highlight the trend in death rate across time and age-groups. The default “overall” view colors each cell with respect to its number. This is to highlight any concerning number immediately. We can then either select “Age” or “Years”, through which the cells color range can be altered.  
-    
-**4. Geographic Mortality Exploration:** This visualization consists of a Choropleth and a Bar Chart. It represents the data from year 1970 to 2016. Clicking a particular race, or origin, the choropleth changes dynamically.
-    
-**5. Healthcare Expenditure:** The Stacked Area Chart depicts the trend in public health expenditure in the US by category since the 1960s. Clicking on a specific category in the area chart (or the legend), update the second chart. This allows one to see trends in source of funding for a particular category. Clicking on the white chart area resets the second chart.   
-   
-**6. Area-wise Clustering:** The Circle Packing chart displays data of cancer cases by type and by region (division, subdivision, state and city) over the period 1999-2016. Clicking on the button of a cancer type colors the circle of that type in all bubbles.   
-
-
-## Development
-This project has been developed on the Vue.js framework. Separate components have been created for each of the charts created in Vue. D3.js is a JavaScript library for manipulating documents based on data,which we have used to construct our charts for visualizing. We used bootstrap for grid layout and CSS for styling and creating buttons.
-
-
-### Node-Modules
-Downloaded all the node-Modules via command line `install` statements. From all the node modules utilized bootstrap, pooper, d3 and jquery node-modules instead of directly importing through cdn. For this assignment, instead of using the CDN link of D3 used te D3 provided in the node modules.
-
-For plotting maps and citites on maps we have used topojson, hence you also need to install topojson too.      
-Use command `npm install topojson`     
-
-
-#### Visual-Studio
-Used visual studio IDE for programming the assignment and Angular CLI.
-
-
-#### GitHub
-Used Incremental commits. Updated Github README multiple times and commited changes in increments.
-
-
-#### Create Vue app
-`$ sudo npm install -g @vue/cli`        
-`$ vue create my-app`         
-    
-Vue CLI v4.1.1   
-? Please pick a preset: (Use arrow keys)   
-Manually select features   
-? Pick a linter / formatter config: (Use arrow keys)   
-ESLint with error prevention only    
-    
-? Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)   
-Lint on save   
-? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)   
-In dedicated config files    
-? Save this as a preset for future projects? (y/N) y    
-? Save preset as: present1   
-    
-`$ cd my-app`      
-`$ npm run serve`    
-    
-    
-#### Bootstrap
-Import Bootstrap in main.js   
-For each page, create a new view  and add an entry in routes (index.js)    
-For pages with multiple charts, create a component for each graph and then add those components to the corresponding view.   
-    
-    
-#### Deployment
-`$ cd my-app`        
-`delete node_modules fldr` // skipped     
-`$ sudo npm install -g @vue/cli-service-global`         
-`$ npm install` // skipped    
-create vue.config.js along side package.json with production path set to '~seherkha/proj/'     
-    
-module.exports = {     
-    publicPath: process.env.NODE_ENV === 'production'     
-    ? '/~seherkha/proj/' //production path       
-    : '/' //development path    
-}  
-   
-`$ sudo npm run build`       
-`$ sudo npm install -g serve`        
-`$ serve -s dist`      
-    
-test locally using above command to put on pdms, transfer contents of dist folder to proj folder on pdms.    
-     
-The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.      
-      
-To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)
+  
