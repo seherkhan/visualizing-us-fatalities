@@ -12,9 +12,9 @@
 - [Presentation PDF](<presentation-pdf-url>) and [transcript](<presentation-transcript-md-url>)
 - [Article](<article-pdf-url>) and [Overleaf URL](https://www.overleaf.com/read/qdrprfctmrhc)
 - [YouTube video](<youtube-video-url>)
-
-
-
+        
+      
+   
 # INF 554 Assignment for 5: 
 
 # Project Proposal     
@@ -78,10 +78,10 @@ In the next few Slides, we are going to cover the type of visualization we are p
 ## Slide 10: Timeline 
 ![Slide10](slides_imgs/timeline.png)        
 * The figure explains it all.    
-     
-        
-           
-
+         
+             
+               
+            
 # Project Implementation        
 
 ## PROJECT SUMMARY
@@ -109,11 +109,10 @@ This project has been developed on the Vue.js framework. Separate components hav
 
 
 ### Node-Modules
-Downloaded all the node-Modules via command line `install` statements. From all the node modules utilized bootstrap, pooper, d3 and jquery node-modules instead of directly importing through cdn.
-For this assignment, instead of using the CDN link of D3 used te D3 provided in the node modules.
+Downloaded all the node-Modules via command line `install` statements. From all the node modules utilized bootstrap, pooper, d3 and jquery node-modules instead of directly importing through cdn. For this assignment, instead of using the CDN link of D3 used te D3 provided in the node modules.
 
-For plotting maps and citites on maps we have used topojson, hence you also need to install topojson too.
-Use command `npm install topojson`
+For plotting maps and citites on maps we have used topojson, hence you also need to install topojson too.      
+Use command `npm install topojson`     
 
 
 #### Visual-Studio
@@ -125,50 +124,50 @@ Used Incremental commits. Updated Github README multiple times and commited chan
 
 
 #### Create Vue app
-$ sudo npm install -g @vue/cli
-$ vue create my-app
-
-Vue CLI v4.1.1
-? Please pick a preset: (Use arrow keys)
-Manually select features
-? Pick a linter / formatter config: (Use arrow keys)
-ESLint with error prevention only
-? Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)
-Lint on save
-? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)
-In dedicated config files 
-? Save this as a preset for future projects? (y/N) y
-? Save preset as: present1
-
-$ cd my-app
-$ npm run serve
-
-
+`$ sudo npm install -g @vue/cli    
+$ vue create my-app    
+    
+Vue CLI v4.1.1   
+? Please pick a preset: (Use arrow keys)   
+Manually select features   
+? Pick a linter / formatter config: (Use arrow keys)   
+ESLint with error prevention only   
+? Pick additional lint features: (Press <space> to select, <a> to toggle all, <i> to invert selection)   
+Lint on save   
+? Where do you prefer placing config for Babel, ESLint, etc.? (Use arrow keys)   
+In dedicated config files    
+? Save this as a preset for future projects? (y/N) y    
+? Save preset as: present1   
+    
+$ cd my-app    
+$ npm run serve`    
+    
+    
 #### Bootstrap
-Import Bootstrap in main.js
-For each page, create a new view  and add an entry in routes (index.js)
-For pages with multiple charts, create a component for each graph and then add those components to the corresponding view.
-
-
+Import Bootstrap in main.js   
+For each page, create a new view  and add an entry in routes (index.js)    
+For pages with multiple charts, create a component for each graph and then add those components to the corresponding view.   
+    
+    
 #### Deployment
-$ cd my-app
-delete node_modules fldr // skipped
-$ sudo npm install -g @vue/cli-service-global
-$ npm install // skipped
-create vue.config.js along side package.json with production path set to '~seherkha/proj/'
-
-module.exports = {
-publicPath: process.env.NODE_ENV === 'production'
-? '/~seherkha/proj/' //production path
-: '/' //development path
-}
-
-$ sudo npm run build
-$ sudo npm install -g serve
-$ serve -s dist
-test locally using above command
-to put on pdms, transfer contents of dist folder to proj folder on pdms
-
-The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.
-
-To see project [click here](<http://www-scf.usc.edu/~agiri/project/>)
+`$ cd my-app   
+delete node_modules fldr // skipped    
+$ sudo npm install -g @vue/cli-service-global    
+$ npm install // skipped    
+create vue.config.js along side package.json with production path set to '~seherkha/proj/'    
+    
+module.exports = {    
+publicPath: process.env.NODE_ENV === 'production'    
+? '/~seherkha/proj/' //production path    
+: '/' //development path    
+}    
+   
+$ sudo npm run build   
+$ sudo npm install -g serve    
+$ serve -s dist`    
+    
+test locally using above command to put on pdms, transfer contents of dist folder to proj folder on pdms.    
+     
+The web page is deployed on USC SCF. Used FileZilla to transfer files from local machine to remote server. Follwing are the commands I followed to connect to the server.      
+      
+To see project [click here](<http://pdms.usc.edu/~seherkha/proj/>)
