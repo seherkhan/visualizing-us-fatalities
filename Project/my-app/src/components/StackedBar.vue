@@ -1,6 +1,7 @@
 <template>
-  <div class="stackedbar" style="margin-right:15px;margin-left:15px">             
-    <div class="alert alert-info" role="alert">
+  <div class="stackedbar">
+    <div class="container" style="margin:25px">             
+    <div class="alert alert-info" role="alert" style="width:82%">
         Click on the button to see individual trends for Diseases over the past decade
     </div>
 
@@ -42,7 +43,7 @@
             <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
         </ul>
     </div>
-
+    </div>
   </div>
 </template>
 
@@ -63,8 +64,9 @@ var widthx = 1500;
 
             var svgx = d3.select(this.$refs["stackbar"])
                 .attr('id', 'svg-bar')
-                .attr('width', widthx)
-                .attr('height', heightx)
+                .attr("viewBox", [0, 0, widthx, heightx])
+                //.attr('width', widthx)
+                //.attr('height', heightx)
                 .append('g')
                 .attr('transform', 'translate('+ widthx +', '+ heightx +')');
 

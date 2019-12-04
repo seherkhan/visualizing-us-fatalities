@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" style="margin-bottom:10px">
+    <div id="nav">
       <div style="display:block;">
         <p style="text-align:left;display:inline;position:absolute;">Diease Control and Prevention Analysis</p>
         <p style="text-align:right;padding-right:10px">GroupOne</p>
@@ -31,7 +31,7 @@
 #nav {
   padding: 5px;
   color: #d2d1dd;
-  background-color: #6b476b;
+  background-color: #474747; /* #6b476b;*/
 }
 
 #nav a {
@@ -43,7 +43,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #e0797c;
+  color:  #e0797c;
   font-weight: bold;
   font-size: 15px;
 }

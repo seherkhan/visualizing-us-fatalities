@@ -1,15 +1,18 @@
 <template>
 <div class="age2">
-    <div id="div">
+    <div class="container" style="margin:25px">
+      <h1 class="display-4" style="font-size:25px;font-weight:bold;"> Death rates by age groups</h1>
+      <p>
+          United States, 2006-2016. Includes deaths of persons who were not residents of the 50 states and the District of Columbia (D.C.).<br>
+          Age-adjusted death rate per 100,000 population.
+      </p>
     </div>
-    <h1 class="display-4" style="margin-right:15px;margin-left:15px"> Death rates by age groups</h1>
-    <p class="lead" style="margin-right:15px;margin-left:15px">
-        United States, 2006-2016. Includes deaths of persons who were not residents of the 50 states and the District of Columbia (D.C.).<br>
-        Age-adjusted death rate per 100,000 population.
-    </p>
-    <!--BarChart v-bind:dataset='dataset1'/-->
-    <HeatMap v-bind:dataset ="dataset1" v-if="dataLoaded"/>
-    <Stacked v-bind:dataset ="dataset2" v-if="dataLoaded"/>
+    <div>
+      <HeatMap v-bind:dataset ="dataset1" v-if="dataLoaded"/>
+      <br/><br/><br/><br/><br/>
+      
+      <Stacked v-bind:dataset ="dataset2" v-if="dataLoaded"/>
+    </div>
 </div>
 
 </template>
