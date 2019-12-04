@@ -263,9 +263,9 @@ text.label {
 
 	//---------------------- MAP FUNCTIONS -------------------------------------
 	var uStatePaths;
-	d3.json('Data/usmap.json').then(function(d) {
+	/*d3.json('Data/usmap.json').then(function(d) {
 			uStatePaths = d['features'];
-		});
+	});*/
 
 	
 	function tooltipHtml(n, d){	/* function to create html content string in tooltip div. */
@@ -559,6 +559,9 @@ text.label {
 
 	
 	//---------------------- DATA LOADING -------------------------------------
+	d3.json('Data/usmap.json').then(function(d) {
+			uStatePaths = d['features'];
+	}).then(function(d) {
     d3.csv('Data/choropleth_data.csv', function(d) {
 
         var takein = {};
@@ -764,7 +767,7 @@ text.label {
 				}
     	});
 		
-	});
+	});});
 
 
 </script>
