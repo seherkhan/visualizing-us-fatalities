@@ -12,10 +12,14 @@
 - [YouTube video](<youtube-video-url>)     
              
 ### PROJECT CONTRIBUTIONS
+
+**Documentation:**      
 - **Demonstration**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)         
 - **Presentation**: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)      
 - **Transcript**: Shraddha Kulkarni (shraddhk@usc.edu)        
-- **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu)       
+- **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu)  
+
+**Website:**      
 - **Website**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)           
 - **Cover Page & Team Page:** Shraddha Kulkarni (shraddhk@usc.edu) and Seher Khan (seherkha@usc.edu)        
 - **Area Chart** - Personal Healthcare Expenditure: Seher Khan (seherkha@usc.edu)      
@@ -26,7 +30,16 @@
 - **Heatmap** - Death Rate - Age group over the years: Seher Khan (seherkha@usc.edu)        
 - **Pie chart** - Top 10 Causes of Deaths over the years: Shraddha Kulkarni (shraddhk@usc.edu)       
 - **Group Chart** - Death Rate over the years by Category: Shraddha Kulkarni (shraddhk@usc.edu)       
-- **Sankey Diagram** - Shraddha Kulkarni (shraddhk@usc.edu)      
+- **Sankey Diagram** - Shraddha Kulkarni (shraddhk@usc.edu)     
+       
+**Requirements for Visualizations:**     
+Below we have listed the features that Professor mentioned in the class which MUST be present in the visualizations. We've listed down the required Features and which charts cover those Features and where they can be looked up.    
+- **Bootstrap**: All the pages are formatted in the Bootstrap grid format. Hence, not listing down any single chart here.   
+- **Responsive**: All the charts and Diagrams are created ONLY using D3.JS Library. We've made sure each one of them is responsive and can be tested by resizing the window.       
+- **Transitions & Interactive**:  Circle Packing (Page: Area-Wise Clustering), Bipartite Graph (Page: Disease-Category Correlation), Geochart (Page: Geographic Mortality Rate), Area chart (Page: Healthcare Expenditure Analysis). Basically, all our charts have some form of Interaction, but these three are significant when pointing out the Interactivity. 
+- **D3 Charts**: PieChart, Heatmap, Stacked Bar Chart (Page: Age Group Analysis I & II)  
+- **D3 Layouts**: Circle Packing (Page: Area-wise Clustering)  
+- **Use of external JS Library**: Used Viz.js for Bipartite Diagram.
            
            
 # PROJECT IMPLEMENTATION   
