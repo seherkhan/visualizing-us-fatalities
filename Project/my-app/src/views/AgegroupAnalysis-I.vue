@@ -3,28 +3,40 @@
     <div class="container" style="margin:25px;">	
       <h1 class="display-4" style="font-size:25px;font-weight:bold;">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
       <br/>
-      <div class="alert alert-info" role="alert" style="width:82%">
-          Click on the buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
-      </div>
-      <hr class="my-3">
-      <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="under1">Under 1 year</button>
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b1to4">1 - 4 years</button>
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b5to14">5 - 14 years</button>
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b15to24">15 - 24 years</button>
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b25to44">25 - 44 years</button>
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b45to64">45 - 64 years</button>   
-      <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b64over">65 years and over</button>      
-      <br/><br/>
-      <table class="table" id="piee">
-          <tr>
-              <th>Pie Chart for Year 1980</th>
-              <th>Pie Chart for Year 2016</th>
-          </tr>
-          <tr>
-              <td><div id='pie1980'></div></td>
-              <td><div id='pie2016'></div></td>
-          </tr>
-      </table><br/><br/>
+      <p class="lead">The visualizations represent the top causes of Deaths for varios Age Groups.
+                There are selector buttons for Age Groups below. Selecting a particular group,
+                gives you a comparision of top 10 causes of Deaths in the year 1980 vs year 2016.
+                The Pie Chart gives you an overall breakdown of the causes.
+                With the Table format, you get the complete information of the data points, and 
+                the Pie chart helps you visualize the contribution of each cause relatively.
+            </p>
+            <br/>
+            <div class="alert alert-info" role="alert">
+                Click on the buttons with the age-range to compare the Causes of Deaths in 1980 and 2016.
+            </div>
+
+            <hr class="my-3">
+
+                <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="under1">Under 1 year</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b1to4">1 - 4 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b5to14">5 - 14 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b15to24">15 - 24 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b25to44">25 - 44 years</button>
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b45to64">45 - 64 years</button>   
+                <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="b64over">65 years and over</button>
+            
+            <br/><br/>
+        
+            <table class="table" id="piee">
+                <tr>
+                    <th>Distribution for Year 1980</th>
+                    <th>Distribution for Year 2016</th>
+                </tr>
+                <tr>
+                    <td><div id='pie1980'></div></td>
+                    <td><div id='pie2016'></div></td>
+                </tr>
+            </table>
     </div>
     <table class="table" id="infotab"></table><br/><br/><br/><br/>
 
@@ -50,104 +62,107 @@
   </div>
 </template>
 <script>
-import * as d3v5 from 'd3v5'
+import * as d3v5 from 'd3'
 export default {
   name: 'age1',
   mounted () {
-
-  var width = 600,
-    height = 500,
+      var width = 600
+    height = 500
     margin = 0
 
-  // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-  var radius = Math.min(width, height) / 2 - margin;
+    // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
+    var radius = Math.min(width, height) / 2 - margin;
 
-  // append the svg object to the div called 'my_dataviz'
-  var svg1980 = d3v5.select("#pie1980")
-      .append("svg")
-      .attr("viewBox", [0, 0, width, height])
-      //.attr("width", width)
-      //.attr("height", height)
-      .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+// append the svg object to the div called 'my_dataviz'
+    var svg1980 = d3.select("#pie1980")
+        .append("svg")
+        .attr('viewBox', [0, 0, width, height])
+        //.attr("width", width)
+        //.attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var svg2016 = d3v5.select("#pie2016")
-      .append("svg")
-      .attr("viewBox", [0, 0, width, height])
-      //.attr("width", width)
-      //.attr("height", height)
-      .append("g")
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+    var svg2016 = d3.select("#pie2016")
+        .append("svg")
+        .attr('viewBox', [0, 0, width, height])
+        //.attr("width", width)
+        //.attr("height", height)
+        .append("g")
+        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-  var dataset, all, mode;
-  var color = d3v5.scaleOrdinal()
-      .domain([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-      .range(d3v5.schemePaired);
+    var dataset, all, mode;
 
-  d3v5.json('tabledata.json').then(function(data) { // CHANGED: added then
-    dataset = data.slice(0, 10);
-    //.attr('fill', function(d){ return(color(d.data['Rank'])) })
-    all = data;
-    mode = 'under1';
-    drawTable();
-    drawPieChart();
-  });
+    var color = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a8a29e", "#a05d56", 
+    "#d0743c", "#ff8c00", "#ebaf8a", "#d4bfb2", "#807c7a", "#bababa"];
+      d3.json('Data/tabledata.json', function(data) {
+        dataset = data.slice(0, 10);
+        //.attr('fill', function(d){ return(color(d.data['Rank'])) })
 
-  function drawPieChart() {
-      //For 1980
-        var pie = d3v5.pie()
-            .value(function(d) {return +d['Deaths_1980']})
-            .sort(null);
+        //console.log(dataset);
+        all = data;
+        mode = 'under1';
+        drawTable();
+        drawPieChart();
+      });
 
-        var data_ready = pie(dataset);
+      function drawPieChart() {
+          //For 1980
+            var pie = d3.pie()
+                .value(function(d) {return +d['Deaths_1980']})
+                .sort(null);
 
-        var u = svg1980.selectAll('path')
-            .data(data_ready);
+            var data_ready = pie(dataset);
 
-
-        u.enter()
-        .append('path')
-        .merge(u)
-        .transition()
-        .duration(800)
-        .attr('d', d3v5.arc()
-        .innerRadius(0)
-        .outerRadius(radius - 70))
-        .attr('fill', function(d){ return(color(d.data['Rank'])) })
-        .attr("stroke", "white")
-        .style("stroke-width", "1px")
-        .style("opacity", 1);
+            var u = svg1980.selectAll('path')
+                .data(data_ready);
 
 
-        //For 2016
-        var pie2 = d3v5.pie()
-            .value(function(d) {return +d['Deaths_2016']})
-            .sort(null);
+            u.enter()
+            .append('path')
+            .merge(u)
+            .transition()
+            .duration(800)
+            .attr('d', d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius - 70))
+            //.attr('fill', function(d){ return(color(d.data['Rank'])) })
+            .attr('fill', function(d){ return(color[d.data['Rank']]) })
+            .attr("stroke", "white")
+            .style("stroke-width", "1px")
+            .style("opacity", 1);
 
-        var data_ready2 = pie2(dataset);
 
-        var u2 = svg2016.selectAll('path')
-            .data(data_ready2);
+            //For 2016
+            var pie2 = d3.pie()
+                .value(function(d) {return +d['Deaths_2016']})
+                .sort(null);
 
-        u2.enter()
-        .append('path')
-        .merge(u2)
-        .transition()
-        .duration(1000)
-        .attr('d', d3v5.arc()
-        .innerRadius(0)
-        .outerRadius(radius - 70))
-        .attr('fill', function(d){ return(color(d.data['Rank'])) })
-        .attr("stroke", "white")
-        .style("stroke-width", "1px")
-        .style("opacity", 1);
+            var data_ready2 = pie2(dataset);
 
-        u2.exit().remove();
-      }
+            var u2 = svg2016.selectAll('path')
+                .data(data_ready2);
+
+            u2.enter()
+            .append('path')
+            .merge(u2)
+            .transition()
+            .duration(800)
+            .attr('d', d3.arc()
+            .innerRadius(0)
+            .outerRadius(radius - 70))
+            .attr('fill', function(d){ return(color[d.data['Rank']]) })
+            .attr("stroke", "white")
+            .style("stroke-width", "1px")
+            .style("opacity", 1);
+
+            //u1.exit().remove();
+            //u2.exit().remove();
+
+      };
 
 
       function drawTable() {
-        var table = d3v5.select('body').select('#infotab');
+        var table = d3.select('body').select('#infotab');
         var headers = table.append('tr');
 
         var tr = table.selectAll('tr.data')
@@ -187,155 +202,156 @@ export default {
         tr.append('td').attr('class', 'deaths2016')
             .text(function(d) {if(d['index']%10 == 1) {return d['Deaths_2016']}})
             .style('padding', function(d) {if(d['index']%10 != 1) {return 0}});
-      } 
+      };
+      
 
       //#under1, #b1to4, #b5to14, #b25to44, #b45to64, #b64over
-      d3v5.select('#under1').on('click', function() {
+      d3.select('#under1').on('click', function() {
         if(mode != 'under1'){
-            d3v5.select('#under1').classed('active', true).attr('aria-pressed', "true");
-            d3v5.select('#b1to4').classed('active', false);
-            d3v5.select('#b5to14').classed('active', false);
-            d3v5.select('#b15to24').classed('active', false);
-            d3v5.select('#b25to44').classed('active', false);
-            d3v5.select('#b45to64').classed('active', false);
-            d3v5.select('#b64over').classed('active', false);
+            d3.select('#under1').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
             dataset = all.slice(0, 10);
             mode = 'under1';
             filterTable();
             drawPieChart();
         }
-      });
+    });
 
-      d3v5.select('#b1to4').on('click', function() {
-          if(mode != 'b1to4'){
-              d3v5.select('#b1to4').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#under1').classed('active', false);
-              d3v5.select('#b5to14').classed('active', false);
-              d3v5.select('#b15to24').classed('active', false);
-              d3v5.select('#b25to44').classed('active', false);
-              d3v5.select('#b45to64').classed('active', false);
-              d3v5.select('#b64over').classed('active', false);
-              dataset = all.slice(10, 20);
-              mode = 'b1to4';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b1to4').on('click', function() {
+        if(mode != 'b1to4'){
+            d3.select('#b1to4').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#under1').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
+            dataset = all.slice(10, 20);
+            mode = 'b1to4';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
-      d3v5.select('#b5to14').on('click', function() {
-          if(mode != 'b5to14'){
-              d3v5.select('#b5to14').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#b1to4').classed('active', false);
-              d3v5.select('#under1').classed('active', false);
-              d3v5.select('#b15to24').classed('active', false);
-              d3v5.select('#b25to44').classed('active', false);
-              d3v5.select('#b45to64').classed('active', false);
-              d3v5.select('#b64over').classed('active', false);
-              dataset = all.slice(20, 30);
-              mode = 'b5to14';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b5to14').on('click', function() {
+        if(mode != 'b5to14'){
+            d3.select('#b5to14').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
+            dataset = all.slice(20, 30);
+            mode = 'b5to14';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
-      d3v5.select('#b15to24').on('click', function() {
-          if(mode != 'b15to24'){
-              d3v5.select('#b15to24').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#b1to4').classed('active', false);
-              d3v5.select('#b5to14').classed('active', false);
-              d3v5.select('#under1').classed('active', false);
-              d3v5.select('#b25to44').classed('active', false);
-              d3v5.select('#b45to64').classed('active', false);
-              d3v5.select('#b64over').classed('active', false);
-              dataset = all.slice(30, 40);
-              mode = 'b15to24';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b15to24').on('click', function() {
+        if(mode != 'b15to24'){
+            d3.select('#b15to24').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
+            dataset = all.slice(30, 40);
+            mode = 'b15to24';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
-      d3v5.select('#b25to44').on('click', function() {
-          if(mode != 'b25to44'){
-              d3v5.select('#b25to44').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#b1to4').classed('active', false);
-              d3v5.select('#b5to14').classed('active', false);
-              d3v5.select('#b15to24').classed('active', false);
-              d3v5.select('#under1').classed('active', false);
-              d3v5.select('#b45to64').classed('active', false);
-              d3v5.select('#b64over').classed('active', false);
-              dataset = all.slice(40, 50);
-              mode = 'b25to44';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b25to44').on('click', function() {
+        if(mode != 'b25to44'){
+            d3.select('#b25to44').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#b64over').classed('active', false);
+            dataset = all.slice(40, 50);
+            mode = 'b25to44';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
-      d3v5.select('#b45to64').on('click', function() {
-          if(mode != 'b45to64'){
-              d3v5.select('#b45to64').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#b1to4').classed('active', false);
-              d3v5.select('#b5to14').classed('active', false);
-              d3v5.select('#b15to24').classed('active', false);
-              d3v5.select('#b25to44').classed('active', false);
-              d3v5.select('#under1').classed('active', false);
-              d3v5.select('#b64over').classed('active', false);
-              dataset = all.slice(50, 60);
-              mode = 'b45to64';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b45to64').on('click', function() {
+        if(mode != 'b45to64'){
+            d3.select('#b45to64').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            d3.select('#b64over').classed('active', false);
+            dataset = all.slice(50, 60);
+            mode = 'b45to64';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
 
-      d3v5.select('#b64over').on('click', function() {
-          if(mode != 'b64over'){
-              d3v5.select('#b64over').classed('active', true).attr('aria-pressed', "true");
-              d3v5.select('#b1to4').classed('active', false);
-              d3v5.select('#b5to14').classed('active', false);
-              d3v5.select('#b15to24').classed('active', false);
-              d3v5.select('#b25to44').classed('active', false);
-              d3v5.select('#b45to64').classed('active', false);
-              d3v5.select('#under1').classed('active', false);
-              dataset = all.slice(60, 70);
-              mode = 'b64over';
-              filterTable();
-              drawPieChart();
-          }
-      });
+    d3.select('#b64over').on('click', function() {
+        if(mode != 'b64over'){
+            d3.select('#b64over').classed('active', true).attr('aria-pressed', "true");
+            d3.select('#b1to4').classed('active', false);
+            d3.select('#b5to14').classed('active', false);
+            d3.select('#b15to24').classed('active', false);
+            d3.select('#b25to44').classed('active', false);
+            d3.select('#b45to64').classed('active', false);
+            d3.select('#under1').classed('active', false);
+            dataset = all.slice(60, 70);
+            mode = 'b64over';
+            filterTable();
+            drawPieChart();
+        }
+    });
 
 
 
       function filterTable() {
-        d3v5.selectAll('.category')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.category')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Category']} else {return d['Rank']}})
             .attr("rowspan", function(d) {if(d['index']%10 == 1) return 10});
         
 
-        d3v5.selectAll('.rank')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.rank')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Rank']} else {return ''}})
             .style('background-color', function(d) {if(d['index']%10 == 1) {return 'white'} else {return d['Color']}});
 
-        d3v5.selectAll('.color')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.color')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return ''} else {return d['Cause_1980']}})
             .style('background-color', function(d) {if(d['index']%10 == 1) {return d['Color']} else {return 'white'}});
 
-        d3v5.selectAll('.cause1980')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.cause1980')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Cause_1980']} else {return d['Deaths_1980']}});
 
-        d3v5.selectAll('.deaths1980')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.deaths1980')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Deaths_1980']} else {return d['Cause_2016']}});
 
-        d3v5.selectAll('.cause2016')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.cause2016')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Cause_2016']} else {return d['Deaths_2016']}});
 
-        d3v5.selectAll('.deaths2016')
-            .data(dataset).transition().duration(1000)
+        d3.selectAll('.deaths2016')
+            .data(dataset).transition().duration(800)
             .text(function(d) {if(d['index']%10 == 1) {return d['Deaths_2016']}})
             .style('padding', function(d) {if(d['index']%10 != 1) {return 0}});
       }
