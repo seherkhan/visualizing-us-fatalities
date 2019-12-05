@@ -12,23 +12,23 @@
 - [YouTube video](<youtube-video-url>)     
              
 ### PROJECT CONTRIBUTIONS
-- **Demonstration**: Seher Khan, Shraddha Kulkarni     
-- **Presentation**: Shraddha Kulkarni, Seher Khan     
-- **Transcript**: Shraddha Kulkarni     
-- **Youtube video**: Shraddha Kulkarni     
-- **Website**: Seher Khan (BackEnd), Shraddha Kulkarni (FrontEnd)     
-- **Cover Page & Team Page:** Shraddha Kulkarni and Seher Khan     
-- **Area Chart** - Personal Healthcare Expenditure: Seher Khan     
-- **Circle Packing** - Clustering the States of the USA based on the Diseases: Seher Khan     
-- **Geochart** - Age adjusted Death Rate by Category: Shraddha Kulkarni    
-- **Bipartite Graph** - Correspondence between disease and category: Shraddha Kulkarni    
-- **Stacked Bar Chart** - Death Rate - Age group over the years: Seher Khan     
-- **Heatmap** - Death Rate - Age group over the years: Seher Khan     
-- **Pie chart** - Top 10 Causes of Deaths over the years: Shraddha Kulkarni     
-- **Group Chart** - Death Rate over the years by Category: Shraddha Kulkarni     
-- **Sankey Diagram** - Shraddha Kulkarni      
-        
-       
+- **Demonstration**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)         
+- **Presentation**: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)      
+- **Transcript**: Shraddha Kulkarni (shraddhk@usc.edu)        
+- **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu)       
+- **Website**: Seher Khan (seherkha@usc.edu) (BackEnd), Shraddha Kulkarni (shraddhk@usc.edu) (FrontEnd)     
+- **Cover Page & Team Page:** Shraddha Kulkarni (shraddhk@usc.edu) and Seher Khan (seherkha@usc.edu)        
+- **Area Chart** - Personal Healthcare Expenditure: Seher Khan (seherkha@usc.edu)      
+- **Circle Packing** - Clustering the States of the USA based on the Diseases: Seher Khan (seherkha@usc.edu)        
+- **Geochart** - Age adjusted Death Rate by Category: Shraddha Kulkarni (shraddhk@usc.edu)     
+- **Bipartite Graph** - Correspondence between disease and category: Shraddha Kulkarni (shraddhk@usc.edu)       
+- **Stacked Bar Chart** - Death Rate - Age group over the years: Seher Khan (seherkha@usc.edu)        
+- **Heatmap** - Death Rate - Age group over the years: Seher Khan (seherkha@usc.edu)        
+- **Pie chart** - Top 10 Causes of Deaths over the years: Shraddha Kulkarni (shraddhk@usc.edu)       
+- **Group Chart** - Death Rate over the years by Category: Shraddha Kulkarni (shraddhk@usc.edu)       
+- **Sankey Diagram** - Shraddha Kulkarni (shraddhk@usc.edu)      
+           
+           
 # PROJECT IMPLEMENTATION   
        
 ## Project Summary

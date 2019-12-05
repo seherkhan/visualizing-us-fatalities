@@ -23,8 +23,8 @@
      
 ## Slide 4     
 ![Slide4](final_ppt/5.jpg)          
-* As seen in the slide, the website consists of 6 different web pages with 8 Visualization as listed.     
-      
+* As seen in the slide, the website consists of 6 different web pages with 8 Visualization as listed. The Geochart, Grouped Bar Chart, Sankey Diagram, and Pie Chart was made by Shraddha Kulkarni, and the Heatmap, Area chart, Circle Mapping, and Stacked bar chart is made by Seher Khan.          
+         
 In the next few Slides, we are going to cover the type of visualization we are planning to make for the project. One common features among all these visualizations is that user will be able to filter their results for a particular cause like heart disease, cancer, diabetes, etc.     
       
 ## Slide 5 
