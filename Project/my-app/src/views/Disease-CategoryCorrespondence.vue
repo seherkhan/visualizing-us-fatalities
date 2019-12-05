@@ -9,7 +9,7 @@
     
     <StackedBar v-bind:dataset ="dataset2" v-if="dataLoaded"/>
     <br/><br/><br/><br/><br/>
-    <!--Sankey v-bind:dataset ="dataset1" v-if="dataLoaded"/-->
+    <Sankey v-bind:dataset ="dataset1" v-if="dataLoaded"/>
 </div>
 
 </template>
@@ -28,12 +28,12 @@ export default {
     };
   },
   components: {
-    //Sankey, 
+    Sankey, 
     StackedBar
   },
   mounted() {
     var promises = [];
-    promises.push([] /*d3v5.json("sankey-data.json")*/);
+    promises.push(d3v5.json("stacked-bar-chart.json"));
     promises.push(d3v5.json("stacked-bar-chart.json"));
     var view = this;
     Promise.all(promises).then(function(values) {

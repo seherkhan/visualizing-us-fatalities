@@ -18,8 +18,9 @@
     <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="BHL">Black, not Hispanic or Latino</button>
     <br/><br/>
      
-    <div id='barchart'>
+    
     <div id="tooltip"></div><!-- div to hold tooltip. -->
+    <div id='barchart'>
           <svg ref="stackbar"></svg>
     </div><br/><br/><br/>
 
@@ -394,5 +395,40 @@ var widthx = 1500;
   }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style>
+        #tooltip {   
+            position: absolute;           
+            text-align: center;
+            padding: 20px;             
+            margin: 10px;
+            font: 12px sans-serif;        
+            background: lightsteelblue;   
+            border: 1px;      
+            border-radius: 2px;           
+            pointer-events: none;         
+        }
+        #tooltip h4{
+            margin:0;
+            font-size:14px;
+        }
+        #tooltip{
+            background:rgba(0,0,0,0.9);
+            border:2px solid grey;
+            border-radius:5px;
+            font-size:12px;
+            width:auto;
+            padding:4px;
+            padding-top: 5px;
+            color:white;
+            opacity:0;
+        }
+
+    .bar {
+        fill: #cce6ff; 
+        shape-rendering: crispEdges;}
+
+    body {
+        margin: 20px;
+    }
+        
+        </style>

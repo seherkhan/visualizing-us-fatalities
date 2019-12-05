@@ -497,10 +497,9 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     allData = sampleData;
     svgmap = d3v5.select('#statesvg').append("svg")
       .attr('id', 'svgmap')
-      .attr("viewBox", [3, 0, width + margin.left + margin.right +50, height + margin.top + 3*margin.bottom])
-      //.attr("viewBox", [0, 0, stdwid+200, stdheight + 250])
-      /*.attr('width', stdwid)
-      .attr('height', stdheight);*/
+      .attr("viewBox", [0, 0, stdwid, stdheight])
+      //.attr('width', stdwid)
+      //.attr('height', stdheight);
 
 
     drawMap("#svgmap", sampleData, tooltipHtml);
@@ -510,7 +509,7 @@ var margin = { top: 50, left: 20, bottom: 80, right: 15 }
     
     //----------------- DRAWING BAR CHART ---------------------------------------
     svg = d3v5.select("#chart")
-      .attr("viewBox", [-50, 0, width + margin.left + margin.right+50, height + margin.top + margin.bottom])
+      .attr("viewBox", [-50, 0, width + margin.left + margin.right+500, height + margin.top + margin.bottom-50])
       //.attr('width', width + margin.left + margin.right + 100)
       //.attr('height', height + margin.top + margin.bottom)
       .append('g')

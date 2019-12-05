@@ -94,7 +94,9 @@ export default {
         
         var color = d3v5.scaleOrdinal()
             .domain(data.columns.slice(1))
-            .range(d3v5.schemeYlOrRd[9]) 
+            //.range(d3v5.schemeYlOrRd[9])
+            .range(d3v5.schemeReds[9].slice(0,9).reverse())
+            //.range(d3v5.interpolateRgb("#ffffcc", '#800026')[5])
             
         var xAxis = g =>
             g.attr("transform", `translate(0,${height - margin.bottom})`)
