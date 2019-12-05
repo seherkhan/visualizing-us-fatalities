@@ -16,7 +16,7 @@
 - **Presentation**: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)      
 - **Transcript**: Shraddha Kulkarni (shraddhk@usc.edu)        
 - **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu)       
-- **Website**: Seher Khan (seherkha@usc.edu) (BackEnd), Shraddha Kulkarni (shraddhk@usc.edu) (FrontEnd)     
+- **Website**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)           
 - **Cover Page & Team Page:** Shraddha Kulkarni (shraddhk@usc.edu) and Seher Khan (seherkha@usc.edu)        
 - **Area Chart** - Personal Healthcare Expenditure: Seher Khan (seherkha@usc.edu)      
 - **Circle Packing** - Clustering the States of the USA based on the Diseases: Seher Khan (seherkha@usc.edu)        

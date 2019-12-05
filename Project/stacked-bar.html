@@ -56,6 +56,10 @@
                 <h1 class="display-4">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>
                 
                     <p class="lead">Trends over the Years - United States, selected years 1950–2016.</p>
+                    <p class="lead">In this visualization we've grouped our datapoints on the basis of Category (Gender, Origin, and Race).
+                        Selector buttons should be used to select a particular Category. Each group in the chart represents a particular disease,
+                        which helps to see the overall trend of these diseases over the years in context to a particular Category.
+                    </p>
                     
                     <div class="alert alert-info" role="alert">
                             Click on the button to see individual trends for Diseases over the past decade
@@ -75,8 +79,8 @@
                 </div>
                 <br/><br/>
     
-            <div id='barchart'></div><br/><br/><br/>
-            <div id="tooltip"></div><!-- div to hold tooltip. -->
+                <div id='barchart'></div><br/><br/><br/>
+                <div id="tooltip"></div><!-- div to hold tooltip. -->
 
             <div class="container">
                     <p><u>Important Information:</u></p>
@@ -108,10 +112,11 @@
             var svgx = d3.select('#barchart')
                 .append('svg')
                 .attr('id', 'svg-bar')
-                .attr('width', widthx)
-                .attr('height', heightx)
+                .attr('viewBox', [0, 0, widthx, heightx])
+                //.attr('width', widthx)
+                //.attr('height', heightx)
                 .append('g')
-                .attr('transform', 'translate('+ widthx +', '+ heightx +')');
+                .attr('transform', 'translate('+ (widthx) +', '+ heightx +')');
 
             
             var datax, modex, allx;
@@ -411,7 +416,7 @@
         root
             .enter()
             .append("rect")
-            .transition().duration(800)
+            //.transition().duration(800)
             .attr("x", function(d) {return x1(d.key) })
             .attr("y", d => y(d.value))
             .attr("width", x1.bandwidth())

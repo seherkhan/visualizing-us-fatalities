@@ -95,15 +95,18 @@ text.label {
 	<!-- Explain the Page Content -->
 	<!-- Ask them to Click on the Buttons to view different population and click on States -->
 	<h1 class="display-4"> Age-adjusted death rates, by race, Hispanic origin, state, and territory</h1>
-	<p class="lead">Geochart and Barchart are used to display the death rates in United States and U.S. Dependent Areas. 
-		The charts represent data from year 1970 to 2016.</p>
+	<p class="lead">The visualizations are used to display the death rates in United States and U.S. Dependent Areas. 
+		They represent data from year 1970 to 2016. Selecting particular Race displays a choropleth where the darker color represents 
+	more deaths in that state, and less intense color means less people died in that state. The Breakdown of Death rates can be 
+individually seen in the Bar chart.</p>
 	<div class="alert alert-info" role="alert">
-			Click below Buttons to know the rates for specific Races. 
-				Click on the particular State to see Trend over the years.
+			Click below buttons to know the death rates for specific Races. 
+				Hover over the particular State to see Trend over the years.
 			</div>
 	
 	<hr class="my-5">
-
+		
+	<div class="container">
 		<div class="btn-group" role="group">
 			<button type="button" class="btn btn-outline-danger active" data-toggle="button" aria-pressed="true" id="ap">All Persons</button>
 			<button type="button" class="btn btn-outline-primary" data-toggle="button" aria-pressed="false" id="wh">White</button>
@@ -121,6 +124,8 @@ text.label {
 				
 	<br/><br/><br/>
 	<svg id="chart"></svg>
+	</div>
+		
 
 	<!-- Add Data References -->
 	<br/><br/><br/>
@@ -150,10 +155,10 @@ text.label {
 	//---------------------- VARIABLE DECLARATION -------------------------------------
 	
 	var margin = { top: 50, left: 20, bottom: 80, right: 15 };
-	var width = 900 - margin.left - margin.right;
+	var width = 1200 - margin.left - margin.right;
 	var height = 500 - margin.top - margin.bottom;
 
-	var stdwid = 1500;
+	var stdwid = 950;
 	var stdheight = 600;
        
 	var sampleData = {};
@@ -258,7 +263,8 @@ text.label {
 		'bhl': [bhl, gyear,'Black, not Hispanic or Latino']};
 
 
-	var colorsbar = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#d49b81"];
+	//var colorsbar = ["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00", "#d49b81"];
+	var colorsbar = ["#8a89a6", "#8a89a6", "#8a89a6", "#8a89a6", "#8a89a6", "#8a89a6", "#8a89a6", "#8a89a6"];
 
 
 	//---------------------- MAP FUNCTIONS -------------------------------------
@@ -301,7 +307,7 @@ text.label {
 			.style("fill",function(d){
 				return data[d.id].color; })
 			.on("mouseover", mouseOver).on("mouseout", mouseOut)
-			.on("click", function(d) {
+			.on("mouseover", function(d) {
 				if (state != d.id) {
 					state = d.id;
 					bardata = filterData();
@@ -588,8 +594,9 @@ text.label {
 		allData = sampleData;
 		svgmap = d3.select('#statesvg').append("svg")
 			.attr('id', 'svgmap')
-			.attr('width', stdwid)
-			.attr('height', stdheight);
+			.attr("viewBox", [0, 0, stdwid, stdheight]);
+			//.attr('width', stdwid)
+			//.attr('height', stdheight);
 
 		drawMap("#svgmap", sampleData, tooltipHtml);
 
@@ -599,10 +606,11 @@ text.label {
 		
 		//----------------- DRAWING BAR CHART ---------------------------------------
 		svg = d3.select("#chart")
-			.attr('width', width + margin.left + margin.right + 100)
-			.attr('height', height + margin.top + margin.bottom)
+			//.attr('width', width + margin.left + margin.right + 100)
+			//.attr('height', height + margin.top + margin.bottom)
+			.attr("viewBox", [0, 0, width + margin.left + margin.right, height + margin.top + margin.bottom])
 			.append('g')
-			.attr('transform', 'translate(' + (50 + margin.left) + ', ' + margin.top + ')');
+			.attr('transform', 'translate(' + (margin.left) + ', ' + margin.top + ')');
 			
 		
 		people = 'ap';

@@ -43,11 +43,13 @@ line{
 	<div class="container">
 		<h1 class="display-4">Age-adjusted death rates for selected causes of death, by sex, race, and Hispanic origin</h1>
                 
-		<p class="lead">United States, selected years 1950–2016. Includes deaths of persons who were not residents of the 50 states and the District of Columbia (D.C.).
-				<b>Age-adjusted death rate per 100,000 population.</b></p>
+		<p class="lead">The data represents death rates in the United States for selected years 1950–2016. 
+			The chart helps us to understand the correlation between the Diseases and different Categories (Race, Origin and Gender). 
+		Hovering over a particular Disease, shows the breakdown of people who died from that disease in the selected year. 
+	Similarly, hovering over the Category, displays breakdown of various causes of deaths for the people in that category. </p>
 
 		<div class="alert alert-info" role="alert">
-				Click on the buttons to see one-to-one relationship between Diseases and Category in particular year
+				Click on the Button to select one-to-one relationship between Diseases and Category in particular year
 		</div>
 
 		<hr class="my-5">
@@ -63,10 +65,9 @@ line{
 		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2015"> 2015 </button>
 		<button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="yr2016"> 2016 </button>              
 		
-	</div>
-
 		<div id="svg-im">
 		</div>
+	</div>
 	
 	
 		<br/><br/><br/>
@@ -96,7 +97,6 @@ line{
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="viz.js"></script>
-<!--script src="https://d3plus.org/js/d3plus-viz.v0.12.full.min.js"></script-->
 
 <script>
 
@@ -131,7 +131,8 @@ var color = {
 };
 
 var svg = d3.select("#svg-im").append("svg")
-		.attr("width", 1500).attr("height", 800);
+		.attr("viewBox", [0, 0, 1500, 950]);
+		//.attr("width", 1500).attr("height", 800);
 
 
 d3.json('Data/sankey-data.json', function(d) {
@@ -369,14 +370,14 @@ function drawSankey() {
 	d3.selectAll("line").remove();
 	d3.selectAll(".mainBars").remove();
 
-	var g =[svg.append("g").attr("transform","translate(550,100)")];
+	var g =[svg.append("g").attr("transform","translate(450,100)")];
 
 	var bp=[ viz.biPartite()
 			.data(data)
 			.value(d=>d[3])
 			.min(12)
 			.pad(1)
-			.height(650)
+			.height(750)
 			.width(400)
 			.barSize(35)
 			.fill(function(d) {return color[d.primary] })
