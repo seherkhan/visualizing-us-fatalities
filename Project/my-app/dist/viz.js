@@ -1,3 +1,4 @@
+// this file is used in sankey.html
 !function(){
     var angle, reComputeLayout, keys, subgrp, chordExist, ret, legend_cols, height, g, topojson, x0, x1, refresh, tbody
     var viz = { version: "1.4.0" }
@@ -59,19 +60,19 @@
         }
         biPartite.fill = function(_){
           return arguments.length ? (fill = _, refresh=true, biPartite) 
-              : fill || (fill=function(){var color = d3v5.scaleOrdinal(d3v5.schemeCategory10);  return function(d){ return color(d.primary);}}());    
+              : fill || (fill=function(){var color =  d3.scaleOrdinal( d3.schemeCategory10);  return function(d){ return color(d.primary);}}());    
         }
         biPartite.keyPrimary = function(_){ 
           return arguments.length ? (keyPrimary = _, refresh=true, biPartite) : keyPrimary || (keyPrimary=function(d){ return d[0] });
         }
         biPartite.sortPrimary = function(_){ 
-          return arguments.length ? (sortPrimary = _, refresh=true, biPartite) : sortPrimary || (sortPrimary=d3v5.ascending) ;
+          return arguments.length ? (sortPrimary = _, refresh=true, biPartite) : sortPrimary || (sortPrimary= d3.ascending) ;
         }
         biPartite.keySecondary = function(_){ 
           return arguments.length ? (keySecondary = _, refresh=true, biPartite) : keySecondary||(keySecondary=function(d){ return d[1] });
         }
         biPartite.sortSecondary = function(_){ 
-          return arguments.length ? (sortSecondary = _, refresh=true, biPartite) : sortSecondary || (sortSecondary=d3v5.ascending);  
+          return arguments.length ? (sortSecondary = _, refresh=true, biPartite) : sortSecondary || (sortSecondary= d3.ascending);  
         }    
         biPartite.value = function(_){ 
           return arguments.length ? (value = _, refresh=true, biPartite) : value || (value=function(d){ return d[2] });
@@ -137,10 +138,10 @@
           function calculateMainBars(part){
               function v(d){ return isSelKey(d, part) ? biPartite.value()(d): 0;}
   
-              var ps = d3v5.nest()
+              var ps =  d3.nest()
                   .key(part=="primary"? biPartite.keyPrimary():biPartite.keySecondary())
                   .sortKeys(part=="primary"? biPartite.sortPrimary():biPartite.sortSecondary())
-                  .rollup(function(d){ return d3v5.sum(d,v); })
+                  .rollup(function(d){ return  d3.sum(d,v); })
                   .entries(data)
               
               var bars = bpmap(ps, biPartite.pad(), biPartite.min(), 0, _or=="vertical" ? biPartite.height() : biPartite.width())
@@ -165,14 +166,14 @@
                       ? function(a,b){ return biPartite.sortPrimary()(a.key, b.key);}
                       : function(a,b){ return biPartite.sortSecondary()(a.key, b.key);}
                       
-              var map = d3v5.map(mainBars[part], function(d){ return d.key});
+              var map =  d3.map(mainBars[part], function(d){ return d.key});
               
-              var ps = d3v5.nest()
+              var ps =  d3.nest()
                   .key(part=="primary"? biPartite.keyPrimary():biPartite.keySecondary())
                   .sortKeys(part=="primary"? biPartite.sortPrimary():biPartite.sortSecondary())
                   .key(part=="secondary"? biPartite.keyPrimary():biPartite.keySecondary())
                   .sortKeys(part=="secondary"? biPartite.sortPrimary():biPartite.sortSecondary())
-                  .rollup(function(d){ return d3v5.sum(d,v); })
+                  .rollup(function(d){ return  d3.sum(d,v); })
                   .entries(biPartite.data());
       
               ps.forEach(function(d){ 
@@ -199,7 +200,7 @@
               });
           }
           function calculateEdges(){  
-              var map=d3v5.map(subBars.secondary,function(d){ return d.index;});
+              var map= d3.map(subBars.secondary,function(d){ return d.index;});
               var eMode= biPartite.edgeMode();
               
               return subBars.primary.map(function(d){
@@ -229,7 +230,7 @@
           }
           function bpmap(a/*array*/, p/*pad*/, m/*min*/, s/*start*/, e/*end*/){
             var r = m/(e-s-2*a.length*p); // cut-off for ratios
-            var ln =0, lp=0, t=d3v5.sum(a,function(d){ return d.value;}); // left over count and percent.
+            var ln =0, lp=0, t= d3.sum(a,function(d){ return d.value;}); // left over count and percent.
             a.forEach(function(d){ if(d.value < r*t ){ ln+=1; lp+=d.value; }})
             var o= t < 1e-5 ? 0:(e-s-2*a.length*p-ln*m)/(t-lp); // scaling factor for percent.
             var b=s, ret=[];
@@ -400,13 +401,13 @@
         ,minorTickStart:.9, minorTickEnd:.95, majorTickStart:.82, majorTickEnd:.95
         ,needleColor:"#de2c2c", innerFaceColor:"#999999", faceColor:"#666666"
         ,domain:[0,100], duration:500, ease:"cubicInOut"
-        ,ticks:d3v5.range(0,101,2), majorTicks: function(d){ return d%10===0}
+        ,ticks: d3.range(0,101,2), majorTicks: function(d){ return d%10===0}
         ,labelLocation: .7
       }
       function gg(_){
         g=_;
         _.each(function() {
-            var g = d3v5.select(this);
+            var g =  d3.select(this);
             var a = gg.scale();
             var mS=gg.minorTickStart(), mE=gg.minorTickEnd(),MS=gg.majorTickStart(), ME=gg.majorTickEnd();
             var ticks=gg.ticks(), mT=gg.majorTicks(), lL=gg.labelLocation();
@@ -457,7 +458,7 @@
         });      
       }
       gg.scale = function(){ 
-        return d3v5.scale.linear().domain(gg.domain())
+        return  d3.scale.linear().domain(gg.domain())
             .range([def.startAngle+gg.angleOffset(), def.endAngle -gg.angleOffset()]);
       }
       gg.innerRadius = function(_){
@@ -555,17 +556,17 @@
         
         var lg1 =viz.defs(defs).lG().id("vizgg1"+dg).sel();    
         viz.defs(lg1).stop().offset("0").stopColor(nc);
-        viz.defs(lg1).stop().offset("1").stopColor(d3v5.rgb(nc).darker(1));
+        viz.defs(lg1).stop().offset("1").stopColor( d3.rgb(nc).darker(1));
         
         var rg1 =viz.defs(defs).rG().id("vizgg2"+dg)
             .fx("35%").fy("65%").r("65%").spreadMethod("pad").sel();
         viz.defs(rg1).stop().offset("0").stopColor(fc);
-        viz.defs(rg1).stop().offset("1").stopColor(d3v5.rgb(fc).darker(2));
+        viz.defs(rg1).stop().offset("1").stopColor( d3.rgb(fc).darker(2));
         
         var rg2 =viz.defs(defs).rG().id("vizgg3"+dg)
             .fx("35%").fy("65%").r("65%").spreadMethod("pad").sel();
         viz.defs(rg2).stop().offset("0").stopColor(fbc);
-        viz.defs(rg2).stop().offset("1").stopColor(d3v5.rgb(fbc).darker(2));
+        viz.defs(rg2).stop().offset("1").stopColor( d3.rgb(fbc).darker(2));
         
         viz.defs(defs).lG().id("vizgg4"+dg).gradientUnits("userSpaceOnUse")
             .y1("80").x1("-10").y2("80").x2("10").xlink("#vizgg1"+dg)
@@ -584,23 +585,23 @@
       gg.setNeedle =function(a){
         var newAngle=gg.scale()(a)*180/pi+90
             ,oldAngle=gg.scale()(gg.value())*180/pi+90
-            ,d3v5ease = gg.ease()
+            , d3ease = gg.ease()
             ;
         g.selectAll(".needle").data([a])
             .transition().duration(gg.duration())
             .attrTween("transform",function(d){ return iS(oldAngle,newAngle); })
-            .ease(d3v5ease);
+            .ease( d3ease);
         
         g.selectAll(".needleshadow").data([a])
             .transition().duration(gg.duration())
             .attrTween("transform",function(d){  return iS(oldAngle,newAngle); })
-            .ease(d3v5ease)
+            .ease( d3ease)
             .each("end",function(){angle=a;});
             
         gg.value(a);
         
         function iS(o,n){
-            return d3v5.interpolateString("rotate("+o+")", "rotate("+n+")");
+            return  d3.interpolateString("rotate("+o+")", "rotate("+n+")");
         }
       }
       
@@ -716,7 +717,7 @@
   }
   chord.sort = function(_){ 
     return arguments.length ? (sort = _, reComputeLayout=true, chord) 
-        :  typeof sort !== "undefined" ? sort : (sort=d3v5.ascending); 
+        :  typeof sort !== "undefined" ? sort : (sort= d3.ascending); 
   }
   chord.startAngle = function(_){ 
     return arguments.length ? (startAngle = _, reComputeLayout=true, chord) 
@@ -794,7 +795,7 @@
       groups.push({
          source:k
         ,type:"g" //group to outside
-        ,value:d3v5.sum(keys, function(d){ return subgrp[k][d]})
+        ,value: d3.sum(keys, function(d){ return subgrp[k][d]})
         ,skipPad:false
         ,index:i
       });
@@ -828,7 +829,7 @@
             });
         });
       });
-    var m = d3v5.map(chords, function(d){ return d.indexsubindex;});
+    var m =  d3.map(chords, function(d){ return d.indexsubindex;});
     chords.forEach(function(d){ 
       if(d.subindex == d.index){
         d.endStartAngle=d.startAngle; d.endEndAngle=d.startAngle;
@@ -918,9 +919,9 @@
                    });
       });
     });
-    var m = d3v5.map(newchords.map(function(d){ return {startAngle:d.startAngle, endAngle:d.endAngle, indexsubindex:d.indexsubindex}})
+    var m =  d3.map(newchords.map(function(d){ return {startAngle:d.startAngle, endAngle:d.endAngle, indexsubindex:d.indexsubindex}})
          , function(d){ return d.indexsubindex;});
-    var gmap = d3v5.map(newgroups.filter(function(d){ return d.type=="gs"}),function(d){ return d.source;});
+    var gmap =  d3.map(newgroups.filter(function(d){ return d.type=="gs"}),function(d){ return d.source;});
     
     newchords.forEach(function(d){ 
       if(d.subindex == d.index){
@@ -946,22 +947,22 @@
                        innerRadius, d.endStartAngle, d.endEndAngle);
     }
     function chordTween(a) {
-      var i = d3v5.interpolate(this._current, a);
+      var i =  d3.interpolate(this._current, a);
       this._current = i(0);
       return function(t) { return _chord(i(t)); }
     }  
     function arcTween(a) {
-      var i = d3v5.interpolate(this._current, a);
+      var i =  d3.interpolate(this._current, a);
       this._current = i(0);
       return function(t) { return arc(i(t),t); }
     }  
     function labelTweenx(a) {
-      var i = d3v5.interpolate(this._current, a);
+      var i =  d3.interpolate(this._current, a);
       this._current = i(0);
       return function(t) { return labelPadding*outerRadius*Math.cos(angle(i(t))); }
     }  
     function labelTweeny(a) {
-      var i = d3v5.interpolate(this._current, a);
+      var i =  d3.interpolate(this._current, a);
       this._current = i(0);
       return function(t) { return labelPadding*outerRadius*Math.sin(angle(i(t))); }
     }  
@@ -1008,7 +1009,7 @@
       }
       if(!found) console.log("The fixed source '" +fixedSource+"' is not a valid key" );
     }  
-    var dorder = d3v5.range(data.length);
+    var dorder =  d3.range(data.length);
     if(fixed) dorder =dorder.slice(ind).concat(dorder.slice(0,ind));
       
     var a0 = data.filter(function(d){ return (!fixed || d.source!==fixedSource  || d.type!="g") && !d.skipPad})
@@ -1016,7 +1017,7 @@
       
     var ta = 2*Math.PI - (fixed ? (data[ind].endAngle-data[ind].startAngle +2*pad): 0);
   
-    var x=(fixed ? data[ind].endAngle +pad: startAngle), total = d3v5.sum(a0);
+    var x=(fixed ? data[ind].endAngle +pad: startAngle), total =  d3.sum(a0);
     var r=viz_getratio(a0, pad, min, ta<=0 ? 0 : ta, total, fixed ? true: false);
     
     dorder.slice(fixed ? 1:0).forEach(function(i){
@@ -1085,7 +1086,7 @@
                 
         var cellHeight=rowScale.bandwidth(), cellWidth=colScale.bandwidth();
         
-        var loc = d3v5.range(data.length).map(function(k){
+        var loc =  d3.range(data.length).map(function(k){
             var x = k % cols, y = (k-x)/cols; 
             return {x:colScale(x), y:rowScale(y), width:size, height:cellHeight, key:data[k] }
         });
@@ -1109,15 +1110,15 @@
     }
     legend.rowScale = function(_){
         return typeof rowScale !== "undefined" ? rowScale 
-            : rowScale = d3v5.scaleBand()
-                .domain(d3v5.range(legend.rows()))
+            : rowScale =  d3.scaleBand()
+                .domain( d3.range(legend.rows()))
                 .range([0,legend.height()])
                 .paddingInner(legend.paddingInner());
     }
     legend.colScale = function(_){
         return typeof colScale !== "undefined" ? colScale 
-            : colScale = d3v5.scaleBand()
-                .domain(d3v5.range(legend_cols()))
+            : colScale =  d3.scaleBand()
+                .domain( d3.range(legend_cols()))
                 .range([0,legend.width()]);
     }
     legend.rows = function(_){
@@ -1149,10 +1150,10 @@
         return arguments.length ? (onMouseOut = _, legend) :  typeof onMouseOut !== "undefined" ? onMouseOut : (onMouseOut=function(){}) ;
     }
     legend.fill = function(_){
-        return arguments.length ? (fill = _, legend) :  typeof fill !== "undefined" ? fill : (fill=d3v5.scaleOrdinal().range(d3v5.schemeCategory10)) ;
+        return arguments.length ? (fill = _, legend) :  typeof fill !== "undefined" ? fill : (fill= d3.scaleOrdinal().range( d3.schemeCategory10)) ;
     }
     legend.rect  = function(d){  
-        d3v5.select(this)
+         d3.select(this)
             .append("rect")
             .attr("class",'legend-icon')
             .attr("height",viz_height)
@@ -1160,7 +1161,7 @@
             .style('fill',function(d){ return fill(d.key); })
             ;
             
-        d3v5.select(this)
+         d3.select(this)
             .append("text")
             .attr("x",function(d){ return size+paddingLabel;})
             .attr("y",viz_height2)
@@ -1169,7 +1170,7 @@
             ;
     }  
     legend.circle = function(d){  
-        d3v5.select(this)
+         d3.select(this)
             .append("circle")
             .attr("class",'legend-icon')
             .attr("r",9)
@@ -1178,7 +1179,7 @@
             .style('fill',function(d){ return fill(d.key); })
             ;
             
-        d3v5.select(this)
+         d3.select(this)
             .append("text")
             .attr("x",function(d){ return size+paddingLabel;})
             .attr("y",viz_height2)
@@ -1214,7 +1215,7 @@
         viz_compute_uscounties();
         
         _.each(function() {
-          var g = d3v5.select(this);
+          var g =  d3.select(this);
           var state = uscs.state();
           
           var stateInfo = viz.maps.uscounties.stateByAbb[state];
@@ -1226,15 +1227,15 @@
                     
           var data = uscs.data();
           if(data !== undefined){
-            var countyMap = d3v5.map(data, uscs.countyFIPS());
+            var countyMap =  d3.map(data, uscs.countyFIPS());
           
             countyData.forEach(function(d){ d.data= countyMap.get(""+d.properties.SFP+d.properties.CFP);});
           }
           
-          var projection =d3v5.geoMercator().rotate(stateInfo.r)
+          var projection = d3.geoMercator().rotate(stateInfo.r)
                     .fitSize([uscs.width(), uscs.height()], topojson.merge(viz.maps.uscounties, countyTopo));
                 
-          var path= d3v5.geoPath().projection(projection);
+          var path=  d3.geoPath().projection(projection);
           
           var counties = g.append("g").attr("class","counties");
           var countyBorder = g.append("path").attr("class","county-border");
@@ -1284,7 +1285,7 @@
     function cal(_){
         g=_;
         _.each(function(){
-          var g = d3v5.select(this)
+          var g =  d3.select(this)
             ,cellWidth=cal.cellWidth()
             ,cellHeight=cal.cellHeight()
             ,date = cal.date()
@@ -1296,7 +1297,7 @@
           ;
         
           var yearg = g.selectAll(".cal-year")
-              .data(d3v5.range(cal.minYear(), cal.maxYear()+1))
+              .data( d3.range(cal.minYear(), cal.maxYear()+1))
               .enter().append("g").attr("class","cal-year")
               .attr("transform", function(d,i){ return "translate(0," + ((yearPadding+ cellHeight*7)*i) + ")";});
               
@@ -1321,9 +1322,9 @@
                 
             var rect = yearg.append("g")
                 .selectAll(".cal-day")
-                .data(function(d) { return d3v5.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+                .data(function(d) { return  d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
                 .enter().append("g").attr("class", "cal-day cal-day-empty")
-                .attr("transform", function(d) { return "translate("+((d3v5.timeWeek.count(d3v5.timeYear(d), d)+.5)*cellWidth)+","+((d.getDay()+0.5)*cellHeight)+")"; })
+                .attr("transform", function(d) { return "translate("+(( d3.timeWeek.count( d3.timeYear(d), d)+.5)*cellWidth)+","+((d.getDay()+0.5)*cellHeight)+")"; })
                 .datum(function(d){ return d})
                 .append("rect")
                 .attr("x", -.5*(cellWidth))
@@ -1333,11 +1334,11 @@
                 
             yearg.append("g")
                 .selectAll(".cal-month")
-                .data(function(d) { return d3v5.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+                .data(function(d) { return  d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
                 .enter().append("path").attr("class", "cal-month")
                 .attr("d", pathMonth);  
                 
-            var nestedData = d3v5.nest()
+            var nestedData =  d3.nest()
                 .key(date)
                 .rollup(function(d) { return value(d[0]); })
                 .object(data);
@@ -1346,12 +1347,12 @@
                 .attr("class", "cal-day cal-day-filled")
                 .style("fill", function(d) { return fill(nestedData[d]); })
                 .append("title")
-                .text(function(d) { return d3v5.timeFormat("%Y-%m-%d")(d) + ": " + valueLabel(nestedData[d]); });  
+                .text(function(d) { return  d3.timeFormat("%Y-%m-%d")(d) + ": " + valueLabel(nestedData[d]); });  
                 
             function pathMonth(t0) {
               var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
-                  d0 = t0.getDay(), w0 = d3v5.timeWeek.count(d3v5.timeYear(t0), t0),
-                  d1 = t1.getDay(), w1 = d3v5.timeWeek.count(d3v5.timeYear(t1), t1);
+                  d0 = t0.getDay(), w0 =  d3.timeWeek.count( d3.timeYear(t0), t0),
+                  d1 = t1.getDay(), w1 =  d3.timeWeek.count( d3.timeYear(t1), t1);
               return "M" + (w0 + 1) * cellWidth + "," + d0 * cellHeight
                   + "H" + w0 * cellWidth + "V" + 7 * cellHeight
                   + "H" + w1 * cellWidth + "V" + (d1 + 1) * cellHeight
@@ -1413,17 +1414,17 @@
     function _fill(){
         var value = cal.value();
         
-        return d3v5.scaleLinear()
-            .domain(d3v5.extent(cal.data().map(function(d){ return value(d);})))
+        return  d3.scaleLinear()
+            .domain( d3.extent(cal.data().map(function(d){ return value(d);})))
             .range(["#deebf7","#08306b"]);
     }
     function _yearMin(){
         var date = cal.date();
-        return d3v5.min(cal.data().map(function(d){ return date(d).getFullYear();}));
+        return  d3.min(cal.data().map(function(d){ return date(d).getFullYear();}));
     }
     function _yearMax(){
         var date = cal.date();
-        return d3v5.max(cal.data().map(function(d){ return date(d).getFullYear();}));
+        return  d3.max(cal.data().map(function(d){ return date(d).getFullYear();}));
     }
     return cal;
   }
@@ -1437,7 +1438,7 @@
     function pc(_){
       g=_;
       _.each(function() {
-        var g = d3v5.select(this);
+        var g =  d3.select(this);
         updateVars();
         
         dimensions.forEach(function(d){ brushSelections[d]=null;});
@@ -1461,7 +1462,7 @@
             .enter().append("g")
             .attr("class", "dimension")
             .attr("transform", function(d) { return "translate(" + dimensionScale(d) + ")"; })
-            .call(d3v5.drag()
+            .call( d3.drag()
                     .on("start", dragstart)
                     .on("drag", drag)
                     .on("end", dragend)
@@ -1469,7 +1470,7 @@
 
         dimg.append("g")
             .attr("class", "axis")
-            .each(function(d) { d3v5.select(this).call(dimensionAxes[d]); })
+            .each(function(d) {  d3.select(this).call(dimensionAxes[d]); })
             .append("text")
             .style("text-anchor", "middle")
             .attr("y", dimensionLabelPadding)
@@ -1478,8 +1479,8 @@
         dimg.append("g")
             .attr("class", "brush")
             .each(function(d) {
-                d3v5.select(this).call(
-                    valueScale[d].brush = d3v5.brushY()
+                 d3.select(this).call(
+                    valueScale[d].brush =  d3.brushY()
                         .extent([[-brushSize/2,0],[brushSize/2,height]])
                         .on("end", brushend));
             });
@@ -1496,7 +1497,7 @@
           background.attr("visibility", "hidden");
         }
         function drag(d) {
-          dragging[d] = Math.min(width, Math.max(0, d3v5.event.x));
+          dragging[d] = Math.min(width, Math.max(0,  d3.event.x));
           
           foreground.attr("d", _path);
           
@@ -1509,7 +1510,7 @@
         function dragend(d) {
           delete dragging[d];
           
-          d3v5.select(this).transition().duration(500).attr("transform", "translate(" + dimensionScale(d) + ")");
+           d3.select(this).transition().duration(500).attr("transform", "translate(" + dimensionScale(d) + ")");
           
           foreground.transition().duration(500).attr("d", _path);
           
@@ -1521,7 +1522,7 @@
               .attr("visibility", null);
         }
         function brushend(){
-          brushSelections[this.__data__] = d3v5.event.selection
+          brushSelections[this.__data__] =  d3.event.selection
             
           var actives = dimensions.filter(function(p) { return brushSelections[p]; }),
               extents = actives.map(function(p) { return brushSelections[p].map(valueScale[p].invert, valueScale[p]); });
@@ -1559,7 +1560,7 @@
       return pc; 
     }
     pc.dimensions = function(_){ 
-      if(!arguments.length) return typeof dimensions !== 'undefined' ? dimensions : (dimensions= d3v5.keys(data[0].sort(d3v5.ascending)));
+      if(!arguments.length) return typeof dimensions !== 'undefined' ? dimensions : (dimensions=  d3.keys(data[0].sort( d3.ascending)));
       dimensions = _;
       return pc; 
     }
@@ -1581,7 +1582,7 @@
     pc.dimensionScale = function(_){ 
       if(!arguments.length) return typeof dimensionScale !== 'undefined' 
         ? dimensionScale 
-        : (dimensionScale= d3v5.scalePoint().padding(pc.outerPadding()).range([0, pc.width()]).domain(dimensions));
+        : (dimensionScale=  d3.scalePoint().padding(pc.outerPadding()).range([0, pc.width()]).domain(dimensions));
         
       dimensionScale = _;
       return pc; 
@@ -1593,8 +1594,8 @@
         var vScale = {}, _data = pc.data(), _height =pc.height();
         
         pc.dimensions().forEach(function(d){
-            vScale[d] = d3v5.scaleLinear()
-                .domain(d3v5.extent(_data, function(p) { return +p[d]; }))
+            vScale[d] =  d3.scaleLinear()
+                .domain( d3.extent(_data, function(p) { return +p[d]; }))
                 .range([_height, 0]);
             });
         return (valueScale = vScale);
@@ -1612,7 +1613,7 @@
             });
         }else{
             pc.dimensions().forEach(function(d){
-                dAxes[d] = d3v5.axisLeft().scale(vScale[d]);
+                dAxes[d] =  d3.axisLeft().scale(vScale[d]);
             });
         }
         return (dimensionAxes=dAxes);
@@ -1657,7 +1658,7 @@
             ,points = area.points()
             ;  
 
-        var d3v5area = d3v5.area()
+        var  d3area =  d3.area()
             .curve(area.curve())
             .defined(function(d){ return d.defined;})
             .x0(function(d){ return d.x0;})
@@ -1669,7 +1670,7 @@
         areag.append("path")
             .datum(points)
             .attr("class", "area")
-            .attr("d", d3v5area)
+            .attr("d",  d3area)
         ;
     }
     area.data = function(z){
@@ -1678,7 +1679,7 @@
         return area;
     }
     area.path = function(){  
-        return d3v5.area()
+        return  d3.area()
             .curve(area.curve())
             .defined(function(d){ return d.defined;})
             .x0(function(d){ return d.x0;})
@@ -1692,7 +1693,7 @@
             ,points = area.points()
         ;
         
-        var d3v5area = d3v5.area()
+        var  d3area =  d3.area()
             .curve(area.curve())
             .defined(function(d){ return d.defined;})
             .x0(function(d){ return d.x0;})
@@ -1706,17 +1707,17 @@
             .transition()
             .duration(duration)
             .ease(ease)
-            .attr("d", d3v5area)
+            .attr("d",  d3area)
         ;
     }
     area.curve = function(_){
-        return arguments.length ? (curve = _, area) :  typeof curve !== "undefined" ? curve : (curve=d3v5.curveLinear) ;
+        return arguments.length ? (curve = _, area) :  typeof curve !== "undefined" ? curve : (curve= d3.curveLinear) ;
     }
     area.duration = function(_){
         return arguments.length ? (duration = _, area) :  typeof duration !== "undefined" ? duration : (duration=1000) ;
     }
     area.ease = function(_){
-        return arguments.length ? (ease = _, area) :  typeof ease !== "undefined" ? ease : (ease=d3v5.easeLinear) ;
+        return arguments.length ? (ease = _, area) :  typeof ease !== "undefined" ? ease : (ease= d3.easeLinear) ;
     }
     area.width = function(_){
         return !arguments.length ? (typeof width !== "undefined" ? width : (width=(area.orient(), orient =="bottom" || orient =="top" ? 880 : 420))) :(width = _, area);
@@ -1742,8 +1743,8 @@
             ,"right": [0, area.height()] 
             }[area.orient()];
                 
-        return keyScale || (keyScale=d3v5.scaleLinear()
-            .domain(d3v5.extent(area.data().map(area.key())))
+        return keyScale || (keyScale= d3.scaleLinear()
+            .domain( d3.extent(area.data().map(area.key())))
             .range(keyRange))
             ;
     }
@@ -1757,7 +1758,7 @@
             ,"right": [area.width(), 0] 
             }[area.orient()];
 
-        return valueScale || (valueScale=d3v5.scaleLinear()
+        return valueScale || (valueScale= d3.scaleLinear()
             .domain(yExtent())
             .range(valueRange));
     }
@@ -1765,9 +1766,9 @@
         return arguments.length ? (defined = _, area) :  defined || (defined=function(){ return true;});
     }
     function yExtent(){
-        var value0x = d3v5.extent(area.data().map(area.value0()));
-        var value1x = d3v5.extent(area.data().map(area.value1()));
-        return [d3v5.min([value0x[0], value1x[0]]),d3v5.max([value0x[1], value1x[1]])];
+        var value0x =  d3.extent(area.data().map(area.value0()));
+        var value1x =  d3.extent(area.data().map(area.value1()));
+        return [ d3.min([value0x[0], value1x[0]]), d3.max([value0x[1], value1x[1]])];
     }
     function updateLocals(){
         area.orient();
@@ -1824,7 +1825,7 @@
         var lineg = sel.append("g").attr("class","viz-line")
             ,points = line.points()
             
-        var d3v5line = d3v5.line()
+        var  d3line =  d3.line()
             .curve(line.curve())
             .defined(function(d){ return d.defined;})
             .x(function(d){ return d.x;})
@@ -1833,7 +1834,7 @@
         lineg.append("path")
             .datum(points)
             .attr("class", "line")
-            .attr("d", d3v5line)
+            .attr("d",  d3line)
     }
     line.data = function(_){
         return !arguments.length ? data : (data = _, refresh=true, line);
@@ -1843,7 +1844,7 @@
             ,points = line.points()
         ;
         
-        var d3v5line = d3v5.line()
+        var  d3line =  d3.line()
             .curve(line.curve())
             .defined(function(d){ return d.defined;})
             .x(function(d){ return d.x;})
@@ -1855,17 +1856,17 @@
             .transition()
             .duration(duration)
             .ease(ease)
-            .attr("d", d3v5line)
+            .attr("d",  d3line)
         ;    
     }
     line.curve = function(_){
-        return !arguments.length ? (typeof curve !== "undefined" ? curve : (curve=d3v5.curveLinear)) :(curve = _, line);
+        return !arguments.length ? (typeof curve !== "undefined" ? curve : (curve= d3.curveLinear)) :(curve = _, line);
     }
     line.duration = function(_){
         return !arguments.length ? (typeof duration !== "undefined" ? duration : (duration=1000)) :(duration = _, line);
     }
     line.ease = function(_){
-        return !arguments.length ? (typeof ease !== "undefined" ? ease : (ease=d3v5.easeLinear)) :(ease = _, line);
+        return !arguments.length ? (typeof ease !== "undefined" ? ease : (ease= d3.easeLinear)) :(ease = _, line);
     }
     line.width = function(_){
         return !arguments.length ? (typeof width !== "undefined" ? width : (width=(line.orient(), orient =="bottom"|| orient =="top" ? 880 : 420))) :(width = _, line);
@@ -1889,8 +1890,8 @@
             ,"right": [0, line.height()] 
             }[line.orient()];
         
-        return keyScale || (keyScale=d3v5.scaleLinear()
-            .domain(d3v5.extent(line.data().map(line.key())))
+        return keyScale || (keyScale= d3.scaleLinear()
+            .domain( d3.extent(line.data().map(line.key())))
             .range(keyRange)) ;
     }
     line.valueScale = function(_){
@@ -1903,8 +1904,8 @@
             ,"right": [line.width(), 0] 
             }[line.orient()];
             
-        return valueScale || (valueScale=d3v5.scaleLinear()
-            .domain(d3v5.extent(line.data().map(line.value())))
+        return valueScale || (valueScale= d3.scaleLinear()
+            .domain( d3.extent(line.data().map(line.value())))
             .range(valueRange)) ;
     }
     line.defined = function(_){
@@ -1983,13 +1984,13 @@
         return arguments.length ? (orient = orients[_], point) :  orient || (orient=1);
     }
     point.curve = function(_){
-        return !arguments.length ? (typeof curve !== "undefined" ? curve : (curve=d3v5.curveLinear)) : (curve = _, point);
+        return !arguments.length ? (typeof curve !== "undefined" ? curve : (curve= d3.curveLinear)) : (curve = _, point);
     }
     point.duration = function(_){
         return !arguments.length ? (typeof duration !== "undefined" ? duration : (duration=1000)) : (duration = _, point);
     }
     point.ease = function(_){
-        return !arguments.length ? (typeof ease !== "undefined" ? ease : (ease=d3v5.easeLinear)) : (ease = _, point);
+        return !arguments.length ? (typeof ease !== "undefined" ? ease : (ease= d3.easeLinear)) : (ease = _, point);
     }
     point.width = function(_){
         return !arguments.length ? (typeof width !== "undefined" ? width : (refresh=true, width=880)) : (width = _, refresh=true, point);
@@ -2015,8 +2016,8 @@
                 ,4: [0, point.height()] 
                 }[orient];
             
-            return keyScale || (refresh=true, keyScale=d3v5.scaleLinear()
-                .domain(d3v5.extent(point.data().map(point.key())))
+            return keyScale || (refresh=true, keyScale= d3.scaleLinear()
+                .domain( d3.extent(point.data().map(point.key())))
                 .range(keyRange))
                 ;
         }
@@ -2032,8 +2033,8 @@
                 ,4: [point.width(), 0] 
                 }[orient];
                 
-            return valueScale || (refresh=true, valueScale=d3v5.scaleLinear()
-                .domain(d3v5.extent(point.data().map(point.value())))
+            return valueScale || (refresh=true, valueScale= d3.scaleLinear()
+                .domain( d3.extent(point.data().map(point.value())))
                 .range(valueRange)) 
                 ;
         }
@@ -2046,7 +2047,7 @@
     point.drawPoints = function(_){
         return arguments.length ? (drawPoints = _, point) 
             : drawPoints || (drawPoints=function(){           
-                    d3v5.select(this).append("circle").attr("r",6);
+                     d3.select(this).append("circle").attr("r",6);
                 }) ;
     }
     function updateLocals(){
@@ -2071,7 +2072,7 @@
                 return ret;
             });  
         
-        tree = d3v5.quadtree()
+        tree =  d3.quadtree()
             .x(function(d){ return d.x})
             .y(function(d){ return d.y})
             .addAll(points)
@@ -2143,13 +2144,13 @@
             .attr("height", function(d){ return d.height;})
     }
     bar.curve = function(_){
-        return arguments.length ? (curve = _, bar) :  typeof curve !== "undefined" ? curve : (curve=d3v5.curveLinear) ;
+        return arguments.length ? (curve = _, bar) :  typeof curve !== "undefined" ? curve : (curve= d3.curveLinear) ;
     }
     bar.duration = function(_){
         return arguments.length ? (duration = _, bar) :  typeof duration !== "undefined" ? duration : (duration=1000) ;
     }
     bar.ease = function(_){
-        return arguments.length ? (ease = _, bar) :  typeof ease !== "undefined" ? ease : (ease=d3v5.easeLinear) ;
+        return arguments.length ? (ease = _, bar) :  typeof ease !== "undefined" ? ease : (ease= d3.easeLinear) ;
     }
     bar.width = function(_){
         return !arguments.length ? (typeof width !== "undefined" ? width : (width=(bar.orient(),  880))) :(width = _, bar);
@@ -2184,7 +2185,7 @@
             ,"right": [0, bar.height()] 
             }[bar.orient()];
             
-        return keyScale || (keyScale=d3v5.scaleBand()
+        return keyScale || (keyScale= d3.scaleBand()
             .domain(bar.data().map(bar.key()))
             .range(keyRange)
             .paddingInner(bar.paddingInner())
@@ -2201,7 +2202,7 @@
             ,"right": [bar.width(), 0] 
             }[bar.orient()];
 
-        return valueScale || (valueScale=d3v5.scaleLinear()
+        return valueScale || (valueScale= d3.scaleLinear()
             .domain(yExtent())
             .range(valueRange));
     }
@@ -2209,9 +2210,9 @@
         return arguments.length ? (defined = _, bar) :  defined || (defined=function(){ return true;});
     }
     function yExtent(){
-        var value0x = d3v5.extent(bar.data().map(bar.value0()));
-        var value1x = d3v5.extent(bar.data().map(bar.value1()));
-        return [d3v5.min([value0x[0], value1x[0]]),d3v5.max([value0x[1], value1x[1]])];
+        var value0x =  d3.extent(bar.data().map(bar.value0()));
+        var value1x =  d3.extent(bar.data().map(bar.value1()));
+        return [ d3.min([value0x[0], value1x[0]]), d3.max([value0x[1], value1x[1]])];
     }
     function updateLocals(){
         bar.orient();
@@ -2274,7 +2275,7 @@
     function pie3d(_g){
       g=_g;
       
-      var pielayout = d3v5.pie()
+      var pielayout =  d3.pie()
             .value(pie3d.value())
             .startAngle(pie3d.startAngle())
             .endAngle(tau+pie3d.startAngle())(pie3d.data())
@@ -2287,7 +2288,7 @@
             .enter()
             .append("path")
             .attr("class", "innerSlice")
-            .style("fill", function(d) { return d3v5.hsl(_fill(d.data)).darker(0.7); })
+            .style("fill", function(d) { return  d3.hsl(_fill(d.data)).darker(0.7); })
             .attr("d",pieInner)
             .each(function(d){this._current=d;});
                 
@@ -2306,7 +2307,7 @@
             .enter()
             .append("path")
             .attr("class", "outerSlice")
-            .style("fill", function(d) { return d3v5.hsl(_fill(d.data)).darker(0.7); })
+            .style("fill", function(d) { return  d3.hsl(_fill(d.data)).darker(0.7); })
             .attr("d",pieOuter)
             .each(function(d){this._current=d;});
             
@@ -2424,13 +2425,13 @@
     function pie(_){
       g=_;
       _.each(function() {    
-        d3v5.select(this).select(".viz-pie").remove();
+         d3.select(this).select(".viz-pie").remove();
         
-        var sel = d3v5.select(this).append("g").attr("class","viz-pie")
+        var sel =  d3.select(this).append("g").attr("class","viz-pie")
         
         var _fill = pie.fill()
           ,_label = pie.label()
-          ,_data = pie.d3v5pie()(pie.data())
+          ,_data = pie. d3pie()(pie.data())
           ,_arc = pie.arc()
           
         if(folded) _arc = _arc.startAngle(pie.startAngle()).endAngle(pie.startAngle())
@@ -2453,7 +2454,7 @@
       if(folded) return; // if it is already folded, do nothing;
       
       g.each(function() {
-        var sel = d3v5.select(this).select(".viz-pie");
+        var sel =  d3.select(this).select(".viz-pie");
         
         var _duration = pie.duration()
           ,_arc = pie.arc()
@@ -2472,8 +2473,8 @@
     
         function arcTween(d) {        
             var _startAngle = pie.startAngle()(d.data);
-            var interpolateStart = d3v5.interpolate(d.startAngle, _startAngle);
-            var interpolateEnd = d3v5.interpolate(d.endAngle, _startAngle);
+            var interpolateStart =  d3.interpolate(d.startAngle, _startAngle);
+            var interpolateEnd =  d3.interpolate(d.endAngle, _startAngle);
             return function(t) {
               d.startAngle = interpolateStart(_ease(t));
               d.endAngle = interpolateEnd(_ease(t));
@@ -2487,12 +2488,12 @@
       if(!folded) return; // if it is already folded, do nothing;
       
       g.each(function() {
-        var sel = d3v5.select(this).select(".viz-pie");
+        var sel =  d3.select(this).select(".viz-pie");
         
         var _duration = pie.duration()
           ,_arc = pie.arc()
           ,_label = pie.label()
-          ,_data = pie.d3v5pie()(pie.data())
+          ,_data = pie. d3pie()(pie.data())
           ,_ease = pie.ease()
         
         sel.select(".arcs")
@@ -2512,8 +2513,8 @@
 
         function arcTween(d) {
             var _startAngle = pie.startAngle()(d.data);
-            var interpolateStart = d3v5.interpolate(_startAngle, d.startAngle);
-            var interpolateEnd = d3v5.interpolate(_startAngle, d.endAngle);
+            var interpolateStart =  d3.interpolate(_startAngle, d.startAngle);
+            var interpolateEnd =  d3.interpolate(_startAngle, d.endAngle);
             return function(t) {
               d.startAngle = interpolateStart(_ease(t));
               d.endAngle = interpolateEnd(_ease(t));
@@ -2590,18 +2591,18 @@
       return pie; 
     }
     pie.ease = function(x){ 
-      if(!arguments.length) return typeof ease !== "undefined" ? ease : d3v5.easeCubicInOut ;
+      if(!arguments.length) return typeof ease !== "undefined" ? ease :  d3.easeCubicInOut ;
       ease = x;
       return pie; 
     }
     pie.arc = function(){
-      return d3v5.arc()
+      return  d3.arc()
         .outerRadius(pie.outerRadius())
         .innerRadius(pie.innerRadius())
         .cornerRadius(pie.cornerRadius())
     }
-    pie.d3v5pie = function(){
-      return d3v5.pie()
+    pie. d3pie = function(){
+      return  d3.pie()
         .sort(pie.sort())
         .startAngle(pie.startAngle())
         .endAngle(pie.endAngle())
@@ -2703,7 +2704,7 @@
         .attr("data-value",checkList.dataValue())
         .attr("tabIndex","-1")
         .each(function(d){
-            d3v5.select(this)
+             d3.select(this)
                 .append("input")
                 .attr("type","checkbox")
                 .property("checked",checkList.defaultCheck())
@@ -2757,11 +2758,11 @@
     }  
     function _onClick(d,i){
         var idx=checkList.data().indexOf( d );
-        d3v5.select(this).select("input").property("checked",(selectedIndices[idx]=!selectedIndices[idx]))
+         d3.select(this).select("input").property("checked",(selectedIndices[idx]=!selectedIndices[idx]))
         
         checkList.onClick()(d,i);
         
-        d3v5.event.stopPropagation();
+         d3.event.stopPropagation();
     }
     function allNoneClicked(d){
         if(d=="All") selectedIndices=checkList.data().map(function(d){ return true;});
@@ -2771,7 +2772,7 @@
             .select("input")
             .property("checked",function(d,i){ return selectedIndices[i];});
             
-        d3v5.event.stopPropagation();    
+         d3.event.stopPropagation();    
     }
     return checkList;
   }
@@ -2781,7 +2782,7 @@
     function table(_){
         g=_;
         _.each(function(){
-          var g = d3v5.select(this);
+          var g =  d3.select(this);
         
           g.append("thead").append("tr")
             .selectAll("th").data(table.header()).enter().append("th")
@@ -2848,7 +2849,7 @@
     }
     navTabs.set = function(_){
         sel.selectAll(".nav-item").each(function(d){      
-            d3v5.select(this).select(".nav-link")
+             d3.select(this).select(".nav-link")
                 .classed("active", navTabs.text()(d)==_)
         })
         
@@ -2857,7 +2858,7 @@
     navTabs.get = function(){
         var ret ;
         sel.selectAll(".nav-item").filter(function(d){
-            return d3v5.select(this).select(".nav-link").classed("active")
+            return  d3.select(this).select(".nav-link").classed("active")
         }).each(function(d){ ret =d; })
         
         if(ret != undefined) return navTabs.text()(ret)
@@ -2954,7 +2955,7 @@
   }
   
   function boxWhisker(a){
-    var sa = a.filter(function(d){ return !isNaN(d);}).sort(d3v5.ascending), l = sa.length;
+    var sa = a.filter(function(d){ return !isNaN(d);}).sort( d3.ascending), l = sa.length;
  
     if(l==0) return [];
     else if(l==1) return [sa[0],sa[0],sa[0],sa[0],sa[0]];
@@ -3019,11 +3020,11 @@
   function viz_polar(r, a){  return {x:r*Math.cos(a), y:r*Math.sin(a)}  }
   function viz_getratio(a0, p, m, h, tt, f){
     if(tt <= 0 || h <= 0) return 0;
-    var a=a0.concat().sort(d3v5.ascending);
+    var a=a0.concat().sort( d3.ascending);
     var h0=h-a.length*p+(f? p: 0);
     var ret =[], r=0, t=0;
     
-    d3v5.range(a.length).forEach( function(d){ 
+     d3.range(a.length).forEach( function(d){ 
       t =  (h0-m*d)/(tt-=(a[d-1]||0));
         r+=a[d]*t <= m ? 1 :0;
       ret.push(t);
@@ -3031,7 +3032,7 @@
     return ret[r];
   }
   function viz_getbars(a, p, m, h0, h1){
-    var x=h0, total = d3v5.sum(a);
+    var x=h0, total =  d3.sum(a);
     var r=viz_getratio(a, p, m, h1 - h0, total, false);
     var s = a.map(function(d){ 
       var v = r*d;
@@ -3065,7 +3066,7 @@
         return "Q"+ (t*r* Math.cos(a2))+","+(t*r*Math.sin(a2))+" " + p1;
       }
     }
-  function viz_schemeCategory10(){ return d3v5.scaleOrdinal().range(d3v5.schemeCategory10) }
+  function viz_schemeCategory10(){ return  d3.scaleOrdinal().range( d3.schemeCategory10) }
   function viz_shiftarray(n,i){
     ret =[];
     for(var s=i; s>i-n; s--){
