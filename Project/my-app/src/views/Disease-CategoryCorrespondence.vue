@@ -18,7 +18,7 @@
         Click on the Button to select one-to-one relationship between Diseases and Category in particular year
     </div>
   </div>
-    <iframe frameBorder="0" width="100%" height="900px" src="http://pdms.usc.edu/~seherkha/proj/sankey.html"></iframe>
+    <iframe frameBorder="0" width="100%" height="900px" src="http://pdms.usc.edu/~shraddhk/project/sankey.html"></iframe>
         <div class="container"  style="border:1px solid black">
         <p><u>Important Information:</u></p>
         <ul>
