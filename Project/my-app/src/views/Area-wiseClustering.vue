@@ -1,7 +1,7 @@
 <template>
   <div class="areawise">
     <div class="container" style="margin:25px">
-      <h1 class="display-4" style="font-size:25px;font-weight:bold;">Clustering Highly Fatal Diseases by Region</h1>		
+      <h1 class="display-4" style="font-size:25px;font-weight:bold;">Clustering highly fatal diseases by region</h1>		
       <p>During 1999-2016, +2.7 mil fatalities occured in the US
       The 10 most fatal diseases accounted for
       3 out of 4 deaths during 1999-2016
