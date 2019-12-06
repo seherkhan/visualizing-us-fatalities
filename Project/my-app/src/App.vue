@@ -12,7 +12,7 @@
         <router-link to="/age2">Age Group Analysis - II</router-link> |
         <router-link to="/geomort">Geo-Mortality Exploration</router-link> |
         <router-link to="/expend">Healthcare Expenditure</router-link> |
-        <router-link to="/areawise">Area-wise Clustering</router-link> |
+        <router-link to="/areawise">Clustering Diseases by Region</router-link> |
         <router-link to="/teampage">Team Page</router-link>  
       </div>
     </div>

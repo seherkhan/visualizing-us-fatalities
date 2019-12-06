@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<head>
+	<title>Bipartite Graph</title>
+</head>
+<meta charset="utf-8" http-equiv="encoding">
+<!-- Required meta tags -->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<style>
+button {
+margin:12.5px;
+}
+
+text{
+	font-size:12px;
+}
+.mainBars rect{
+  shape-rendering: auto;
+  fill-opacity: 0;
+  stroke-width: 0.5px;
+  stroke: rgb(0, 0, 0);
+  stroke-opacity: 0;
+}
+.subBars{
+	shape-rendering:crispEdges;
+}
+.edges{
+	stroke:none;
+	fill-opacity:0.5;
+}
+.header{
+	text-anchor:middle;
+	font-size:16px;
+}
+line{
+	stroke:grey;
+}
+</style>
+<body>
+	<div class="container">
+       <br/>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1950"> 1950</button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1960"> 1960 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1970"> 1970 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1980"> 1980 </button>        
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1990"> 1990 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2000"> 2000 </button>   
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2005"> 2005 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2010"> 2010 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2014"> 2014 </button>
+		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr2015"> 2015 </button>
+		<button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" id="yr2016"> 2016 </button>              
+		
+		<div id="svg-im">
+		</div>
+	</div>
+		
+	
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="viz.js"></script>
+
+<script>
+
+
+var posmodes = [1950, 1960, 1970, 1980, 1990,
+ 		2000, 2005, 2010, 2014, 2015, 2016];
+var data, all, mode;
+
+//"#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a8a29e", "#a05d56", "#3366CC", "#bababa"
+var color = {
+	"Diseases of heart": "#98abc5",
+	"Ischemic heart disease": "#98abc5",
+	"Cerebrovascular diseases": "#98abc5",
+	"Malignant neoplasms": "#8a89a6",
+	"Trachea, bronchus, and lung": "#8a89a6",
+	"Colon, rectum, and anus": "#8a89a6",
+	"Prostate": "#8a89a6",
+	"Chronic lower respiratory diseases": "#7b6888",
+	"Influenza and pneumonia": "#7b6888",
+	"Chronic liver disease and cirrhosis": "#7b6888",
+	"Diabetes mellitus": "#6b486b",
+	"Alzheimer's disease": "#6b486b",
+	"Human immunodeficiency virus (HIV) disease": "#6b486b",
+	"Unintentional injuries": "#a8a29e",
+	"Motor vehicle-related injuries": "#a8a29e",
+	"Drug overdose": "#a8a29e",
+	"Nephritis, nephrotic syndrome and nephrosis": "#a05d56",
+	"Suicide": "#a05d56",
+	"Homicide": "#a05d56",
+	"Breast": "#3366CC",
+	"Diabetes mellitus.": "#3366CC"
+};
+
+var svg = d3.select("#svg-im").append("svg")
+		.attr("viewBox", [0, 0, 1500, 950]);
+		//.attr("width", 1500).attr("height", 800);
+
+// in Data/
+d3.json('sankey-data.json', function(d) {
+	mode = '2016';
+	all = d;
+	data = [];
+
+	for (var i = 0; i < d.length; i++) {
+		data.push([d[i]['Causes'], d[i]['Category'], mode, d[i][mode]]);
+	}
+	drawSankey();
+});
+
+d3.select("#yr1950").on('click', function() {
+	if(mode != '1950'){
+		d3.select('#yr1950').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '1950';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr1960").on('click', function() {
+	if(mode != '1960'){
+		d3.select('#yr1960').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '1960';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr1970").on('click', function() {
+	if(mode != '1970'){
+		d3.select('#yr1970').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '1970';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr1980").on('click', function() {
+	if(mode != '1980'){
+		d3.select('#yr1980').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '1980';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr1990").on('click', function() {
+	if(mode != '1990'){
+		d3.select('#yr1990').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '1990';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2000").on('click', function() {
+	if(mode != '2000'){
+		d3.select('#yr2000').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '2000';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2005").on('click', function() {
+	if(mode != '2005'){
+		d3.select('#yr2005').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '2005';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2010").on('click', function() {
+	if(mode != '2010'){
+		d3.select('#yr2010').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '2010';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2014").on('click', function() {
+	if(mode != '2014'){
+		d3.select('#yr2014').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '2014';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2015").on('click', function() {
+	if(mode != '2015'){
+		d3.select('#yr2015').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+		d3.select('#yr2016').classed('active', false);
+			mode = '2015';
+			filterdata();
+			drawSankey();
+		}
+});
+
+d3.select("#yr2016").on('click', function() {
+	if(mode != '2016'){
+		d3.select('#yr2016').classed('active', true).attr('aria-pressed', "true");
+		d3.select('#yr1960').classed('active', false);
+		d3.select('#yr1970').classed('active', false);
+		d3.select('#yr1980').classed('active', false);
+		d3.select('#yr1990').classed('active', false);
+		d3.select('#yr1950').classed('active', false);
+		d3.select('#yr2005').classed('active', false);
+		d3.select('#yr2010').classed('active', false);
+		d3.select('#yr2014').classed('active', false);
+		d3.select('#yr2015').classed('active', false);
+		d3.select('#yr2000').classed('active', false);
+			mode = '2016';
+			filterdata();
+			drawSankey();
+		}
+});
+
+
+function filterdata() {
+	d = all;
+	data = [];
+	for (var i = 0; i < d.length; i++) {
+		data.push([d[i]['Causes'], d[i]['Category'], mode, d[i][mode]]);
+	}
+}
+
+function drawSankey() {
+	d3.selectAll("g").remove();
+	d3.selectAll("text").remove();
+	d3.selectAll("line").remove();
+	d3.selectAll(".mainBars").remove();
+
+	var g =[svg.append("g").attr("transform","translate(450,100)")];
+
+	var bp=[ viz.biPartite()
+			.data(data)
+			.value(d=>d[3])
+			.min(12)
+			.pad(1)
+			.height(750)
+			.width(400)
+			.barSize(35)
+			.fill(function(d) {return color[d.primary] })
+	];
+			
+	[0].forEach(function(i){
+		g[i].call(bp[i])
+		
+		g[i].append("text").attr("x",-155).attr("y",-8).style("text-anchor","middle").text("Disease");
+		g[i].append("text").attr("x", 555).attr("y",-8).style("text-anchor","middle").text("Category");
+		
+		g[i].append("line").attr("x1",-310).attr("x2",0);
+		g[i].append("line").attr("x1",400).attr("x2",710);
+		
+		g[i].selectAll(".viz-biPartite-mainBar")
+			.on("mouseover",mouseover)
+			.on("mouseout",mouseout);
+
+		g[i].selectAll(".viz-biPartite-mainBar").append("text").attr("class","label")
+			.attr("x",d=>(d.part=="primary"? -25: 30))
+			.attr("y",d=>+6)
+			.text(d=>d.key)
+			.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+		
+		g[i].selectAll(".viz-biPartite-mainBar").append("text").attr("class","perc")
+			.attr("x",d=>(d.part=="primary"? -300: 280))
+			.attr("y",d=>+6)
+			.text(function(d) {return d3.format(".1f")(d.value);})
+			.attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+	});
+
+	function mouseover(d){
+		[0].forEach(function(i){
+			bp[i].mouseover(d);
+			
+			g[i].selectAll(".viz-biPartite-mainBar").select(".label")
+			.text(function(d) {return d.key});
+			//.text(function(d){ return d3.format("0.0%")(d.percent)});
+		});
+	}
+	function mouseout(d){
+		[0].forEach(function(i){
+			bp[i].mouseout(d);
+			
+			g[i].selectAll(".viz-biPartite-mainBar").select(".perc")
+			.text(function(d) {return (d.key, d3.format(".1f")(d.value))});
+			//.text(function(d){ return d3.format("0.0%")(d.percent)});
+		});
+	}
+	d3.select(self.frameElement).style("height", "800px");
+}
+
+</script>
+</body>
+</html>

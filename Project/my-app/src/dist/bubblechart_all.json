@@ -1,0 +1,88 @@
+{"name": "top5", "children": [
+      {"name": "Midwest","children":[
+        {"name":"East North Central","children":[
+            {"name":"Illinois","children":[{"name":"Diseases of heart","value":25652},{"name":"Malignant neoplasms","value":24713},{"name":"Cerebrovascular diseases","value":5709},{"name":"Chronic lower respiratory diseases","value":5544},
+        {"name":"Accidents","value":4850}]},{"name":"Indiana","children":[{"name":"Diseases of heart","value":13948},{"name":"Malignant neoplasms","value":13511},{"name":"Chronic lower respiratory diseases","value":4212},{"name":"Accidents","value":3258},{"name":"Cerebrovascular diseases","value":2959}]
+      },  {"name":"Michigan","children":[{"name":"Diseases of heart","value":24794},{"name":"Malignant neoplasms","value":20732},{"name":"Chronic lower respiratory diseases","value":5848},{"name":"Cerebrovascular diseases","value":4666},{"name":"Accidents","value":4647}]
+      },  {"name":"Ohio","children":[{"name":"Diseases of heart","value":28069},{"name":"Malignant neoplasms","value":25396},{"name":"Chronic lower respiratory diseases","value":7211},{"name":"Accidents","value":6756},{"name":"Cerebrovascular diseases","value":5945}]
+      },  {"name":"Wisconsin","children":[{"name":"Diseases of heart","value":11473},{"name":"Malignant neoplasms","value":11423},{"name":"Accidents","value":3206},{"name":"Chronic lower respiratory diseases","value":2846},{"name":"Cerebrovascular diseases","value":2618}]}
+            ]},
+      
+      {"name":"West North Central","children":[{"name":"Iowa","children":[{"name":"Diseases of heart","value":6813},{"name":"Malignant neoplasms","value":6513},{"name":"Chronic lower respiratory diseases","value":2011},{"name":"Accidents","value":1537},{"name":"Cerebrovascular diseases","value":1418}]
+      },  {"name":"Kansas","children":[{"name":"Diseases of heart","value":5624},{"name":"Malignant neoplasms","value":5604},{"name":"Chronic lower respiratory diseases","value":1704},{"name":"Accidents","value":1475},{"name":"Cerebrovascular diseases","value":1364}]
+      },  {"name":"Minnesota","children":[{"name":"Malignant neoplasms","value":9925},{"name":"Diseases of heart","value":7844},{"name":"Accidents","value":2574},{"name":"Chronic lower respiratory diseases","value":2351},{"name":"Cerebrovascular diseases","value":2238}]
+      },  {"name":"Missouri","children":[{"name":"Diseases of heart","value":14808},{"name":"Malignant neoplasms","value":12965},{"name":"Chronic lower respiratory diseases","value":3935},{"name":"Accidents","value":3309},{"name":"Cerebrovascular diseases","value":3037}]
+      },  {"name":"Nebraska","children":[{"name":"Diseases of heart","value":3591},{"name":"Malignant neoplasms","value":3514},{"name":"Chronic lower respiratory diseases","value":1174},{"name":"Accidents","value":799},{"name":"Cerebrovascular diseases","value":776}]
+      },  {"name":"North Dakota","children":[{"name":"Diseases of heart","value":1323},{"name":"Malignant neoplasms","value":1320},{"name":"Alzheimers disease","value":376},{"name":"Accidents","value":368},{"name":"Chronic lower respiratory diseases","value":351}]
+      },  {"name":"South Dakota","children":[{"name":"Diseases of heart","value":1711},{"name":"Malignant neoplasms","value":1640},{"name":"Chronic lower respiratory diseases","value":502},{"name":"Accidents","value":469},{"name":"Alzheimers disease","value":421}]}
+      ]}
+      ]},
+
+      {"name": "Northeast","children": 
+        [{"name":"Middle Atlantic","children":[
+            {"name":"District of Columbia","children":[{"name":"Diseases of heart","value":1217},{"name":"Malignant neoplasms","value":1072},{"name":"Accidents","value":265},{"name":"Cerebrovascular diseases","value":242},{"name":"Diabetes mellitus","value":162}]
+            },  {"name":"New Jersey","children":[{"name":"Diseases of heart","value":18647},{"name":"Malignant neoplasms","value":16270},{"name":"Cerebrovascular diseases","value":3413},{"name":"Accidents","value":3218},{"name":"Chronic lower respiratory diseases","value":3202}]
+            },  {"name":"New York","children":[{"name":"Diseases of heart","value":44450},{"name":"Malignant neoplasms","value":35089},{"name":"Chronic lower respiratory diseases","value":7109},{"name":"Accidents","value":6515},{"name":"Cerebrovascular diseases","value":6292}]
+            },  {"name":"Pennsylvania","children":[{"name":"Diseases of heart","value":32042},{"name":"Malignant neoplasms","value":28697},{"name":"Accidents","value":7324},{"name":"Cerebrovascular diseases","value":6987},{"name":"Chronic lower respiratory diseases","value":6664}]}
+        ]},
+            
+            {"name":"New England","children":[{"name":"Connecticut","children":[{"name":"Diseases of heart","value":7205},{"name":"Malignant neoplasms","value":6666},{"name":"Accidents","value":1799},{"name":"Cerebrovascular diseases","value":1388},{"name":"Chronic lower respiratory diseases","value":1369}]},  {"name":"Maine","children":[{"name":"Malignant neoplasms","value":3398},{"name":"Diseases of heart","value":3009},{"name":"Chronic lower respiratory diseases","value":1025},{"name":"Accidents","value":802},{"name":"Cerebrovascular diseases","value":616}]},{"name":"Massachusetts","children":[{"name":"Malignant neoplasms","value":12750},{"name":"Diseases of heart","value":12130},{"name":"Accidents","value":3229},{"name":"Chronic lower respiratory diseases","value":2784},{"name":"Cerebrovascular diseases","value":2475}]
+            },  {"name":"New Hampshire","children":[{"name":"Malignant neoplasms","value":2773},{"name":"Diseases of heart","value":2571},{"name":"Accidents","value":815},{"name":"Chronic lower respiratory diseases","value":705},{"name":"Cerebrovascular diseases","value":457}]
+            },  {"name":"Rhode Island","children":[{"name":"Diseases of heart","value":2371},{"name":"Malignant neoplasms","value":2226},{"name":"Accidents","value":649},{"name":"Chronic lower respiratory diseases","value":510},{"name":"Alzheimers disease","value":453}]
+            },  {"name":"Vermont","children":[{"name":"Malignant neoplasms","value":1399},{"name":"Diseases of heart","value":1311},{"name":"Chronic lower respiratory diseases","value":357},{"name":"Accidents","value":346},{"name":"Cerebrovascular diseases","value":307}]}
+      ]}]},
+
+      {"name": "South","children": [
+        {"name":"East South Central","children":[
+          {"name":"Alabama","children":[{"name":"Diseases of heart","value":12981},{"name":"Malignant neoplasms","value":10354},{"name":"Chronic lower respiratory diseases","value":3279},{"name":"Cerebrovascular diseases","value":2937},{"name":"Accidents","value":2552}]
+        },  {"name":"Kentucky","children":[{"name":"Malignant neoplasms","value":10312},{"name":"Diseases of heart","value":10077},{"name":"Chronic lower respiratory diseases","value":3331},{"name":"Accidents","value":2962},{"name":"Cerebrovascular diseases","value":2050}]
+        },  {"name":"Mississippi","children":[{"name":"Diseases of heart","value":7969},{"name":"Malignant neoplasms","value":6485},{"name":"Chronic lower respiratory diseases","value":1924},{"name":"Accidents","value":1814},{"name":"Cerebrovascular diseases","value":1734}]
+        },  {"name":"Tennessee","children":[{"name":"Diseases of heart","value":15730},{"name":"Malignant neoplasms","value":14214},{"name":"Chronic lower respiratory diseases","value":4239},{"name":"Accidents","value":3873},{"name":"Cerebrovascular diseases","value":3447}]}
+        ]},
+        
+        {"name":"South Atlantic","children":[
+        {"name":"Delaware","children":[{"name":"Malignant neoplasms","value":2010},{"name":"Diseases of heart","value":1940},{"name":"Chronic lower respiratory diseases","value":510},{"name":"Cerebrovascular diseases","value":466},{"name":"Accidents","value":449}]
+        },
+        {"name":"Florida","children":[{"name":"Diseases of heart","value":45441},{"name":"Malignant neoplasms","value":44027},{"name":"Chronic lower respiratory diseases","value":11705},{"name":"Cerebrovascular diseases","value":11433},{"name":"Accidents","value":10578}]},  
+        {"name":"Georgia","children":[{"name":"Diseases of heart","value":17769},{"name":"Malignant neoplasms","value":16945},{"name":"Chronic lower respiratory diseases","value":4607},{"name":"Accidents","value":4344},{"name":"Cerebrovascular diseases","value":4335}]
+        },
+        {"name":"Maryland","children":[{"name":"Diseases of heart","value":11481},{"name":"Malignant neoplasms","value":10568},{"name":"Cerebrovascular diseases","value":2540},{"name":"Chronic lower respiratory diseases","value":2040},{"name":"Accidents","value":1903}]
+        },
+        {"name":"North Carolina","children":[{"name":"Malignant neoplasms","value":19322},{"name":"Diseases of heart","value":18474},{"name":"Chronic lower respiratory diseases","value":5221},{"name":"Cerebrovascular diseases","value":5033},{"name":"Accidents","value":4991}]
+        },
+        {"name":"South Carolina","children":[{"name":"Diseases of heart","value":10092},{"name":"Malignant neoplasms","value":9950},{"name":"Chronic lower respiratory diseases","value":2908},{"name":"Accidents","value":2737},{"name":"Cerebrovascular diseases","value":2600}]
+        },
+        {"name":"Virginia","children":[{"name":"Malignant neoplasms","value":14947},{"name":"Diseases of heart","value":14077},{"name":"Accidents","value":3429},{"name":"Cerebrovascular diseases","value":3393},{"name":"Chronic lower respiratory diseases","value":3370}]}, 
+        {"name":"West Virginia","children":[{"name":"Malignant neoplasms","value":4839},{"name":"Diseases of heart","value":4727},{"name":"Chronic lower respiratory diseases","value":1628},{"name":"Accidents","value":1516},{"name":"Cerebrovascular diseases","value":1079}]}
+        ]}
+        ,{"name":"West South Central","children":[
+        {"name":"Arkansas","children":[{"name":"Diseases of heart","value":7938},{"name":"Malignant neoplasms","value":6727},{"name":"Chronic lower respiratory diseases","value":2270},{"name":"Cerebrovascular diseases","value":1653},{"name":"Accidents","value":1538}]
+        },
+        {"name":"Louisiana","children":[{"name":"Diseases of heart","value":10665},{"name":"Malignant neoplasms","value":9397},{"name":"Accidents","value":2578},{"name":"Cerebrovascular diseases","value":2280},{"name":"Chronic lower respiratory diseases","value":2178}]
+        },
+        {"name":"Oklahoma","children":[{"name":"Diseases of heart","value":10310},{"name":"Malignant neoplasms","value":8280},{"name":"Chronic lower respiratory diseases","value":2924},{"name":"Accidents","value":2422},{"name":"Cerebrovascular diseases","value":1881}]
+        },
+        {"name":"Texas","children":[{"name":"Diseases of heart","value":43298},{"name":"Malignant neoplasms","value":39121},{"name":"Cerebrovascular diseases","value":10485},{"name":"Chronic lower respiratory diseases","value":10231},{"name":"Accidents","value":9976}]}] }
+        ]},
+
+        {"name": "West","children": [
+          {"name":"Mountain","children":[
+          {"name":"Arizona","children":[{"name":"Malignant neoplasms","value":11776},{"name":"Diseases of heart","value":11458},{"name":"Chronic lower respiratory diseases","value":3681},{"name":"Accidents","value":3539},{"name":"Alzheimers disease","value":2943}]
+          },  {"name":"Colorado","children":[{"name":"Malignant neoplasms","value":7604},{"name":"Diseases of heart","value":7009},{"name":"Accidents","value":2725},{"name":"Chronic lower respiratory diseases","value":2577},{"name":"Cerebrovascular diseases","value":1856}]
+          },  {"name":"Idaho","children":[{"name":"Malignant neoplasms","value":2849},{"name":"Diseases of heart","value":2825},{"name":"Chronic lower respiratory diseases","value":843},{"name":"Accidents","value":746},{"name":"Cerebrovascular diseases","value":641}]
+          },  {"name":"Montana","children":[{"name":"Malignant neoplasms","value":2130},{"name":"Diseases of heart","value":2104},{"name":"Chronic lower respiratory diseases","value":679},{"name":"Accidents","value":637},{"name":"Cerebrovascular diseases","value":458}]
+          },  {"name":"Nevada","children":[{"name":"Diseases of heart","value":6114},{"name":"Malignant neoplasms","value":5015},{"name":"Chronic lower respiratory diseases","value":1617},{"name":"Accidents","value":1340},{"name":"Cerebrovascular diseases","value":1078}]
+          },  {"name":"New Mexico","children":[{"name":"Malignant neoplasms","value":3591},{"name":"Diseases of heart","value":3508},{"name":"Accidents","value":1430},{"name":"Chronic lower respiratory diseases","value":1109},{"name":"Cerebrovascular diseases","value":786}]
+          },  {"name":"Utah","children":[{"name":"Diseases of heart","value":3598},{"name":"Malignant neoplasms","value":3091},{"name":"Accidents","value":1223},{"name":"Alzheimers disease","value":906},{"name":"Cerebrovascular diseases","value":888}]
+          },  {"name":"Wyoming","children":[{"name":"Diseases of heart","value":1030},{"name":"Malignant neoplasms","value":931},{"name":"Accidents","value":400},{"name":"Chronic lower respiratory diseases","value":368},{"name":"Cerebrovascular diseases","value":198}]}
+        ]},
+          
+          {"name":"Pacific","children":[
+          {"name":"Alaska","children":[{"name":"Malignant neoplasms","value":978},{"name":"Diseases of heart","value":846},{"name":"Accidents","value":388},{"name":"Chronic lower respiratory diseases","value":204},{"name":"Intentional self-harm","value":201}]
+          },  {"name":"California","children":[{"name":"Diseases of heart","value":61289},{"name":"Malignant neoplasms","value":59629},{"name":"Alzheimers disease","value":15065},{"name":"Cerebrovascular diseases","value":15065},{"name":"Chronic lower respiratory diseases","value":13621}]},  
+          {"name":"Hawaii","children":[{"name":"Diseases of heart","value":2605},{"name":"Malignant neoplasms","value":2462},{"name":"Cerebrovascular diseases","value":735},{"name":"Influenza and pneumonia","value":557},{"name":"Accidents","value":536}]},
+          {"name":"Oregon","children":[{"name":"Malignant neoplasms","value":8093},{"name":"Diseases of heart","value":6859},{"name":"Chronic lower respiratory diseases","value":2119},{"name":"Accidents","value":1999},{"name":"Cerebrovascular diseases","value":1873}]},  
+          {"name":"Washington","children":[{"name":"Malignant neoplasms","value":12687},{"name":"Diseases of heart","value":11025},{"name":"Alzheimers disease","value":3490},{"name":"Accidents","value":3192},{"name":"Chronic lower respiratory diseases","value":3154}]}]}
+        ]}
+
+]}

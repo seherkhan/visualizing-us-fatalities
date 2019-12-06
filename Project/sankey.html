@@ -41,6 +41,7 @@ line{
 </style>
 <body>
 	<div class="container">
+       <br/>
 		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1950"> 1950</button>
 		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1960"> 1960 </button>
 		<button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="yr1970"> 1970 </button>
@@ -97,8 +98,8 @@ var svg = d3.select("#svg-im").append("svg")
 		.attr("viewBox", [0, 0, 1500, 950]);
 		//.attr("width", 1500).attr("height", 800);
 
-
-d3.json('Data/sankey-data.json', function(d) {
+// in Data/
+d3.json('sankey-data.json', function(d) {
 	mode = '2016';
 	all = d;
 	data = [];

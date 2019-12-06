@@ -2,21 +2,22 @@
 <div class="age2">
     <div class="container" style="margin:25px">
       <h1 class="display-4" style="font-size:25px;font-weight:bold;"> Death rates by age groups</h1>
-      <p>
-          United States, 2006-2016. Includes deaths of persons who were not residents of the 50 states and the District of Columbia (D.C.).<br>
-          Age-adjusted death rate per 100,000 population.
-      </p>
+      <p>Death rates vary significantly with age. The trend of death rates by age groups is given for the period of 2006-2016 for the United States.</p>
     </div>
     <div>
       <HeatMap v-bind:dataset ="dataset1" v-if="dataLoaded"/>
-      <br/><br/><br/><br/><br/>
-      
+  <br/>
+    <div class="container" style="margin:25px">
+      <p>More subtle trends can be observed in the graph below</p>
+    </div>
       <Stacked v-bind:dataset ="dataset2" v-if="dataLoaded"/>
-      <div class="container">
+      <br/><br/>
+
+      <div class="container" style="border:1px solid black">
         <p><u>Important Information:</u></p>
         <ul>
-            <li><b>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
-                    based on rounded population numbers.</b> Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
+            <li><b>Here all death rates are age-adjusted rates</b> - calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
+                    based on rounded population numbers. Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
             <li><b>Death Rates for less than 1 years of age have not been reported since the standard measure of reporting statistics for Infant Mortality is the Infant Mortality Rate</b> (the number of deaths per live births in an year)</li>
         </ul>
 
@@ -27,6 +28,7 @@
         </ul>
     </div>
     </div>
+    <br/><br/><br/>
 </div>
 
 </template>
