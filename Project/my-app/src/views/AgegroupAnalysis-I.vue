@@ -3,7 +3,7 @@
     <div class="container" style="margin:25px;">	
       <h1 class="lead" style="font-size:25px;font-weight:bold;">Leading causes of death and numbers of deaths, by age: United States, 1980 and 2016</h1>
       <br/>
-      <p>The visualizations represent the top causes of Deaths for varios Age Groups.
+      <p>The visualizations represent the top causes of Deaths for various Age Groups.
                 There are selector buttons for Age Groups below. Selecting a particular group,
                 gives you a comparision of top 10 causes of Deaths in the year 1980 vs year 2016.
                 The Pie Chart gives you an overall breakdown of the causes.
