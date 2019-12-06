@@ -3,13 +3,13 @@
 ### PROJECT INFORMATION
 - Project title: Disease Control and Prevention Analysis
 - Group name: GroupOne
-- Team names: [Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)]
+- Team names: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)       
 
 ### PROJECT ARTIFACTS  
 - [Demonstration URL](http://pdms.usc.edu/~seherkha/proj/)
 - [Presentation PDF](Project-INF554.pdf) and [transcript](PRESENTATION_TRANSCRIPT.md)
 - [Article](paper.pdf) and [Overleaf URL](https://www.overleaf.com/read/vxfjcwjhhzcp)
-- [YouTube video](<youtube-video-url>)     
+- [YouTube video](https://youtu.be/9LY0rr_nhG0)     
              
 ### PROJECT CONTRIBUTIONS
 
@@ -17,7 +17,7 @@
 - **Demonstration**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)         
 - **Presentation**: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)      
 - **Transcript**: Shraddha Kulkarni (shraddhk@usc.edu)        
-- **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu)  
+- **Youtube video**: Shraddha Kulkarni (shraddhk@usc.edu), Seher Khan (seherkha@usc.edu)      
 
 **Website:**      
 - **Website**: Seher Khan (seherkha@usc.edu), Shraddha Kulkarni (shraddhk@usc.edu)           

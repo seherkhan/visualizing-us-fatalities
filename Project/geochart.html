@@ -88,6 +88,7 @@ text.label {
 	margin-top: 20px;
 }
 
+
 </style>
 <body>
 <div class="container">
@@ -155,10 +156,10 @@ individually seen in the Bar chart.</p>
 	//---------------------- VARIABLE DECLARATION -------------------------------------
 	
 	var margin = { top: 50, left: 20, bottom: 80, right: 15 };
-	var width = 1200 - margin.left - margin.right;
+	var width = 1500 - margin.left - margin.right;
 	var height = 500 - margin.top - margin.bottom;
 
-	var stdwid = 950;
+	var stdwid = 1500;
 	var stdheight = 600;
        
 	var sampleData = {};
@@ -594,7 +595,7 @@ individually seen in the Bar chart.</p>
 		allData = sampleData;
 		svgmap = d3.select('#statesvg').append("svg")
 			.attr('id', 'svgmap')
-			.attr("viewBox", [0, 0, stdwid, stdheight]);
+			.attr("viewBox", [-250, 0, stdwid, stdheight]);
 			//.attr('width', stdwid)
 			//.attr('height', stdheight);
 
