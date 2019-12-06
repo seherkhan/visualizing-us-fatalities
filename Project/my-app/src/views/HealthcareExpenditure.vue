@@ -11,7 +11,7 @@
         <svg id="primary-area"/>
         <br/><br/>
         <div class="alert alert-info" role="alert" style="width:82%">
-            Click on the areas above to see sources of spending on the following chart. Hover over bars to see percentages.
+            Click on the areas above to see sources of spending in the following chart (click on the white area in the chart above to reset). Hover over bars to see percentages.
         </div>
         <svg id="secondary-area"/>
         </div>
