@@ -2,29 +2,38 @@
   <div class='expend'>
     <div class="container" style="margin:25px">
         <h1 class="display-4" style="font-size:25px;font-weight:bold;">Public healthcare expenditure</h1>
+        <p>Assesing public healthcare spending patterns during 1960-2015, we find that the portion of spending by category has stayed consistent since at least 1990;<br>
+        except in the case of hospital expenditures where changes have not been as sharp, and in the case of expenditure on dental services which saw a steep decline in last 5 years of the period.<p>
         <div class="alert alert-info" role="alert" style="width:82%">
-          Click on the area to see sources of spending on the chart below.
+            Hover over markers to see categorical spending for that year.
         </div>
+        <div>
         <svg id="primary-area"/>
+        <br/><br/>
+        <div class="alert alert-info" role="alert" style="width:82%">
+            Click on the areas above to see sources of spending on the following chart. Hover over bars to see percentages.
+        </div>
         <svg id="secondary-area"/>
-            <div class="container">
-        <p><u>Important Information:</u></p>
-        <ul>
-            <li><b>Hospital expenditures</b> include hospital-based nursing home and home health agency care.</li>
-            <li><b>Home health care expenditures</b> include expenditures for care in freestanding facilities only. Additional services of this type are provided in hospital-based facilities and are considered hospital care.</li>
-            <li><b>Nursing care facilities and continuing care retirement communities expenditures</b> include expenditures for care in freestanding nursing homes. Expenditures for care in hospital-based nursing homes are included with hospital care.</li>
-            <li><b>Other expenditures</b> include expenditures for other professional services, other nondurable medical products, durable medical equipment, and other health, residential, and personal care, not shown separately.</li>
-            <li><b>Other sources of payment</b> includes worksite health care, other private revenues, Indian Health Service, workers' compensation, general assistance, maternal and child health, vocational rehabilitation, other federal
-programs, Substance Abuse and Mental Health Services Administration, other state and local programs, and school health.</li>
-        </ul>
+        </div>
+        <div class="container" style="border:1px solid black">
+            <p><u>Important Information:</u></p>
+            <ul>
+                <li><b>Hospital expenditures</b> include hospital-based nursing home and home health agency care.</li>
+                <li><b>Home health care expenditures</b> include expenditures for care in freestanding facilities only. Additional services of this type are provided in hospital-based facilities and are considered hospital care.</li>
+                <li><b>Nursing care facilities and continuing care retirement communities expenditures</b> include expenditures for care in freestanding nursing homes. Expenditures for care in hospital-based nursing homes are included with hospital care.</li>
+                <li><b>Other expenditures</b> include expenditures for other professional services, other nondurable medical products, durable medical equipment, and other health, residential, and personal care, not shown separately.</li>
+                <li><b>Other sources of payment</b> includes worksite health care, other private revenues, Indian Health Service, workers' compensation, general assistance, maternal and child health, vocational rehabilitation, other federal
+    programs, Substance Abuse and Mental Health Services Administration, other state and local programs, and school health.</li>
+            </ul>
 
-        <p><u>References:</u></p>
-        <ul>
-            <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/095.pdf'></a></li>
-            <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
-        </ul>
+            <p><u>References:</u></p>
+            <ul>
+                <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/095.pdf'></a></li>
+                <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
+            </ul>
+        </div>
     </div>
-    </div>
+    <br/><br/><br/>
   </div>
 </template>
 <script>
@@ -306,7 +315,8 @@ var makeSecondaryChart = function(keyfilename){
             color = d3v5.scaleOrdinal()
                 .domain(series.map(d => d.key))
                 //.range(d3v5.quantize(t => d3v5.interpolateSpectral(t * 0.8 + 0.1), series.length).reverse())
-                .range(d3v5.schemeOrRd[4].reverse())
+                .range(d3v5.schemeReds[4].reverse())
+                //.range(d3v5.schemeGreys[5].reverse())
                 .unknown("#ccc");
 
             xAxis = g => g

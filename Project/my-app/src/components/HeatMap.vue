@@ -2,13 +2,19 @@
   <div class="heatmap">
       <div class="container" style="margin:25px">
     <div class="alert alert-info" role="alert" style="width:82%">
-        Click on the buttons to adjust color range to highlight across years and age groups
+        Click on the buttons to adjust color range to highlight across years or age groups, and then hover on corresponding axis.
     </div>
-
-    <div style="margin-top:15px;margin-bottom:15px;margin-left:120px">
+    <div class="row">
+    <div class="col1" style="margin-top:15px;margin-bottom:15px;margin-left:120px">
         <button type="button" class="btn btn-outline-dark active" data-toggle="button" aria-pressed="true" autocomplete="off" id="overall">Overall</button>
         <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="yr">Year</button>
         <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" autocomplete="off" id="grp">Age Group</button>  
+    </div>
+    <div class="col2 my-auto">
+        <span id="annot1">Irrespective of the year, death rates of older groups were substantially higher than younger groups;</span>
+        <br>
+        <span id="annot2">except in the case of 1-14 years and 15-24 years age groups which displayed closer rates.</span>
+    </div>
     </div>
     <div>
         <svg ref="heatmap_age"></svg>
@@ -27,6 +33,12 @@ import * as d3v5 from 'd3v5'
       }
     }, 
     mounted() {
+
+        var annots ={"overall":"Irrespective of the year, death rates of older groups were substantially higher than younger groups;__except in the case of 1-14 years and 15-24 years age groups which displayed closer rates.",
+        "year":"Over the period of 2006-2016, the  distribution of death rates across age groups starting from__1 years of age have stayed constant.",
+        "age":"Consistent decline in death rates over time can only be seen in the case of the__1-14 years of age group"
+        }
+
         ///////////////////////////
         // CONSTRUCT SVG
         var n_yrs = 11;
@@ -202,7 +214,7 @@ import * as d3v5 from 'd3v5'
             .attr('alignment-baseline','center')
             .text(function(d,i){return yr_data[i];})
 
-            // moveover for rect
+            // mouseover for rect
             var tmp_fill = 'black'
             d3v5.selectAll('rect').on("mouseenter", function() {
                 rect = this
@@ -236,11 +248,14 @@ import * as d3v5 from 'd3v5'
                 d3v5.select(this).attr('font-weight','bold');
                 yr = this.id.split('_')[1];
                 d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
-                return (this.getAttribute('class').includes('yr'+yr)) ? 1.0 : 0.1;
+                return (this.getAttribute('class').includes('yr'+yr)) ? 1.0 : 0;
+                });
+                d3v5.select('g[class=cells]').selectAll('text').transition().style('opacity',function () {
+                return (this.getAttribute('id').includes(yr+'_')) ? 1.0 : 0;
                 });
             })
             .on("mouseout", function() {
-                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
+                d3v5.select('g[class=cells]').selectAll('rect,text').transition().style('opacity',1.0);
                 d3v5.select(this).attr('font-weight','normal');
             });
             xaxis_event=true;
@@ -252,11 +267,14 @@ import * as d3v5 from 'd3v5'
                 d3v5.select(this).attr('font-weight','bold');
                 grp = this.id.split('_')[1];
                 d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',function () {
-                    return (this.getAttribute('class').includes('grp'+grp)) ? 1.0 : 0.1;
+                    return (this.getAttribute('class').includes('grp'+grp)) ? 1.0 : 0;
+                });
+                d3v5.select('g[class=cells]').selectAll('text').transition().style('opacity',function () {
+                    return (this.getAttribute('id').includes('_'+grp)) ? 1.0 : 0;
                 });
             })
             .on("mouseout", function() {
-                d3v5.select('g[class=cells]').selectAll('rect').transition().style('opacity',1.0);
+                d3v5.select('g[class=cells]').selectAll('rect,text').transition().style('opacity',1.0);
                 d3v5.select(this).attr('font-weight','normal');
             });
             yaxis_event=true;
@@ -275,6 +293,8 @@ import * as d3v5 from 'd3v5'
 
         // BUTTONS FUNCTIONALITY
         d3v5.select("button[id=overall]").on('click', function(){
+            d3v5.select("#annot1").text(annots.overall.split("__")[0])
+            d3v5.select("#annot2").text(annots.overall.split("__")[1])
             d3v5.select('button[id=yr]').classed('active',false)
             d3v5.select('button[id=grp]').classed('active',false)
             d3v5.select('button[id=overall]').classed('active',true)
@@ -291,6 +311,8 @@ import * as d3v5 from 'd3v5'
             enable_mouseover_yaxis();
         })
         d3v5.select("button[id=yr]").on('click', function(){
+            d3v5.select("#annot1").text(annots.year.split("__")[0])
+            d3v5.select("#annot2").text(annots.year.split("__")[1])
             d3v5.select('button[id=overall]').classed('active',false)
             d3v5.select('button[id=grp]').classed('active',false)
             d3v5.select('button[id=yr]').classed('active',true)
@@ -309,6 +331,8 @@ import * as d3v5 from 'd3v5'
         })
 
         d3v5.select("button[id=grp").on('click', function(){
+            d3v5.select("#annot1").text(annots.age.split("__")[0])
+            d3v5.select("#annot2").text(annots.age.split("__")[1])
             d3v5.select('button[id=yr]').classed('active',false)
             d3v5.select('button[id=overall]').classed('active',false)
             d3v5.select('button[id=grp]').classed('active',true)
@@ -336,4 +360,27 @@ import * as d3v5 from 'd3v5'
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+		.col1,.col2,.row:after {
+			box-sizing: border-box;
+		}
+        .col1 {
+			float: right;
+			margin-left: 50px;
+		}
+
+		.col2 {
+            transform: translate(2%, 0%);
+            background-color:#ebebeb;
+            /*border: 1px solid black;*/
+            /*padding-left: 5px;
+            padding-right: 5px */
+            padding:10px
+
+		}
+		/* Clear floats after the columns */
+		.row:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
 </style>

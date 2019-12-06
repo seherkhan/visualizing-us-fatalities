@@ -1,8 +1,7 @@
 <template>
   <div class="stackedbar">
-    <div class="container" style="margin:25px">             
-        <p class="lead">Trends over the Years - United States, selected years 1950–2016.</p>
-        <p class="lead">In this visualization we've grouped our datapoints on the basis of Category (Gender, Origin, and Race).
+    <div class="container" style="margin:25px">
+        <p>In this visualization we've grouped our datapoints on the basis of Category (Gender, Origin, and Race).
             Selector buttons should be used to select a particular Category. Each group in the chart represents a particular disease,
             which helps to see the overall trend of these diseases over the years in context to a particular Category.
         </p>
@@ -10,7 +9,6 @@
         <div class="alert alert-info" role="alert">
                 Click on the button to see individual trends for Diseases over the past decade
         </div>
-    
         <hr class="my-5">
         <button type="button" class="btn btn-outline-danger active" data-toggle="button" aria-pressed="true" id="AP">All Persons</button>  
         <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="M">Male</button>
@@ -24,40 +22,15 @@
         <button type="button" class="btn btn-outline-dark" data-toggle="button" aria-pressed="false" id="BHL">Black, not Hispanic or Latino</button>              
     </div>
     <br/><br/>
-
-    <div id='barchart'>
-          <svg ref="stackbar"></svg>
-    </div><br/><br/><br/>
-    <div id="tooltip"></div><!-- div to hold tooltip. -->
-
-
-    <div class="container">
-        <p><u>Important Information:</u></p>
-        <ul>
-            <li><b>Age-adjusted rates are calculated using the year 2000 standard population. Prior to 2001, age-adjusted rates were calculated using standard million proportions
-                    based on rounded population numbers.</b> Starting with 2001 data, unrounded population numbers are used to calculate age-adjusted rates.</li>
-            <li><b>Starting with 1999 data, the rules for selecting CLRD and Pneumonia as the underlying cause of death changed</b>, resulting in an increase in the number of deaths
-                    for CLRD and a decrease in the number of deaths for Pneumonia. Therefore, trend data for these two causes of death should be interpreted with caution.</li>
-            <li><b>Starting with 2011 data, the rules for selecting Renal failure as the underlying cause of death were changed</b>, affecting the number of deaths in the Nephritis,
-                    nephrotic syndrome and nephrosis and Diabetes categories. The result is a decrease in the number of deaths for Nephritis, nephrotic syndrome and nephrosis and an increase in the number of deaths for Diabetes mellitus. Therefore,
-                    trend data for these two causes of death should be interpreted with caution.</li>
-            <li><b>Death rates for Hispanic, American Indian or Alaska Native, and Asian or Pacific Islander persons should be interpreted with caution</b> because of inconsistencies in reporting Hispanic origin
-                    or race on the death certificate compared with population figures. The net effect of misclassification is an underestimation of deaths and death
-                    rates for races other than white and black. </li>
-        </ul>
-
-        <p><u>References:</u></p>
-        <ul>
-            <li>Source - <a href='https://www.cdc.gov/nchs/data/hus/2017/017.pdf'>https://www.cdc.gov/nchs/data/hus/2017/017.pdf</a></li>
-            <li>National Center for Health Statistics. 2018. Available from: <a href='https://www.cdc.gov/nchs/products/nvsr.htm'>https://www.cdc.gov/nchs/products/nvsr.htm</a></li>
-        </ul>
-    </div>
-    </div>
+    <svg ref="stackbar"></svg>
+    <div id='barchart'></div>
+    <br/><br/><br/>
+    <div id="tooltip"></div>
   </div>
 </template>
 
 <script>
-import * as d3v5 from 'd3'
+import * as d3 from 'd3v5'
   export default {
     name: 'StackedBar',
     props: {
@@ -68,10 +41,10 @@ import * as d3v5 from 'd3'
     mounted() {
        var widthx = 1500;
             var heightx = 400;
-            var marginx = {top: 20, right: 50, bottom: 25, left: 50};
+            var marginx = {top: 20, right: 50, bottom: 25, left: 50}
 
             var svgx = svgx = d3.select(this.$refs["stackbar"])
-                .append('svg')
+                //.append('svg')
                 .attr('id', 'svg-bar')
                 .attr('viewBox', [0, 0, widthx, heightx])
                 //.attr('width', widthx)
@@ -81,11 +54,11 @@ import * as d3v5 from 'd3'
 
             
             var datax, modex, allx;
-            keys = ["1950", "1960", "1970", "1980", "1990", 
+            var keys = ["1950", "1960", "1970", "1980", "1990", 
                 "1995", "2000", "2005", "2010", "2014", "2015", 
                 "2016"];
 
-            colorx = d3.scaleOrdinal()
+            var colorx = d3.scaleOrdinal()
                 .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a8a29e", "#a05d56", "#d0743c", "#ff8c00", "#ebaf8a", "#d4bfb2", "#807c7a", "#bababa"])
 
             var groupKey = "disease_id";
@@ -312,9 +285,9 @@ import * as d3v5 from 'd3'
 
             
 
-        function tooltipHtml(k, v){	/* function to create html content string in tooltip div. */
-		    return "<h4>Year: "+k+"</h4><h4>Spread: "+v+"</h4>";
-	    };
+        function tooltipHtml(k, v){  /* function to create html content string in tooltip div. */
+        return "<span>Year: "+k+"<br/>Spread: "+v+"</span>";
+      }
 
 
         function drawBarChart() {
@@ -322,16 +295,16 @@ import * as d3v5 from 'd3'
         d3.selectAll("g").remove();
 
         function mouseOver(d){
-			d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
-			
-			d3.select("#tooltip").html(tooltipHtml(d.key, d.value))  
-				.style("left", (d3.event.pageX) + "px")     
-				.style("top", (d3.event.pageY - 28) + "px");
-		}
-		
-		function mouseOut(){
-			d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
-		}
+      d3.select("#tooltip").transition().duration(200).style("opacity", .9);      
+      
+      d3.select("#tooltip").html(tooltipHtml(d.key, d.value))  
+        .style("left", (d3.event.pageX) + "px")     
+        .style("top", (d3.event.pageY - 28) + "px");
+    }
+    
+    function mouseOut(){
+      d3.select("#tooltip").transition().duration(500).style("opacity", 0);      
+    }
 
         x0.domain(datax.map(function(d) { return d['disease_id']; }))
             .rangeRound([marginx.left, widthx - marginx.right])
@@ -344,12 +317,12 @@ import * as d3v5 from 'd3'
         y.domain([0,  d3.max(datax, d => d3.max(keys, key => d[key]))]).nice()
             .rangeRound([heightx - marginx.bottom, marginx.top]);
             
-        xAxis = g => g
+        var xAxis = g => g
             .attr("transform", `translate(0,${heightx - marginx.bottom})`)
             .call(d3.axisBottom(x0).tickSizeOuter(0))
             .call(g => g.select(".domain").remove());
 
-        yAxis = g => g
+        var yAxis = g => g
             .attr("transform", `translate(${marginx.left},0)`)
             .call(d3.axisLeft(y).ticks(null, "s"))
             .call(g => g.select(".domain").remove())
@@ -398,34 +371,20 @@ import * as d3v5 from 'd3'
             .call(legend);
         } 
     }
+    }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-        #tooltip {   
+<style scoped>
+    #tooltip {   
             position: absolute;           
-            text-align: center;
-            padding: 20px;             
-            margin: 10px;
-            font: 12px sans-serif;        
-            background: lightsteelblue;   
-            border: 1px;      
-            border-radius: 2px;           
-            pointer-events: none;         
-        }
-        #tooltip h4{
-            margin:0;
-            font-size:14px;
-        }
-        #tooltip{
+            text-align: center;                      
             background:rgba(0,0,0,0.9);
-            border:2px solid grey;
-            border-radius:5px;
-            font-size:12px;
+            border:1px solid black;
             width:auto;
-            padding:4px;
-            padding-top: 5px;
             color:white;
-            opacity:0;
+            pointer-events: none;  
+            font-size: 12px;
+            padding: 2px      
         }
 
     .bar {
@@ -436,4 +395,4 @@ import * as d3v5 from 'd3'
         margin: 20px;
     }
         
-        </style>
+</style>

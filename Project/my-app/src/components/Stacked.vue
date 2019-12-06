@@ -222,8 +222,8 @@ import * as d3v5 from 'd3v5'
         var color = d3v5.scaleOrdinal()
             .domain(seriesNames_org.map(function(i){return seriesNames_org.indexOf(i);}))
             //.range(d3v5.schemeYlOrRd[9].reverse());
-            .range(d3v5.schemeBlues[6].reverse())
-//,
+            //.range(d3v5.schemeGreys[7]);
+            .range(d3v5.schemeBlues[8].reverse());
             
 
         var n, y, yAxis, layers, yStackMax, yGroupMax, rect;
@@ -275,8 +275,10 @@ import * as d3v5 from 'd3v5'
             seriesNames.forEach(function(el,i){
                 data1.push( data[i][el] )});
 
+            // if all are getting unselected, do not allow it
             if(data1.length==0){
-                updateChart([],[])
+                d3v5.select(el).classed('active',true).attr("aria-pressed","true");
+                //updateChart([],[])
                 return;
             }
             data = data1[0].map(function(col, i) { 
