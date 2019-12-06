@@ -2,7 +2,7 @@
 <div class="age2">
     <div class="container" style="margin:25px">
       <h1 class="display-4" style="font-size:25px;font-weight:bold;"> Death rates by age groups</h1>
-      <p>Death rates in the vary significantly with age. The trend of death rates by age groups is given for the period of 2006-2016 for the United States.</p>
+      <p>Death rates vary significantly with age. The trend of death rates by age groups is given for the period of 2006-2016 for the United States.</p>
     </div>
     <div>
       <HeatMap v-bind:dataset ="dataset1" v-if="dataLoaded"/>
