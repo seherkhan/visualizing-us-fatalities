@@ -44,10 +44,6 @@ export default {
         dataLoaded: false,
         dataset1: [],
         dataset2: []
-        /*
-        dataset1: [{ "key": "A", "value": 45 },
-        { "key": "B", "value": 75 },
-        { "key": "C", "value": 130 }]*/
     };
   },
   components: {

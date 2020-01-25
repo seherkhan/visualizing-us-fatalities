@@ -42,6 +42,7 @@ import * as d3v5 from 'd3v5'
             div.append('button')
                 .attr('id','btn_'+i)
                 .attr("class","btn btn-outline-dark active")
+                .attr("aria-pressed","true")
                 .text(el)
         });
 
@@ -245,7 +246,8 @@ import * as d3v5 from 'd3v5'
         clickbtn = function(){
             var el = this
             var ids
-            if(el.classList.contains("active")){ // currently selected, now unselect
+            if(el.classList.contains("active")){ // currently selected, now unselectconsole.log(el);
+                console.log("I am unselecting");
                 d3v5.select(el).classed('active',false).attr("aria-pressed","false");
                 ids = Array.from(d3v5.select('#series').selectAll('button[aria-pressed=false]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
@@ -258,13 +260,16 @@ import * as d3v5 from 'd3v5'
                 })
             }
             else{ // currently unselected, now select
+                console.log("I am selecting");
                 d3v5.select(el).classed('active',true)
                     .attr("aria-pressed","true");
 
                 ids = Array.from(d3v5.select('#series').selectAll('button[aria-pressed=true]')._groups[0])
                     .map(btn=>parseInt(btn.id.split('_')[1]))
+                console.log(d3v5.select('#series').selectAll('button[aria-pressed=true]')._groups[0]);
+                console.log(ids);
                 ids = seriesNames_org.map((d,i)=>i).filter(d=>ids.includes(d)); 
-                
+                console.log(ids);
                 seriesNames = ids.map(id=>seriesNames_org[id])
         
                 data = data_org.filter(function(d){
